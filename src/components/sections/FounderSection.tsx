@@ -11,7 +11,7 @@ export function FounderSection({ section }: FounderSectionProps) {
   const content = (section.content || {}) as Record<string, any>;
   const portraitUrl =
     content["portrait_url"] ||
-    "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png";
+    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/main%20founderimaeg.jpeg";
   const bio =
     content["bio"] ||
     "Welcome! I am Malik Jahanzaib, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems.";

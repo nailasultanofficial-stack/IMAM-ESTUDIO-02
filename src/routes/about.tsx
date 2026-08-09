@@ -122,6 +122,16 @@ function AboutPage() {
                   </div>
                 </div>
 
+                <div className="mt-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-muted border border-border/80">
+                  <img
+                    src="https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/main%20founderimaeg.jpeg"
+                    alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
                 <p className="mt-4 font-display text-2xl font-semibold text-foreground">
                   {SITE.founder}
                 </p>

@@ -16,10 +16,10 @@ export function HeroSection({ section }: HeroSectionProps) {
   const content = (section.content || {}) as Record<string, any>;
   const desktopImage =
     content["desktop_hero_image"] ||
-    "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png";
+    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
   const mobileImage =
     content["mobile_hero_image"] ||
-    "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png";
+    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
   const eyebrow = content["eyebrow"] || "MALIK JAHANZAIB (@jahanzeb1809)";
   const primaryCtaLabel = content["primary_cta_label"] || "Start an engagement";
   const primaryCtaUrl = content["primary_cta_url"] || "/contact?source=hero_primary";
@@ -28,10 +28,7 @@ export function HeroSection({ section }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-[95svh] w-full overflow-hidden bg-background">
-      {/* 3D WebGL Atmosphere Canvas */}
-      <HeroAtmosphereCanvas />
-
-      {/* Layered Background Imagery with Parallax */}
+      {/* Hero Background Visual — Official Artwork First (Zero floating 3D objects/particles) */}
       <motion.div style={{ y: imageY, opacity }} className="absolute inset-0 z-0">
         <picture>
           <source media="(max-width: 767px)" srcSet={mobileImage} />
@@ -40,12 +37,12 @@ export function HeroSection({ section }: HeroSectionProps) {
             alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
             fetchPriority="high"
             decoding="async"
-            className="h-full w-full object-cover object-[65%_center] opacity-35 md:object-center md:opacity-30"
+            className="h-full w-full object-cover object-center md:object-[70%_center] opacity-85 md:opacity-90"
           />
         </picture>
-        {/* Editorial Lighting Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent md:via-background/80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+        {/* Minimal localized readability gradient behind text only */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent md:w-3/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </motion.div>
 
       {/* Hero Viewport Content */}
