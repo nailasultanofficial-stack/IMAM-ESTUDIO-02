@@ -10,7 +10,6 @@ interface FounderSectionProps {
 export function FounderSection({ section }: FounderSectionProps) {
   const content = (section.content || {}) as Record<string, any>;
   const portraitUrl =
-    content["portrait_url"] ||
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/main%20founderimaeg.jpeg";
   const bio =
     content["bio"] ||

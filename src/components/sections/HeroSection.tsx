@@ -15,10 +15,8 @@ export function HeroSection({ section }: HeroSectionProps) {
 
   const content = (section.content || {}) as Record<string, any>;
   const desktopImage =
-    content["desktop_hero_image"] ||
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
   const mobileImage =
-    content["mobile_hero_image"] ||
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
   const eyebrow = content["eyebrow"] || "MALIK JAHANZAIB (@jahanzeb1809)";
   const primaryCtaLabel = content["primary_cta_label"] || "Start an engagement";
