@@ -1,9 +1,11 @@
 # Database Schema & Data Architecture
 
 ## Overview
+
 IMAM ESTUDIO OS uses Supabase PostgreSQL (`zcihimfisgzpeeyhdnfq`) as its authoritative datastore.
 
 ## Table Inventory
+
 - `profiles`: Staff user profiles linked to `auth.users(id)` with cascade deletion.
 - `user_roles`: Dedicated role mapping table for RBAC (`owner`, `admin`, `editor`, `operations`, `viewer`).
 - `services`: 10 engineering capabilities with pricing, tech stack, and display ordering.

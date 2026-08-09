@@ -19,7 +19,10 @@ import type {
 
 function cleanEnv(val: string | undefined): string {
   if (!val) return "";
-  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+  return val
+    .replace(/^\uFEFF/, "")
+    .replace(/[\r\n\t]/g, "")
+    .trim();
 }
 
 function adminClient(authToken?: string) {

@@ -15,7 +15,10 @@ import type { PageSection, Project, SeoSetting, Service, SitePage } from "@/lib/
  */
 function cleanEnv(val: string | undefined): string {
   if (!val) return "";
-  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+  return val
+    .replace(/^\uFEFF/, "")
+    .replace(/[\r\n\t]/g, "")
+    .trim();
 }
 
 function publicClient() {

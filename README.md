@@ -17,6 +17,7 @@ IMAM ESTUDIO OS is a founder-led engineering platform built for high-performance
 Founder identity: **Mudasar Imam** — Senior Full Stack Engineer & AI Automation Architect
 
 ### Key Public Routes
+
 - `/`: Homepage featuring Desktop & Mobile Hero Imagery, Trust Strip, Founder Section, 10 Capabilities, 10 Case Studies, 4-Phase Engineering Approach, Collaboration Spotlight, Final CTA, and WhatsApp Floating Widget (+923191106310).
 - `/work`: 10 Selected Engineering Case Studies with category filtering.
 - `/work/$slug`: Individual Case Study Detail.
@@ -33,6 +34,7 @@ Founder identity: **Mudasar Imam** — Senior Full Stack Engineer & AI Automatio
 The founder (Mudasar Imam) manages all site content, section order, leads, quotes, media, staff, and security rules without modifying source code.
 
 ### Admin Routes
+
 - `/admin/login`: Staff Authentication
 - `/admin/dashboard`: Metrics, Lead Pipeline, Revenue Totals, CTA Source Attribution
 - `/admin/services`: Capabilities CRUD Manager
@@ -82,6 +84,7 @@ bun run build
 ## 5. Documentation Directory
 
 Detailed architectural and operational documentation is available in `docs/`:
+
 - `docs/ARCHITECTURE.md`: Technical stack & route structure
 - `docs/DATABASE.md`: Schema, tables, and data model
 - `docs/RBAC.md`: Role permissions matrix (`owner`, `admin`, `editor`, `operations`, `viewer`)

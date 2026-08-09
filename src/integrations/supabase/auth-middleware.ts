@@ -6,7 +6,10 @@ import type { Database } from "./types";
 
 function cleanEnv(val: string | undefined): string {
   if (!val) return "";
-  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+  return val
+    .replace(/^\uFEFF/, "")
+    .replace(/[\r\n\t]/g, "")
+    .trim();
 }
 
 function isNewSupabaseApiKey(value: string): boolean {
@@ -26,10 +29,7 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
     }
 
     // New Supabase API keys are opaque strings, not bearer JWTs.
-    if (
-      isNewSupabaseApiKey(cleanKey) &&
-      headers.get("Authorization") === `Bearer ${cleanKey}`
-    ) {
+    if (isNewSupabaseApiKey(cleanKey) && headers.get("Authorization") === `Bearer ${cleanKey}`) {
       headers.delete("Authorization");
     }
 

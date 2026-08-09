@@ -16,6 +16,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
+import { SmoothScrollProvider, CustomCursor } from "@/components/ui/motion-primitives";
 
 function NotFoundComponent() {
   return (
@@ -142,14 +143,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {isPublic ? <SiteHeader /> : null}
-      <main id="main">
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </main>
-      {isPublic ? <SiteFooter /> : null}
-      {isPublic ? <WhatsAppFloat /> : null}
-      <Toaster />
+      <SmoothScrollProvider>
+        {isPublic ? <CustomCursor /> : null}
+        {isPublic ? <SiteHeader /> : null}
+        <main id="main">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        {isPublic ? <SiteFooter /> : null}
+        {isPublic ? <WhatsAppFloat /> : null}
+        <Toaster />
+      </SmoothScrollProvider>
     </QueryClientProvider>
   );
 }
