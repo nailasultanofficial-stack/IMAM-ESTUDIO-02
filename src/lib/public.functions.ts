@@ -13,9 +13,16 @@ import type { PageSection, Project, SeoSetting, Service, SitePage } from "@/lib/
  * still applies and only rows the `anon` SELECT policies expose can be read
  * (published services/projects/pages, public SEO settings).
  */
+function cleanEnv(val: string | undefined): string {
+  if (!val) return "";
+  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+}
+
 function publicClient() {
-  const url = process.env["SUPABASE_URL"];
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+  const url = cleanEnv(process.env["SUPABASE_URL"] || process.env["VITE_SUPABASE_URL"]);
+  const key = cleanEnv(
+    process.env["SUPABASE_PUBLISHABLE_KEY"] || process.env["VITE_SUPABASE_PUBLISHABLE_KEY"],
+  );
   if (!url || !key) throw new Error("Supabase public credentials are not configured");
   return createClient<Database>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false, storage: undefined },

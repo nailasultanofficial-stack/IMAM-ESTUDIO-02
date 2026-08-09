@@ -17,14 +17,23 @@ import type {
   StaffMember,
 } from "@/lib/content-types";
 
+function cleanEnv(val: string | undefined): string {
+  if (!val) return "";
+  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+}
+
 function adminClient(authToken?: string) {
-  const url = process.env["SUPABASE_URL"];
-  const anonKey = process.env["SUPABASE_ANON_KEY"] || process.env["SUPABASE_PUBLISHABLE_KEY"];
+  const url = cleanEnv(process.env["SUPABASE_URL"] || process.env["VITE_SUPABASE_URL"]);
+  const anonKey = cleanEnv(
+    process.env["SUPABASE_ANON_KEY"] ||
+      process.env["SUPABASE_PUBLISHABLE_KEY"] ||
+      process.env["VITE_SUPABASE_PUBLISHABLE_KEY"],
+  );
   if (!url || !anonKey) throw new Error("Supabase credentials not configured");
 
   const headers: Record<string, string> = {};
   if (authToken) {
-    headers["Authorization"] = `Bearer ${authToken}`;
+    headers["Authorization"] = `Bearer ${cleanEnv(authToken)}`;
   }
 
   return createClient<Database>(url, anonKey, {

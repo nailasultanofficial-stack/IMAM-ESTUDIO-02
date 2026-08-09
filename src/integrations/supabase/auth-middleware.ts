@@ -4,11 +4,18 @@ import { getRequest } from "@tanstack/react-start/server";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "./types";
 
+function cleanEnv(val: string | undefined): string {
+  if (!val) return "";
+  return val.replace(/^\uFEFF/, "").replace(/[\r\n\t]/g, "").trim();
+}
+
 function isNewSupabaseApiKey(value: string): boolean {
-  return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
+  const clean = cleanEnv(value);
+  return clean.startsWith("sb_publishable_") || clean.startsWith("sb_secret_");
 }
 
 function createSupabaseFetch(supabaseKey: string): typeof fetch {
+  const cleanKey = cleanEnv(supabaseKey);
   return (input, init) => {
     const headers = new Headers(
       typeof Request !== "undefined" && input instanceof Request ? input.headers : undefined,
@@ -20,21 +27,21 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
 
     // New Supabase API keys are opaque strings, not bearer JWTs.
     if (
-      isNewSupabaseApiKey(supabaseKey) &&
-      headers.get("Authorization") === `Bearer ${supabaseKey}`
+      isNewSupabaseApiKey(cleanKey) &&
+      headers.get("Authorization") === `Bearer ${cleanKey}`
     ) {
       headers.delete("Authorization");
     }
 
-    headers.set("apikey", supabaseKey);
+    headers.set("apikey", cleanKey);
     return fetch(input, { ...init, headers });
   };
 }
 
 export const requireSupabaseAuth = createMiddleware({ type: "function" }).server(
   async ({ next }) => {
-    const SUPABASE_URL = process.env["SUPABASE_URL"];
-    const SUPABASE_PUBLISHABLE_KEY = process.env["SUPABASE_PUBLISHABLE_KEY"];
+    const SUPABASE_URL = cleanEnv(process.env["SUPABASE_URL"]);
+    const SUPABASE_PUBLISHABLE_KEY = cleanEnv(process.env["SUPABASE_PUBLISHABLE_KEY"]);
 
     if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
       const missing = [
