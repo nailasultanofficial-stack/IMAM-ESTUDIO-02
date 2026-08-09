@@ -193,19 +193,31 @@
 @utility shell {
   width: 100%;
   margin-inline: auto;
-  max-width: 78rem;
+  max-width: 1680px;
   padding-inline: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 1.5rem;
+  }
 }
 
 @media (min-width: 768px) {
   .shell {
-    padding-inline: 2rem;
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: 3.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .shell {
-    padding-inline: 2.5rem;
+    padding-inline: 4rem;
   }
 }
 
