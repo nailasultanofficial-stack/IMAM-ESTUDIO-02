@@ -14,7 +14,10 @@ My expertise includes mobile-first UI/UX, custom Shopify solutions that eliminat
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect" },
+      {
+        title:
+          "About Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect",
+      },
       {
         name: "description",
         content:
@@ -22,7 +25,8 @@ export const Route = createFileRoute("/about")({
       },
       {
         property: "og:title",
-        content: "About Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect",
+        content:
+          "About Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect",
       },
       {
         property: "og:description",
@@ -83,7 +87,9 @@ function AboutPage() {
 
             <Reveal delay={0.3}>
               <div className="mt-8 rounded-2xl border border-border bg-surface/60 p-6 backdrop-blur-md">
-                <h3 className="font-display text-lg font-medium text-foreground">Core Competencies</h3>
+                <h3 className="font-display text-lg font-medium text-foreground">
+                  Core Competencies
+                </h3>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
                     "Custom Shopify Liquid & Themes",
@@ -116,7 +122,9 @@ function AboutPage() {
                   </div>
                 </div>
 
-                <p className="mt-4 font-display text-2xl font-semibold text-foreground">{SITE.founder}</p>
+                <p className="mt-4 font-display text-2xl font-semibold text-foreground">
+                  {SITE.founder}
+                </p>
                 <p className="mt-1 text-sm text-muted-foreground">{SITE.role}</p>
 
                 <div className="hairline mt-6 space-y-3 pt-6">

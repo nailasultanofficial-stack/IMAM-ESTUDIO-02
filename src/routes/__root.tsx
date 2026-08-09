@@ -90,7 +90,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
       },
       { name: "author", content: "Malik Jahanzaib" },
-      { property: "og:title", content: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect" },
+      {
+        property: "og:title",
+        content: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect",
+      },
       {
         property: "og:description",
         content:

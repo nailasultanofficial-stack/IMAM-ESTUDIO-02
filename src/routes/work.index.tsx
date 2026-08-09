@@ -52,7 +52,8 @@ function WorkPage() {
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            Every case study below was scoped, architected, and engineered by Malik Jahanzaib (@jahanzeb1809). Designed for speed, conversion, and reliability.
+            Every case study below was scoped, architected, and engineered by Malik Jahanzaib
+            (@jahanzeb1809). Designed for speed, conversion, and reliability.
           </p>
         </Reveal>
       </header>

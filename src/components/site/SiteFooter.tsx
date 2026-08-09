@@ -15,7 +15,8 @@ export function SiteFooter() {
               <span className="eyebrow text-primary">JAHANZAIB</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Senior Full-Stack Engineer & UI/UX Architect. Engineering high-conversion Shopify stores, Next.js platforms, SaaS applications, and custom n8n AI automations.
+              Senior Full-Stack Engineer & UI/UX Architect. Engineering high-conversion Shopify
+              stores, Next.js platforms, SaaS applications, and custom n8n AI automations.
             </p>
             <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
               {SITE.founder} · {SITE.handle} · {SITE.location}
@@ -78,7 +79,9 @@ export function SiteFooter() {
           <p>
             © {year} {SITE.name} ({SITE.handle}). All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.16em]">Engineering High Conversion Platforms</p>
+          <p className="font-mono uppercase tracking-[0.16em]">
+            Engineering High Conversion Platforms
+          </p>
         </div>
       </div>
     </footer>

@@ -26,7 +26,11 @@ const PHASES = [
     title: "Discovery & Architecture",
     duration: "1–3 days",
     body: "Before writing code: analyzing conversion bottlenecks, theme architecture, user flows, database models, and API specifications to establish a clean technical blueprint.",
-    deliverables: ["Technical blueprint & schema", "UX & conversion roadmap", "Fixed milestone estimate"],
+    deliverables: [
+      "Technical blueprint & schema",
+      "UX & conversion roadmap",
+      "Fixed milestone estimate",
+    ],
   },
   {
     number: "02",
@@ -73,7 +77,8 @@ function ProcessPage() {
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            A transparent engineering workflow for building custom Shopify stores, Next.js SaaS platforms, and n8n AI automations that stay shipped.
+            A transparent engineering workflow for building custom Shopify stores, Next.js SaaS
+            platforms, and n8n AI automations that stay shipped.
           </p>
         </Reveal>
       </header>
@@ -103,7 +108,10 @@ function ProcessPage() {
                   <h3 className="eyebrow">Deliverables</h3>
                   <ul className="mt-3 space-y-2">
                     {phase.deliverables.map((item) => (
-                      <li key={item} className="text-sm text-foreground/85 font-medium flex items-center gap-2">
+                      <li
+                        key={item}
+                        className="text-sm text-foreground/85 font-medium flex items-center gap-2"
+                      >
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                         {item}
                       </li>

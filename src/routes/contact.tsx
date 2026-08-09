@@ -36,7 +36,14 @@ const PROJECT_TYPES = [
   "Something else",
 ];
 
-const BUDGETS = ["Under $100", "$100 – $500", "$500 – $1,500", "$1,500 – $5,000", "$5,000+", "Not sure yet"];
+const BUDGETS = [
+  "Under $100",
+  "$100 – $500",
+  "$500 – $1,500",
+  "$1,500 – $5,000",
+  "$5,000+",
+  "Not sure yet",
+];
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): { source?: string } => {
@@ -113,7 +120,8 @@ function ContactPage() {
 
           <Reveal delay={0.1}>
             <p className="lede mt-5 text-muted-foreground">
-              Describe your project or business bottleneck. You will get a technical opinion and transparent milestone quote directly from Malik Jahanzaib.
+              Describe your project or business bottleneck. You will get a technical opinion and
+              transparent milestone quote directly from Malik Jahanzaib.
             </p>
           </Reveal>
 
@@ -124,7 +132,9 @@ function ContactPage() {
             </div>
             <div>
               <dt className="eyebrow">Engineer Accountable</dt>
-              <dd className="mt-1 text-sm font-medium text-foreground">{SITE.founder} ({SITE.handle})</dd>
+              <dd className="mt-1 text-sm font-medium text-foreground">
+                {SITE.founder} ({SITE.handle})
+              </dd>
             </div>
             <div>
               <dt className="eyebrow">Instant Messenger</dt>
@@ -147,7 +157,8 @@ function ContactPage() {
             <CheckCircle2 className="h-10 w-10 text-emerald-400" />
             <h2 className="display-3 mt-5 text-foreground font-display">Enquiry Received</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Thank you! I review every inquiry personally and will reply with a technical breakdown within 24 hours.
+              Thank you! I review every inquiry personally and will reply with a technical breakdown
+              within 24 hours.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button

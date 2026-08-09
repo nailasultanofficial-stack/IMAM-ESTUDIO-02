@@ -18,7 +18,8 @@ const TECH_NODES: TechNode[] = [
     id: "shopify",
     name: "Shopify Liquid",
     category: "Commerce",
-    description: "Custom native Liquid sections, app dependency elimination & high-conversion store redesigns.",
+    description:
+      "Custom native Liquid sections, app dependency elimination & high-conversion store redesigns.",
     position: [-2.8, 1.4, 0],
     color: "#96bf48",
   },
@@ -26,7 +27,8 @@ const TECH_NODES: TechNode[] = [
     id: "hydrogen",
     name: "Hydrogen & Headless",
     category: "Commerce",
-    description: "Decoupled SSR storefronts built for sub-second global execution & high conversion.",
+    description:
+      "Decoupled SSR storefronts built for sub-second global execution & high conversion.",
     position: [-1.6, 2.2, 0.5],
     color: "#008060",
   },
@@ -34,7 +36,8 @@ const TECH_NODES: TechNode[] = [
     id: "react",
     name: "React 19 & Next.js",
     category: "Frontend & Stack",
-    description: "Concurrent rendering, server components, Next.js App Router & high-velocity UI architecture.",
+    description:
+      "Concurrent rendering, server components, Next.js App Router & high-velocity UI architecture.",
     position: [0, 1.8, 1.2],
     color: "#61dafb",
   },

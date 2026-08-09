@@ -49,7 +49,8 @@ function ServicesPage() {
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            From custom native Liquid sections and conversion-driven Shopify redesigns to full-stack Next.js applications and n8n AI automations.
+            From custom native Liquid sections and conversion-driven Shopify redesigns to full-stack
+            Next.js applications and n8n AI automations.
           </p>
         </Reveal>
       </header>
