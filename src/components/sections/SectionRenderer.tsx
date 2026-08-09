@@ -10,7 +10,7 @@ import { TechEcosystemCanvas } from "@/components/3d/TechEcosystemCanvas";
 import { Reveal, TextReveal, TiltCard, MagneticButton } from "@/components/ui/motion-primitives";
 import type { PageSection, Project, Service } from "@/lib/content-types";
 import { objList, paragraphs, str, strList, num } from "@/lib/section-utils";
-import { whatsappUrl, FEATURED_GIG_SERVICES } from "@/lib/site";
+import { whatsappUrl, FEATURED_GIG_SERVICES, FEATURED_GIG_PROJECTS } from "@/lib/site";
 
 type Ctx = { services: Service[]; projects: Project[] };
 
@@ -74,8 +74,11 @@ function TrustStrip({ section }: { section: PageSection }) {
 }
 
 function FeaturedWork({ section, projects }: { section: PageSection; projects: Project[] }) {
+  const displayProjects = (projects && projects.length > 0
+    ? projects
+    : (FEATURED_GIG_PROJECTS as unknown as Project[])) as unknown as Project[];
   const limit = num(section.content, "limit", 6);
-  const shown = projects.slice(0, limit);
+  const shown = displayProjects.slice(0, limit);
   if (shown.length === 0) return null;
 
   return (
@@ -97,10 +100,8 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
   );
 }
 
-function CapabilitiesSection({ section, services }: { section: PageSection; services: Service[] }) {
-  const displayServices = (services && services.length > 0
-    ? services
-    : (FEATURED_GIG_SERVICES as unknown as Service[])) as unknown as Service[];
+function CapabilitiesSection({ section }: { section: PageSection; services: Service[] }) {
+  const displayServices = FEATURED_GIG_SERVICES as unknown as Service[];
   const limit = num(section.content, "limit", 6);
   const shown = displayServices.slice(0, limit);
   if (shown.length === 0) return null;

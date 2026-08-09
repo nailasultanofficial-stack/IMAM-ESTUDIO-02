@@ -141,3 +141,79 @@ export const FEATURED_GIG_SERVICES = [
     fiverr_url: "https://fiverr.com/jahanzeb1809/develop-a-high-performance-next-js-saas-web-app",
   },
 ];
+
+export const FEATURED_GIG_PROJECTS = [
+  {
+    id: "485281780",
+    slug: "custom-native-liquid-sections",
+    title: "Custom Native Liquid Sections",
+    category: "Shopify Engineering",
+    short_description:
+      "Custom native Liquid sections engineered for high conversion & fast theme performance without monthly app fees.",
+    summary:
+      "Built modular, zero-dependency Liquid sections for custom theme architectures on Shopify.",
+    featured_image:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/485281780/original/48722d6d3f7b018744d9c94c6bdc11d8f14301fa.png",
+    thumbnail_url:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/485281780/original/48722d6d3f7b018744d9c94c6bdc11d8f14301fa.png",
+    tech_stack: ["Shopify Liquid", "Custom Sections", "Theme Architecture", "CRO"],
+    client_name: "Fiverr E-Commerce Client",
+    year: "2026",
+    is_featured: true,
+    is_published: true,
+  },
+  {
+    id: "494892850",
+    slug: "shopify-store-redesign",
+    title: "Shopify Store Redesign for High Conversion",
+    category: "Shopify Engineering",
+    short_description:
+      "Mobile-first Shopify store redesign engineered for maximum conversion rate & UI/UX excellence.",
+    summary: "Comprehensive e-commerce UI/UX redesign and conversion rate optimization.",
+    featured_image:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png",
+    thumbnail_url:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png",
+    tech_stack: ["Shopify Plus", "UI/UX Design", "Conversion Rate", "Mobile First"],
+    client_name: "Fiverr E-Commerce Client",
+    year: "2026",
+    is_featured: true,
+    is_published: true,
+  },
+  {
+    id: "494910179",
+    slug: "n8n-ai-automations",
+    title: "Custom n8n AI Automations & Workflows",
+    category: "AI & Automations",
+    short_description:
+      "Custom n8n AI agent workflows connecting APIs, LLM prompts, and automated operational routing.",
+    summary: "Architected enterprise n8n workflow pipelines with OpenAI & custom agent nodes.",
+    featured_image:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494910179/original/8b361cf59a9b34d5858b3010e62b847290b92143.png",
+    thumbnail_url:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494910179/original/8b361cf59a9b34d5858b3010e62b847290b92143.png",
+    tech_stack: ["n8n Workflow", "AI Agents", "OpenAI API", "Business Automation"],
+    client_name: "Fiverr Client",
+    year: "2026",
+    is_featured: true,
+    is_published: true,
+  },
+  {
+    id: "494912736",
+    slug: "nextjs-saas-web-app",
+    title: "High Performance Next.js SaaS Web App",
+    category: "Full-Stack Web Apps",
+    short_description:
+      "Full-stack Next.js SaaS web application with React 19, Supabase backend, RLS security, and Tailwind design.",
+    summary: "Production SaaS application built with Next.js App Router, Supabase, and Stripe.",
+    featured_image:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png",
+    thumbnail_url:
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png",
+    tech_stack: ["Next.js", "React 19", "Supabase", "TypeScript", "TailwindCSS"],
+    client_name: "Fiverr Client",
+    year: "2026",
+    is_featured: true,
+    is_published: true,
+  },
+];

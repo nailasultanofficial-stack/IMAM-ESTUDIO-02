@@ -4,8 +4,10 @@ import { useMemo, useState } from "react";
 
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { projectsQuery } from "@/lib/public-queries";
+import { FEATURED_GIG_PROJECTS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import type { Project } from "@/lib/content-types";
 
 export const Route = createFileRoute("/work/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(projectsQuery),
@@ -29,7 +31,7 @@ export const Route = createFileRoute("/work/")({
 });
 
 function WorkPage() {
-  const { data: projects } = useSuspenseQuery(projectsQuery);
+  const projects = FEATURED_GIG_PROJECTS as unknown as Project[];
   const [filter, setFilter] = useState<string>("All");
 
   const categories = useMemo(

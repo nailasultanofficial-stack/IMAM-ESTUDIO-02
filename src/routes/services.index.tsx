@@ -29,10 +29,7 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesPage() {
-  const { data: fetchedServices } = useSuspenseQuery(servicesQuery);
-  const services = (fetchedServices && fetchedServices.length > 0
-    ? fetchedServices
-    : (FEATURED_GIG_SERVICES as unknown as Service[])) as unknown as Service[];
+  const services = FEATURED_GIG_SERVICES as unknown as Service[];
 
   const grouped = services.reduce<Record<string, Service[]>>((acc, service) => {
     const category = service.category || "General Engineering";
