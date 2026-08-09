@@ -18,7 +18,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/media")({
   head: () => ({
     meta: [
-      { title: "Media Library — IMAM ESTUDIO OS" },
+      { title: "Media Library — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -88,7 +88,7 @@ function AdminMediaPage() {
             setEditing({
               filename: "Hero Portrait.png",
               url: "https://yqaslfozryelumtlkoxk.supabase.co/storage/v1/object/public/asset/Cinematic%20Portrait%20in%20a%20Dark%20Tech%20Studio.png",
-              alt_text: "IMAM ESTUDIO Hero Portrait",
+              alt_text: "Malik Jahanzaib Hero Portrait",
             })
           }
           className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400"

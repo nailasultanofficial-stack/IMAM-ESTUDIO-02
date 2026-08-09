@@ -8,20 +8,20 @@ export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(homepageQuery),
   head: () => ({
     meta: [
-      { title: "IMAM ESTUDIO — Engineering Studio for Commerce, AI & SaaS" },
+      { title: "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect" },
       {
         name: "description",
         content:
-          "Founder-led engineering studio. Custom Shopify commerce, AI automation and full-stack SaaS, built by Mudasar Imam.",
+          "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect. Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS, and n8n AI automations.",
       },
       {
         property: "og:title",
-        content: "IMAM ESTUDIO — Engineering Studio for Commerce, AI & SaaS",
+        content: "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect",
       },
       {
         property: "og:description",
         content:
-          "Custom Shopify commerce, AI automation and full-stack SaaS. Founder-led delivery by Mudasar Imam.",
+          "Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS apps, and n8n AI automations.",
       },
     ],
   }),

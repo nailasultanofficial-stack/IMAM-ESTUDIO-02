@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/audit-logs")({
   head: () => ({
     meta: [
-      { title: "Audit Logs — IMAM ESTUDIO OS" },
+      { title: "Audit Logs — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

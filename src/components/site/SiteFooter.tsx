@@ -11,20 +11,19 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-xl text-foreground">IMAM</span>
-              <span className="eyebrow text-primary">ESTUDIO</span>
+              <span className="font-display text-xl font-bold text-foreground">MALIK</span>
+              <span className="eyebrow text-primary">JAHANZAIB</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A founder-led engineering studio. Custom Shopify commerce, AI automation and
-              full-stack SaaS — built by the engineer who scoped them.
+              Senior Full-Stack Engineer & UI/UX Architect. Engineering high-conversion Shopify stores, Next.js platforms, SaaS applications, and custom n8n AI automations.
             </p>
             <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              {SITE.founder} · {SITE.handle}
+              {SITE.founder} · {SITE.handle} · {SITE.location}
             </p>
           </div>
 
           <nav aria-label="Footer">
-            <h2 className="eyebrow">Studio</h2>
+            <h2 className="eyebrow">Portfolio</h2>
             <ul className="mt-4 space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
@@ -49,18 +48,18 @@ export function SiteFooter() {
           </nav>
 
           <div>
-            <h2 className="eyebrow">Direct line</h2>
+            <h2 className="eyebrow">Direct Line</h2>
             <ul className="mt-4 space-y-3">
               <li>
                 <a
                   href={whatsappUrl(
-                    "Hi Mudasar — I found IMAM ESTUDIO and I'd like to discuss a project.",
+                    "Hi Malik — I found your portfolio and I'd like to discuss a project.",
                   )}
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  WhatsApp
+                  WhatsApp ({SITE.handle})
                 </a>
               </li>
               <li>
@@ -77,9 +76,9 @@ export function SiteFooter() {
 
         <div className="hairline mt-14 flex flex-col gap-3 pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {SITE.name}. All rights reserved.
+            © {year} {SITE.name} ({SITE.handle}). All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.16em]">Engineered, not templated</p>
+          <p className="font-mono uppercase tracking-[0.16em]">Engineering High Conversion Platforms</p>
         </div>
       </div>
     </footer>

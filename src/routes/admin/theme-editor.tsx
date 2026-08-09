@@ -24,7 +24,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/theme-editor")({
   head: () => ({
     meta: [
-      { title: "Theme Editor — IMAM ESTUDIO OS" },
+      { title: "Theme Editor — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

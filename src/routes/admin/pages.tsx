@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/pages")({
   head: () => ({
     meta: [
-      { title: "Pages Manager — IMAM ESTUDIO OS" },
+      { title: "Pages Manager — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

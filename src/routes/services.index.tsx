@@ -3,22 +3,23 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { servicesQuery } from "@/lib/public-queries";
+import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 
 export const Route = createFileRoute("/services/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(servicesQuery),
   head: () => ({
     meta: [
-      { title: "Capabilities — IMAM ESTUDIO" },
+      { title: "Engineering Services — Malik Jahanzaib (@jahanzeb1809)" },
       {
         name: "description",
         content:
-          "Shopify theme and app engineering, headless commerce, AI automation, RAG assistants, SaaS and platform engineering.",
+          "Custom Shopify Liquid sections, high-conversion store redesigns, custom n8n AI automations, Next.js SaaS applications, and Framer design systems by Malik Jahanzaib.",
       },
-      { property: "og:title", content: "Capabilities — IMAM ESTUDIO" },
+      { property: "og:title", content: "Engineering Services — Malik Jahanzaib (@jahanzeb1809)" },
       {
         property: "og:description",
         content:
-          "Ten engineering disciplines across commerce, AI automation and product engineering.",
+          "Custom Shopify Liquid, Next.js SaaS platforms, n8n AI workflow automations, and Framer interactive websites.",
       },
     ],
   }),
@@ -38,23 +39,28 @@ function ServicesPage() {
   return (
     <div className="shell pb-24 pt-32 md:pt-40">
       <header className="max-w-3xl">
-        <p className="eyebrow text-primary">Capabilities</p>
-        <h1 className="display-1 mt-5 text-foreground">
-          Ten disciplines. One engineer accountable.
-        </h1>
-        <p className="lede mt-6">
-          Pricing below is a starting point for a well-scoped engagement, not a menu. Every project
-          begins with a written technical plan before any commitment.
-        </p>
+        <Reveal direction="down">
+          <p className="eyebrow text-primary">Engineering Services</p>
+        </Reveal>
+        <TextReveal
+          text="Engineering High Conversion Platforms"
+          as="h1"
+          className="display-1 mt-4 text-foreground font-display"
+        />
+        <Reveal delay={0.2}>
+          <p className="lede mt-6 text-muted-foreground">
+            From custom native Liquid sections and conversion-driven Shopify redesigns to full-stack Next.js applications and n8n AI automations.
+          </p>
+        </Reveal>
       </header>
 
       <div className="mt-16 space-y-16">
         {Object.entries(grouped).map(([category, items]) => (
           <section key={category}>
             <div className="hairline flex items-baseline justify-between pt-6">
-              <h2 className="display-3 text-foreground">{category}</h2>
-              <span className="font-mono text-xs text-muted-foreground">
-                {String(items.length).padStart(2, "0")}
+              <h2 className="display-3 text-foreground font-display">{category}</h2>
+              <span className="font-mono text-xs font-semibold text-emerald-400">
+                {String(items.length).padStart(2, "0")} Offered
               </span>
             </div>
             <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

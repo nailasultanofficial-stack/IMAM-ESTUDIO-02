@@ -10,7 +10,7 @@ import { whatsappUrl } from "@/lib/site";
 export const Route = createFileRoute("/admin/leads")({
   head: () => ({
     meta: [
-      { title: "Leads CRM — IMAM ESTUDIO OS" },
+      { title: "Leads CRM — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -227,7 +227,7 @@ function AdminLeadsPage() {
 
               <div className="flex gap-3 pt-4 border-t border-zinc-800">
                 <a
-                  href={`mailto:${selectedLead.email}?subject=RE: IMAM ESTUDIO Inquiry — ${selectedLead.project_type}`}
+                  href={`mailto:${selectedLead.email}?subject=RE: Project Inquiry — ${selectedLead.project_type}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex flex-1 items-center justify-center gap-2 rounded bg-zinc-800 py-2 font-semibold text-white hover:bg-zinc-700"
@@ -237,7 +237,7 @@ function AdminLeadsPage() {
                 </a>
                 <a
                   href={whatsappUrl(
-                    `Hi ${selectedLead.name}, following up on your ${selectedLead.project_type} inquiry with IMAM ESTUDIO.`,
+                    `Hi ${selectedLead.name}, following up on your ${selectedLead.project_type} inquiry with Malik Jahanzaib.`,
                   )}
                   target="_blank"
                   rel="noreferrer"

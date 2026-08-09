@@ -203,7 +203,7 @@ function FinalCta({ section }: { section: PageSection }) {
             </Link>
             {wa ? (
               <a
-                href={whatsappUrl("Hi Mudasar — I'd like to discuss a project with IMAM ESTUDIO.")}
+                href={whatsappUrl("Hi Malik — I'd like to discuss a project with you.")}
                 target="_blank"
                 rel="noreferrer"
               >

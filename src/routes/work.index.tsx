@@ -5,22 +5,23 @@ import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { projectsQuery } from "@/lib/public-queries";
 import { cn } from "@/lib/utils";
+import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 
 export const Route = createFileRoute("/work/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(projectsQuery),
   head: () => ({
     meta: [
-      { title: "Selected Work — IMAM ESTUDIO" },
+      { title: "Selected Work — Malik Jahanzaib (@jahanzeb1809)" },
       {
         name: "description",
         content:
-          "Engineering case studies across Shopify commerce, AI automation, SaaS and systems integration.",
+          "Engineering case studies across Shopify commerce, Next.js SaaS applications, n8n AI automations, and custom web platforms by Malik Jahanzaib.",
       },
-      { property: "og:title", content: "Selected Work — IMAM ESTUDIO" },
+      { property: "og:title", content: "Selected Work — Malik Jahanzaib (@jahanzeb1809)" },
       {
         property: "og:description",
         content:
-          "Case studies across Shopify commerce, AI automation, SaaS and systems integration.",
+          "Case studies across Shopify commerce, Next.js SaaS applications, n8n AI automations, and custom web platforms.",
       },
     ],
   }),
@@ -41,12 +42,19 @@ function WorkPage() {
   return (
     <div className="shell pb-24 pt-32 md:pt-40">
       <header className="max-w-3xl">
-        <p className="eyebrow text-primary">Selected work</p>
-        <h1 className="display-1 mt-5 text-foreground">Systems that stayed shipped.</h1>
-        <p className="lede mt-6">
-          Every engagement below was scoped, architected and built by the same engineer. The
-          outcomes are the ones the client measured, not the ones that photograph well.
-        </p>
+        <Reveal direction="down">
+          <p className="eyebrow text-primary">Selected Case Studies</p>
+        </Reveal>
+        <TextReveal
+          text="High Conversion Engineering Portfolio"
+          as="h1"
+          className="display-1 mt-4 text-foreground font-display"
+        />
+        <Reveal delay={0.2}>
+          <p className="lede mt-6 text-muted-foreground">
+            Every case study below was scoped, architected, and engineered by Malik Jahanzaib (@jahanzeb1809). Designed for speed, conversion, and reliability.
+          </p>
+        </Reveal>
       </header>
 
       <div
@@ -64,7 +72,7 @@ function WorkPage() {
             className={cn(
               "rounded-full border px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] transition-colors",
               filter === category
-                ? "border-primary bg-primary text-primary-foreground"
+                ? "border-primary bg-primary text-primary-foreground font-semibold"
                 : "border-border text-muted-foreground hover:border-border-strong hover:text-foreground",
             )}
           >

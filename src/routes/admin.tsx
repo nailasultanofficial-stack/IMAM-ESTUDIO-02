@@ -23,7 +23,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin Control Plane — IMAM ESTUDIO OS" },
+      { title: "Admin Control Plane — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -112,7 +112,7 @@ function AdminLayout() {
       <aside className="hidden w-64 shrink-0 flex-col border-r border-zinc-800/80 bg-zinc-950 p-4 lg:flex">
         <div className="flex items-center justify-between px-3 py-3 border-b border-zinc-800/60 pb-4">
           <div>
-            <span className="font-bold text-white tracking-tight">IMAM ESTUDIO</span>
+            <span className="font-bold text-white tracking-tight">MALIK JAHANZAIB</span>
             <span className="ml-2 rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[0.65rem] font-mono text-emerald-400">
               OS
             </span>
@@ -168,7 +168,7 @@ function AdminLayout() {
       {mobileOpen ? (
         <div className="fixed inset-0 z-50 flex flex-col bg-zinc-950 p-6 lg:hidden">
           <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
-            <span className="font-bold text-white">IMAM ESTUDIO OS</span>
+            <span className="font-bold text-white">MALIK JAHANZAIB OS</span>
             <button onClick={() => setMobileOpen(false)} className="text-zinc-400">
               <X className="h-6 w-6" />
             </button>

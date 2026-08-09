@@ -1,16 +1,19 @@
 /**
- * Static brand constants. Everything here is presentation-only and safe on the
- * client. Operational content (services, projects, sections) lives in the
- * database and is managed from /admin — never hardcode it here.
+ * Static brand constants for Malik Jahanzaib personal portfolio.
+ * Operational content lives in Supabase database and is managed via /admin.
  */
 
 export const SITE = {
-  name: "IMAM ESTUDIO",
-  founder: "Mudasar Imam",
-  role: "Senior Full Stack Engineer & AI Automation Architect",
-  handle: "@mi_devv",
+  name: "MALIK JAHANZAIB",
+  founder: "Malik Jahanzaib",
+  role: "Senior Full-Stack Engineer & UI/UX Architect",
+  handle: "@jahanzeb1809",
   whatsapp: "923191106310",
-  email: "hello@imamestudio.com",
+  email: "malikjahanzaib@gmail.com",
+  rating: "5.0",
+  fiverrReviews: 1,
+  location: "Pakistan",
+  languages: ["English", "Urdu"],
 } as const;
 
 export const NAV_LINKS = [

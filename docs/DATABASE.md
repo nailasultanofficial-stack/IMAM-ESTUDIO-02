@@ -1,20 +1,21 @@
-# Database Schema & Data Architecture
+# MALIK JAHANZAIB OS — Database Architecture & Security
 
-## Overview
+## Database Engine
+MALIK JAHANZAIB OS uses Supabase PostgreSQL (`zcihimfisgzpeeyhdnfq`) as its authoritative datastore.
 
-IMAM ESTUDIO OS uses Supabase PostgreSQL (`zcihimfisgzpeeyhdnfq`) as its authoritative datastore.
+## Core Schema Tables
+- `profiles`: User account metadata & system roles (`owner`, `admin`, `editor`, `operations`, `viewer`).
+- `user_roles`: RBAC mappings enforced by security definer predicate functions.
+- `services`: Portfolio engineering services inventory.
+- `projects`: Engineering case studies and outcomes.
+- `pages`: Content pages and SEO titles.
+- `page_sections`: Theme Editor JSON-configurable sections for dynamic homepage layout.
+- `leads`: Client acquisition inquiries with attribution source metadata.
+- `customers`: Client relationships and project scopes.
+- `orders`: Project milestone contracts and payment state.
+- `media_assets`: Uploaded assets and media library.
+- `audit_logs`: Append-only security audit trail populated by `log_audit()` triggers.
+- `seo_settings`: Dynamic route meta tags, OpenGraph data, and canonical URLs.
 
-## Table Inventory
-
-- `profiles`: Staff user profiles linked to `auth.users(id)` with cascade deletion.
-- `user_roles`: Dedicated role mapping table for RBAC (`owner`, `admin`, `editor`, `operations`, `viewer`).
-- `services`: 10 engineering capabilities with pricing, tech stack, and display ordering.
-- `projects`: 10 engineering case studies with Cloudinary gig references and outcomes.
-- `pages`: System and dynamic CMS page records.
-- `page_sections`: Section content JSONB payloads for visual theme editor.
-- `leads`: Customer contact submissions with `source_cta` attribution and lead pipeline status (`New`, `Contacted`, `In Scoping`, `Proposal`, `Closed`, `Archived`).
-- `customers`: Client records and total spend tracking.
-- `orders`: Proposals, custom quotes, payment status (`Pending`, `Paid`, `Refunded`, `Failed`), and fulfillment status.
-- `media_assets`: Image and media URLs with usage reference tracking.
-- `seo_settings`: Route-level meta titles, descriptions, and indexing flags.
-- `audit_logs`: Append-only security audit trail populated via `log_audit()`.
+## Row-Level Security (RLS)
+All public reads are scoped to `published = true`. Privileged mutations require `has_role(auth.uid(), 'owner'|'admin')`. Anonymous users cannot read private leads, operational data, or audit logs.

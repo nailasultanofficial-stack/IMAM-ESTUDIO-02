@@ -1,21 +1,17 @@
-# Production Deployment Manual
+# MALIK JAHANZAIB OS — Production Deployment Guide
 
-## Vercel Integration
+## Infrastructure Details
+- **Vercel Project**: `imam-estudio-02` (Project ID: `prj_oUgZ4BJ5IiBtGWenKkApZrltYgfv`)
+- **Vercel Live URL**: `https://imam-estudio-02.vercel.app`
+- **GitHub Repository**: `nailasultanofficial-stack/IMAM-ESTUDIO-02` (`main` branch)
+- **Supabase PostgreSQL**: `zcihimfisgzpeeyhdnfq` (`https://zcihimfisgzpeeyhdnfq.supabase.co`)
 
-- **Vercel Project**: `imam-estudio-02`
-- **Vercel Project ID**: `prj_oUgZ4BJ5IiBtGWenKkApZrltYgfv`
-- **GitHub Repository**: `nailasultanofficial-stack/IMAM-ESTUDIO-02`
-
-## Deployment Steps
-
-1. Run `bun run build` locally to verify build outputs.
-2. Push commits to branch `main` on GitHub repository `https://github.com/nailasultanofficial-stack/IMAM-ESTUDIO-02.git`.
-3. Deploy directly via Vercel CLI: `npx vercel --prod`.
-
-## Environment Variables Required
-
-- `VITE_SUPABASE_PROJECT_ID`: `zcihimfisgzpeeyhdnfq`
-- `VITE_SUPABASE_URL`: `https://zcihimfisgzpeeyhdnfq.supabase.co`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`: `sb_publishable_PBq3Iq8h9KA7AEdztjmjUQ_ADfX_5Ud`
-- `SUPABASE_URL`: `https://zcihimfisgzpeeyhdnfq.supabase.co`
-- `SUPABASE_PUBLISHABLE_KEY`: `sb_publishable_PBq3Iq8h9KA7AEdztjmjUQ_ADfX_5Ud`
+## Deployment Pipeline
+1. Run quality checks locally:
+   - `bun run typecheck`
+   - `bun run lint`
+   - `bun run build`
+2. Push commits to `main` branch on GitHub:
+   `git push origin main`
+3. Deploy to Vercel production:
+   `npx vercel --prod --yes`

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/staff")({
   head: () => ({
     meta: [
-      { title: "Staff & RBAC — IMAM ESTUDIO OS" },
+      { title: "Staff & RBAC — MALIK JAHANZAIB OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

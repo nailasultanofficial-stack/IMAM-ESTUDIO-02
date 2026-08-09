@@ -11,16 +11,16 @@ interface HeroSectionProps {
 export function HeroSection({ section }: HeroSectionProps) {
   const { scrollY } = useScroll();
   const imageY = useTransform(scrollY, [0, 600], [0, 80]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.4]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.3]);
 
   const content = (section.content || {}) as Record<string, any>;
   const desktopImage =
     content["desktop_hero_image"] ||
-    "https://yqaslfozryelumtlkoxk.supabase.co/storage/v1/object/public/asset/Cinematic%20Portrait%20in%20a%20Dark%20Tech%20Studio.png";
+    "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png";
   const mobileImage =
     content["mobile_hero_image"] ||
-    "https://yqaslfozryelumtlkoxk.supabase.co/storage/v1/object/public/asset/mobile%20Cinematic%20Portrait%20in%20a%20Modern%20Black%20Interior%20mobile.png";
-  const eyebrow = content["eyebrow"] || "IMAM ESTUDIO OS";
+    "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png";
+  const eyebrow = content["eyebrow"] || "MALIK JAHANZAIB (@jahanzeb1809)";
   const primaryCtaLabel = content["primary_cta_label"] || "Start an engagement";
   const primaryCtaUrl = content["primary_cta_url"] || "/contact?source=hero_primary";
   const secondaryCtaLabel = content["secondary_cta_label"] || "Explore work";
@@ -37,10 +37,10 @@ export function HeroSection({ section }: HeroSectionProps) {
           <source media="(max-width: 767px)" srcSet={mobileImage} />
           <img
             src={desktopImage}
-            alt="Mudasar Imam, founder of IMAM ESTUDIO, in the dark tech studio"
+            alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
             fetchPriority="high"
             decoding="async"
-            className="h-full w-full object-cover object-[65%_center] opacity-40 md:object-center md:opacity-35"
+            className="h-full w-full object-cover object-[65%_center] opacity-35 md:object-center md:opacity-30"
           />
         </picture>
         {/* Editorial Lighting Gradients */}
@@ -64,7 +64,7 @@ export function HeroSection({ section }: HeroSectionProps) {
           {/* Headline */}
           <div className="mt-6">
             <TextReveal
-              text={section.title || "Engineering for brands that cannot afford downtime."}
+              text={section.title || "Engineering High-Conversion Shopify & React Platforms."}
               as="h1"
               className="display-1 text-foreground font-display tracking-tight"
             />
@@ -74,23 +74,28 @@ export function HeroSection({ section }: HeroSectionProps) {
           <Reveal delay={0.3}>
             <p className="lede mt-6 max-w-2xl text-muted-foreground">
               {section.subtitle ||
-                "Founder-led Shopify commerce, AI automation, and custom SaaS systems."}
+                "Senior Full-Stack Engineer & UI/UX Architect building high-performance commerce, SaaS apps, and n8n AI automation systems."}
             </p>
           </Reveal>
 
           {/* Disciplines Micro-Tag Strip */}
           <Reveal delay={0.4}>
             <div className="mt-7 flex flex-wrap gap-2">
-              {["Shopify Commerce", "AI Automation", "Full-Stack SaaS", "Systems Architecture"].map(
-                (pill) => (
-                  <span
-                    key={pill}
-                    className="rounded-md border border-border/80 bg-surface/60 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md"
-                  >
-                    {pill}
-                  </span>
-                ),
-              )}
+              {[
+                "Shopify Liquid",
+                "React 19 & Next.js",
+                "n8n AI Automations",
+                "Full-Stack SaaS",
+                "UI/UX Architecture",
+                "Framer Websites",
+              ].map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-md border border-border/80 bg-surface/60 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md"
+                >
+                  {pill}
+                </span>
+              ))}
             </div>
           </Reveal>
 

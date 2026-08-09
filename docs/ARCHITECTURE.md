@@ -1,39 +1,33 @@
-# IMAM ESTUDIO OS — System Architecture
+# MALIK JAHANZAIB OS — System Architecture
 
-## Core Architectural Principles
+## Overview
+MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition platform built with strict technical discipline, high performance, and server-enforced security boundaries.
 
-IMAM ESTUDIO is a founder-led engineering platform built with strict technical discipline, performance optimization, and server-enforced security boundaries.
+## Architecture Layers
 
-### Technology Stack
+```
+                               ┌─────────────────────────┐
+                               │     Vercel Edge CDN     │
+                               └────────────┬────────────┘
+                                            │
+                               ┌────────────▼────────────┐
+                               │   TanStack Start SSR    │
+                               │     (React 19 + H3)     │
+                               └────────────┬────────────┘
+                                            │
+                               ┌────────────▼────────────┐
+                               │ Supabase PostgreSQL DB  │
+                               │ (zcihimfisgzpeeyhdnfq)  │
+                               └─────────────────────────┘
+```
 
-- **Frontend Framework**: React 19 + TanStack Router (File-based routing) + TanStack Start (SSR & Server Functions)
-- **Styling & System Design**: TailwindCSS v4 (Vanilla CSS variables + zero-runtime utility optimization)
-- **Database & Auth**: PostgreSQL on Supabase (`zcihimfisgzpeeyhdnfq`)
-- **Security & Authorization**: PostgreSQL Row Level Security (RLS) + SECURITY DEFINER role predicates
-- **Deployment & Hosting**: Vercel Edge Serverless Deployment (`prj_oUgZ4BJ5IiBtGWenKkApZrltYgfv`)
+### Public Storefront (`/`, `/work`, `/services`, `/about`, `/process`, `/contact`)
+- **SSR & Prerendering**: Hydrated SSR pages for instantaneous LCP and rich SEO.
+- **3D Spatial Matrix**: WebGL Three.js / React Three Fiber interactive technology nodes with graceful mobile & reduced-motion fallback.
+- **Smooth Easing**: Lenis momentum scroll integration with cubic-bezier easing.
+- **Attribution Pipeline**: Form submissions persist to `leads` with source CTA metadata.
 
-## Route Structure
-
-- `/`: Homepage (Hero, Trust Strip, Founder Identity, Featured Work, Capabilities, Engineering Approach, CTA)
-- `/work`: Case Studies & Engineering Projects Gallery
-- `/work/$slug`: Individual Case Study Detail
-- `/services`: 10 Engineering Disciplines & Capability Cards
-- `/services/$slug`: Individual Capability Detail
-- `/about`: Founder Profile & Technical Philosophy
-- `/process`: 4-Phase Engineering Methodology
-- `/contact`: CTA-Attributed Lead Capture Form
-
-### Admin Control Plane (IMAM ESTUDIO OS)
-
-- `/admin/login`: Staff Authentication
-- `/admin/dashboard`: Metrics, Lead Pipeline, CTA Attribution Analytics
-- `/admin/services`: Capabilities CRUD Manager
-- `/admin/projects`: Case Studies & Media Reference Manager
-- `/admin/theme-editor`: Drag-and-Drop Homepage Section Manager
-- `/admin/pages`: Page Builder & Dynamic Content Manager
-- `/admin/leads`: Leads CRM with Status Transitions & Notes
-- `/admin/orders`: Proposals & Operational Quotes Manager
-- `/admin/media`: Media Asset Library & Usage Reference Audit
-- `/admin/seo`: Global & Page-level SEO Metadata Manager
-- `/admin/staff`: Staff & RBAC Role Permission Manager
-- `/admin/audit-logs`: Append-Only Security Audit Trail
+### Admin Control Plane (MALIK JAHANZAIB OS)
+- Protected behind Supabase Auth and RLS security policies.
+- Theme editor with JSON schema validation for live homepage section reordering.
+- Content Management System (CMS) for projects, services, lead routing, SEO metadata, media assets, staff management, and audit logs.

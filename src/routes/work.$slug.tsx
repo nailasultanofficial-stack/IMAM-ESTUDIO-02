@@ -14,12 +14,12 @@ export const Route = createFileRoute("/work/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Case study unavailable — IMAM ESTUDIO" },
+          { title: "Case study unavailable — Malik Jahanzaib (@jahanzeb1809)" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const title = `${loaderData.title} — IMAM ESTUDIO`;
+    const title = `${loaderData.title} — Malik Jahanzaib (@jahanzeb1809)`;
     return {
       meta: [
         { title },

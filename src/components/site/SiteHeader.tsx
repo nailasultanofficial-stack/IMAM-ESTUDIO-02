@@ -32,11 +32,11 @@ export function SiteHeader() {
     >
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
         <Link to="/" className="group flex items-baseline gap-2" aria-label={`${SITE.name} home`}>
-          <span className="font-display text-lg tracking-tight text-foreground md:text-xl">
-            IMAM
+          <span className="font-display text-lg font-bold tracking-tight text-foreground md:text-xl">
+            MALIK
           </span>
           <span className="eyebrow text-primary transition-colors group-hover:text-foreground">
-            ESTUDIO
+            JAHANZAIB
           </span>
         </Link>
 

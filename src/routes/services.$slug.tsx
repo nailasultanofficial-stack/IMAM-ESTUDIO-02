@@ -15,12 +15,12 @@ export const Route = createFileRoute("/services/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Capability unavailable — IMAM ESTUDIO" },
+          { title: "Capability unavailable — Malik Jahanzaib (@jahanzeb1809)" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const title = `${loaderData.title} — IMAM ESTUDIO`;
+    const title = `${loaderData.title} — Malik Jahanzaib (@jahanzeb1809)`;
     return {
       meta: [
         { title },

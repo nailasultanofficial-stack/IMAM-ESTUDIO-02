@@ -83,23 +83,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "IMAM ESTUDIO — Engineering Studio" },
+      { title: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)" },
       {
         name: "description",
         content:
-          "Founder-led engineering studio for Shopify commerce, AI automation and full-stack SaaS.",
+          "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
       },
-      { name: "author", content: "Mudasar Imam" },
-      { property: "og:title", content: "IMAM ESTUDIO — Engineering Studio" },
+      { name: "author", content: "Malik Jahanzaib" },
+      { property: "og:title", content: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect" },
       {
         property: "og:description",
         content:
-          "Founder-led engineering studio for Shopify commerce, AI automation and full-stack SaaS.",
+          "Engineering high-conversion Shopify stores, React & Next.js platforms, SaaS applications, and n8n AI automations.",
       },
-      { property: "og:site_name", content: "IMAM ESTUDIO" },
+      { property: "og:site_name", content: "Malik Jahanzaib Portfolio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@jahanzeb1809" },
     ],
     links: [
       {
