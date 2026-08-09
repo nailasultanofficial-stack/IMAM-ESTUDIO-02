@@ -3,7 +3,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { servicesQuery } from "@/lib/public-queries";
+import { FEATURED_GIG_SERVICES } from "@/lib/site";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import type { Service } from "@/lib/content-types";
 
 export const Route = createFileRoute("/services/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(servicesQuery),
@@ -27,12 +29,16 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesPage() {
-  const { data: services } = useSuspenseQuery(servicesQuery);
+  const { data: fetchedServices } = useSuspenseQuery(servicesQuery);
+  const services = (fetchedServices && fetchedServices.length > 0
+    ? fetchedServices
+    : (FEATURED_GIG_SERVICES as unknown as Service[])) as unknown as Service[];
 
-  const grouped = services.reduce<Record<string, typeof services>>((acc, service) => {
-    const list = acc[service.category] ?? [];
+  const grouped = services.reduce<Record<string, Service[]>>((acc, service) => {
+    const category = service.category || "General Engineering";
+    const list = acc[category] ?? [];
     list.push(service);
-    acc[service.category] = list;
+    acc[category] = list;
     return acc;
   }, {});
 

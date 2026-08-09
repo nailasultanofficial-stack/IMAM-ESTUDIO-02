@@ -10,7 +10,7 @@ import { TechEcosystemCanvas } from "@/components/3d/TechEcosystemCanvas";
 import { Reveal, TextReveal, TiltCard, MagneticButton } from "@/components/ui/motion-primitives";
 import type { PageSection, Project, Service } from "@/lib/content-types";
 import { objList, paragraphs, str, strList, num } from "@/lib/section-utils";
-import { whatsappUrl } from "@/lib/site";
+import { whatsappUrl, FEATURED_GIG_SERVICES } from "@/lib/site";
 
 type Ctx = { services: Service[]; projects: Project[] };
 
@@ -98,8 +98,11 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
 }
 
 function CapabilitiesSection({ section, services }: { section: PageSection; services: Service[] }) {
+  const displayServices = (services && services.length > 0
+    ? services
+    : (FEATURED_GIG_SERVICES as unknown as Service[])) as unknown as Service[];
   const limit = num(section.content, "limit", 6);
-  const shown = services.slice(0, limit);
+  const shown = displayServices.slice(0, limit);
   if (shown.length === 0) return null;
 
   return (
@@ -107,11 +110,14 @@ function CapabilitiesSection({ section, services }: { section: PageSection; serv
       <div className="shell">
         <SectionHeading
           eyebrow="Capabilities"
-          title={section.title ?? "Ten Engineering Disciplines"}
-          subtitle={section.subtitle ?? "From custom Shopify apps to enterprise AI automation."}
-          action={{ label: "Explore capabilities", to: "/services" }}
+          title={section.title ?? "Engineering Disciplines & Gig Catalog"}
+          subtitle={
+            section.subtitle ??
+            "From custom Shopify Liquid sections to Next.js SaaS platforms & n8n AI automations."
+          }
+          action={{ label: "Explore all capabilities", to: "/services" }}
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-2">
           {shown.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
