@@ -31,7 +31,10 @@ export const Route = createFileRoute("/work/")({
 });
 
 function WorkPage() {
-  const projects = FEATURED_GIG_PROJECTS as unknown as Project[];
+  const { data: fetchedProjects } = useSuspenseQuery(projectsQuery);
+  const projects = (fetchedProjects && fetchedProjects.length > 0
+    ? fetchedProjects
+    : (FEATURED_GIG_PROJECTS as unknown as Project[])) as unknown as Project[];
   const [filter, setFilter] = useState<string>("All");
 
   const categories = useMemo(

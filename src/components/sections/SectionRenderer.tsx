@@ -81,19 +81,94 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
   const shown = displayProjects.slice(0, limit);
   if (shown.length === 0) return null;
 
+  const heroProject = shown[0];
+  const remainingProjects = shown.slice(1);
+
   return (
     <section className="hairline bg-background py-24 md:py-32">
       <div className="shell">
         <SectionHeading
-          eyebrow="Selected work"
+          eyebrow="Selected Work"
           title={section.title ?? "Featured Engineering Case Studies"}
-          subtitle={section.subtitle ?? "Architected for scale and performance."}
-          action={{ label: "View all work", to: "/work" }}
+          subtitle={
+            section.subtitle ??
+            "Real products, commerce experiences, and automation systems engineered for speed, usability, and scale."
+          }
+          action={{ label: "View all projects →", to: "/work" }}
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {shown.map((project, i) => (
-            <ProjectCard key={project.id} project={project} eager={i < 3} />
-          ))}
+
+        {/* Hero Editorial Case Study (Project 01) */}
+        {heroProject ? (
+          <div className="mt-12">
+            <Link to="/work/$slug" params={{ slug: heroProject.slug }} className="group block">
+              <TiltCard className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl backdrop-blur-md transition-all duration-300 hover:border-emerald-500/50 hover:shadow-emerald-950/30 lg:grid lg:grid-cols-12 lg:items-center">
+                <div className="relative aspect-[16/10] overflow-hidden bg-muted lg:col-span-7 lg:h-full">
+                  <img
+                    src={heroProject.featured_image || heroProject.thumbnail_url}
+                    alt={`${heroProject.title} — hero case study`}
+                    loading="eager"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60 lg:bg-gradient-to-r" />
+
+                  <div className="absolute top-4 left-4 rounded-full border border-emerald-500/40 bg-background/90 px-3.5 py-1.5 font-mono text-xs font-semibold uppercase text-emerald-400 backdrop-blur-md">
+                    Featured Case Study · 01
+                  </div>
+                </div>
+
+                <div className="p-8 lg:col-span-5 lg:p-10">
+                  <span className="eyebrow text-emerald-400">{heroProject.category}</span>
+                  <h3 className="mt-3 font-display text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">
+                    {heroProject.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {heroProject.short_description || heroProject.description}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {((heroProject as any).tech_stack || heroProject.tags || [])
+                      .slice(0, 4)
+                      .map((tech: string) => (
+                        <span
+                          key={tech}
+                          className="rounded-md border border-border/80 bg-background/80 px-3 py-1 font-mono text-xs uppercase text-muted-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                  </div>
+
+                  <div className="hairline mt-8 flex items-center justify-between pt-6">
+                    <span className="font-mono text-xs font-medium text-muted-foreground">
+                      {(heroProject as any).role || "Lead Full-Stack Engineer · UI/UX Architect"}
+                    </span>
+                    <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-emerald-400 group-hover:underline">
+                      View case study →
+                    </span>
+                  </div>
+                </div>
+              </TiltCard>
+            </Link>
+          </div>
+        ) : null}
+
+        {/* Secondary Case Studies Grid */}
+        {remainingProjects.length > 0 ? (
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {remainingProjects.map((project, i) => (
+              <ProjectCard key={project.id} project={project} eager={i < 2} />
+            ))}
+          </div>
+        ) : null}
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground transition-all hover:border-emerald-500/50 hover:bg-surface/80 hover:text-emerald-400"
+          >
+            Explore All Case Studies &amp; Projects →
+          </Link>
         </div>
       </div>
     </section>

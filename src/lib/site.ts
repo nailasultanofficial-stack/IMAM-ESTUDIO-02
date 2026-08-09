@@ -146,74 +146,144 @@ export const FEATURED_GIG_PROJECTS = [
   {
     id: "485281780",
     slug: "custom-native-liquid-sections",
-    title: "Custom Native Liquid Sections",
-    category: "Shopify Engineering",
+    title: "Custom Native Shopify Liquid Sections",
+    category: "SHOPIFY COMMERCE",
     short_description:
-      "Custom native Liquid sections engineered for high conversion & fast theme performance without monthly app fees.",
+      "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store conversion speed.",
+    description:
+      "Engineered custom native Liquid sections directly inside Shopify theme architectures with custom schemas, inline CSS variables, and sub-second render speeds.",
     summary:
       "Built modular, zero-dependency Liquid sections for custom theme architectures on Shopify.",
     featured_image:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/485281780/original/48722d6d3f7b018744d9c94c6bdc11d8f14301fa.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/485281780/original/48722d6d3f7b018744d9c94c6bdc11d8f14301fa.png",
-    tech_stack: ["Shopify Liquid", "Custom Sections", "Theme Architecture", "CRO"],
-    client_name: "Fiverr E-Commerce Client",
+    tech_stack: ["Shopify Liquid", "Custom Schema", "JavaScript (ESNext)", "TailwindCSS"],
+    tags: ["Shopify Liquid", "Custom Sections", "Theme Architecture", "CRO"],
+    role: "Lead Full-Stack Engineer · UI/UX Architect",
+    client_name: "D2C E-Commerce Brand",
     year: "2026",
     is_featured: true,
     is_published: true,
+    fiverr_url: "https://fiverr.com/jahanzeb1809/fix-shopify-and-website-bugs-fast",
+    challenge:
+      "Merchants heavily rely on third-party page builders and apps that inject bloated JavaScript, degrade Core Web Vitals, slow down mobile checkout, and incur recurring monthly costs.",
+    approach:
+      "Engineered custom native Liquid sections directly inside the merchant's theme architecture using schema settings, inline CSS variables, and lightweight vanilla JS.",
+    solution:
+      "Developed reusable sections (shoppable hotspots, dynamic sticky product bars, mega menus, custom swatch pickers) fully controllable via the native Shopify Theme Customizer without external dependencies.",
+    outcomes: [
+      "Zero Monthly App Subscriptions",
+      "Sub-Second Theme Render Speed",
+      "100% Native Theme Customizer Schema Integration",
+      "Mobile-Optimized Touch & Drag Interactions",
+    ],
   },
   {
     id: "494892850",
     slug: "shopify-store-redesign",
     title: "Shopify Store Redesign for High Conversion",
-    category: "Shopify Engineering",
+    category: "HEADLESS & REDESIGN",
     short_description:
-      "Mobile-first Shopify store redesign engineered for maximum conversion rate & UI/UX excellence.",
+      "Mobile-first Shopify e-commerce redesign focused on conversion rate optimization, modern UI/UX design, and sub-second page performance.",
+    description:
+      "Complete mobile-first Shopify storefront redesign built for high conversion, responsive touch ergonomics, and Core Web Vitals excellence.",
     summary: "Comprehensive e-commerce UI/UX redesign and conversion rate optimization.",
     featured_image:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png",
-    tech_stack: ["Shopify Plus", "UI/UX Design", "Conversion Rate", "Mobile First"],
-    client_name: "Fiverr E-Commerce Client",
+    tech_stack: ["Shopify Plus", "UI/UX Architecture", "Liquid", "TailwindCSS", "CRO"],
+    tags: ["Shopify Plus", "UI/UX Design", "Conversion Rate", "Mobile First"],
+    role: "Lead Full-Stack Engineer · UI/UX Architect",
+    client_name: "High-Growth Shopify Brand",
     year: "2026",
     is_featured: true,
     is_published: true,
+    fiverr_url:
+      "https://fiverr.com/jahanzeb1809/redesign-your-shopify-store-for-high-conversion-and-ui-ux",
+    challenge:
+      "The legacy storefront suffered from low mobile conversion rates, clunky navigation, high bounce rate on product detail pages, and slow asset loading.",
+    approach:
+      "Performed a complete UI/UX audit, created responsive Figma design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
+    solution:
+      "Redesigned homepage, collection filters, sticky cart drawer with dynamic upsells, and trust-building social proof blocks to maximize average order value (AOV).",
+    outcomes: [
+      "Mobile-First UI/UX Overhaul",
+      "Streamlined Cart Drawer & One-Click Upsells",
+      "Core Web Vitals Pass across Mobile & Desktop",
+      "Frictionless Checkout Funnel Ergonomics",
+    ],
   },
   {
     id: "494910179",
     slug: "n8n-ai-automations",
     title: "Custom n8n AI Automations & Workflows",
-    category: "AI & Automations",
+    category: "AI & AUTOMATION",
     short_description:
-      "Custom n8n AI agent workflows connecting APIs, LLM prompts, and automated operational routing.",
+      "End-to-end automated business process workflows connecting LLMs, vector search, webhooks, database syncs, and customer support routing.",
+    description:
+      "Architected custom n8n AI automation pipelines connecting OpenAI agents, vector knowledge retrieval, webhooks, and real-time database syncs.",
     summary: "Architected enterprise n8n workflow pipelines with OpenAI & custom agent nodes.",
     featured_image:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494910179/original/8b361cf59a9b34d5858b3010e62b847290b92143.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494910179/original/8b361cf59a9b34d5858b3010e62b847290b92143.png",
-    tech_stack: ["n8n Workflow", "AI Agents", "OpenAI API", "Business Automation"],
-    client_name: "Fiverr Client",
+    tech_stack: ["n8n Workflows", "AI Agents", "OpenAI API", "Webhooks", "PostgreSQL"],
+    tags: ["n8n Workflow", "AI Agents", "OpenAI API", "Business Automation"],
+    role: "Senior AI & Automation Architect",
+    client_name: "SaaS & Operations Agency",
     year: "2026",
     is_featured: true,
     is_published: true,
+    fiverr_url:
+      "https://fiverr.com/jahanzeb1809/build-custom-n8n-ai-automations-and-business-workflows",
+    challenge:
+      "Manual lead processing, fragmented CRM updates, and slow response times were causing lost sales pipeline and high operational costs for business teams.",
+    approach:
+      "Designed self-hosted n8n automation pipelines integrated with OpenAI, Slack, CRM webhooks, and PostgreSQL for real-time data flow.",
+    solution:
+      "Deployed automated AI agents capable of classifying inbound inquiries, summarizing client documentation, generating personalized outreach drafts, and updating internal databases instantly.",
+    outcomes: [
+      "Automated Customer Lead & Support Routing",
+      "Zero Manual Data Entry across API Integrations",
+      "Custom LLM Context Retrieval (RAG)",
+      "24/7 Operations Monitoring & Automated Alerts",
+    ],
   },
   {
     id: "494912736",
     slug: "nextjs-saas-web-app",
     title: "High Performance Next.js SaaS Web App",
-    category: "Full-Stack Web Apps",
+    category: "FULL-STACK SAAS",
     short_description:
-      "Full-stack Next.js SaaS web application with React 19, Supabase backend, RLS security, and Tailwind design.",
+      "Production-ready Next.js SaaS web application built with React 19, Supabase Auth, PostgreSQL RLS security, and Tailwind design system.",
+    description:
+      "Full-stack Next.js SaaS application engineered with React Server Components, Supabase PostgreSQL RLS security, and Stripe billing workflows.",
     summary: "Production SaaS application built with Next.js App Router, Supabase, and Stripe.",
     featured_image:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png",
-    tech_stack: ["Next.js", "React 19", "Supabase", "TypeScript", "TailwindCSS"],
-    client_name: "Fiverr Client",
+    tech_stack: ["Next.js", "React 19", "TypeScript", "Supabase", "TailwindCSS"],
+    tags: ["Next.js", "React 19", "Supabase", "TypeScript", "TailwindCSS"],
+    role: "Principal Full-Stack Engineer",
+    client_name: "B2B Enterprise SaaS",
     year: "2026",
     is_featured: true,
     is_published: true,
+    fiverr_url: "https://fiverr.com/jahanzeb1809/develop-a-high-performance-next-js-saas-web-app",
+    challenge:
+      "Building a modern SaaS product requires enterprise security, fast initial page loads, seamless state management, and scalable API architecture without vendor lock-in.",
+    approach:
+      "Architected a Next.js App Router project leveraging React Server Components, TanStack Query, Supabase PostgreSQL with strict RLS policies, and TailwindCSS design tokens.",
+    solution:
+      "Delivered a responsive SaaS web app complete with real-time dashboard analytics, role-based user management, automated billing webhooks, and dark mode aesthetic.",
+    outcomes: [
+      "Full Multi-Tenant Authentication & RBAC",
+      "PostgreSQL Row-Level Security (RLS)",
+      "Stripe Recurring Billing Integration",
+      "Sub-100ms Serverless Edge API Responses",
+    ],
   },
 ];
