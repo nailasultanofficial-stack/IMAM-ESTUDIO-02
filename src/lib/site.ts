@@ -147,7 +147,7 @@ export const FEATURED_GIG_PROJECTS = [
     id: "485281780",
     slug: "custom-native-liquid-sections",
     title: "Custom Native Shopify Liquid Sections",
-    category: "SHOPIFY COMMERCE",
+    category: "Ecommerce",
     short_description:
       "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store conversion speed.",
     description:
@@ -183,7 +183,7 @@ export const FEATURED_GIG_PROJECTS = [
     id: "494892850",
     slug: "shopify-store-redesign",
     title: "Shopify Store Redesign for High Conversion",
-    category: "HEADLESS & REDESIGN",
+    category: "Fashion & Apparel",
     short_description:
       "Mobile-first Shopify e-commerce redesign focused on conversion rate optimization, modern UI/UX design, and sub-second page performance.",
     description:
@@ -219,7 +219,7 @@ export const FEATURED_GIG_PROJECTS = [
     id: "494910179",
     slug: "n8n-ai-automations",
     title: "Custom n8n AI Automations & Workflows",
-    category: "AI & AUTOMATION",
+    category: "Financial & Business",
     short_description:
       "End-to-end automated business process workflows connecting LLMs, vector search, webhooks, database syncs, and customer support routing.",
     description:
@@ -255,7 +255,7 @@ export const FEATURED_GIG_PROJECTS = [
     id: "494912736",
     slug: "nextjs-saas-web-app",
     title: "High Performance Next.js SaaS Web App",
-    category: "FULL-STACK SAAS",
+    category: "Software Company",
     short_description:
       "Production-ready Next.js SaaS web application built with React 19, Supabase Auth, PostgreSQL RLS security, and Tailwind design system.",
     description:

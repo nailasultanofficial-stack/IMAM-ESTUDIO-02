@@ -37,10 +37,18 @@ function WorkPage() {
     : (FEATURED_GIG_PROJECTS as unknown as Project[])) as unknown as Project[];
   const [filter, setFilter] = useState<string>("All");
 
-  const categories = useMemo(
-    () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
-    [projects],
-  );
+  const categories = useMemo(() => {
+    const defaultIndustries = [
+      "All",
+      "Ecommerce",
+      "Technology",
+      "Software Company",
+      "Fashion & Apparel",
+      "Financial & Business",
+    ];
+    const projectCategories = Array.from(new Set(projects.map((p) => p.category)));
+    return Array.from(new Set([...defaultIndustries, ...projectCategories]));
+  }, [projects]);
 
   const shown = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
