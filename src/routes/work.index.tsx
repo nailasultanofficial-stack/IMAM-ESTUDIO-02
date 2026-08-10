@@ -32,12 +32,16 @@ export const Route = createFileRoute("/work/")({
 
 function WorkPage() {
   const { data: fetchedProjects } = useSuspenseQuery(projectsQuery);
-  const projects = [
-    ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
-    ...(fetchedProjects || []).filter(
-      (p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug),
-    ),
-  ] as unknown as Project[];
+  const projects = useMemo(
+    () =>
+      [
+        ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
+        ...(fetchedProjects || []).filter(
+          (p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug),
+        ),
+      ] as unknown as Project[],
+    [fetchedProjects],
+  );
   const [filter, setFilter] = useState<string>("All");
 
   const categories = useMemo(() => {
@@ -60,7 +64,9 @@ function WorkPage() {
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            Every case study below represents real production work scoped, architected, and engineered by Malik Jahanzaib (@jahanzeb1809). Engineered for speed, conversion, and scale.
+            Every case study below represents real production work scoped, architected, and
+            engineered by Malik Jahanzaib (@jahanzeb1809). Engineered for speed, conversion, and
+            scale.
           </p>
         </Reveal>
       </header>
@@ -85,7 +91,10 @@ function WorkPage() {
                 : "border-border/80 bg-surface/60 text-muted-foreground hover:border-border-strong hover:text-foreground",
             )}
           >
-            {category} {category === "All" ? `(${projects.length})` : `(${projects.filter(p => p.category === category).length})`}
+            {category}{" "}
+            {category === "All"
+              ? `(${projects.length})`
+              : `(${projects.filter((p) => p.category === category).length})`}
           </button>
         ))}
       </div>

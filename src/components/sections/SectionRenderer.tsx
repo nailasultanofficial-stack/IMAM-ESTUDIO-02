@@ -184,7 +184,8 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
             Have a similar project in mind?
           </h3>
           <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
-            Let's build a high-performance Shopify store, Next.js web application, or custom n8n AI workflow tailored to your growth goals.
+            Let's build a high-performance Shopify store, Next.js web application, or custom n8n AI
+            workflow tailored to your growth goals.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Link
