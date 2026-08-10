@@ -144,6 +144,42 @@ export const FEATURED_GIG_SERVICES = [
 
 export const FEATURED_GIG_PROJECTS = [
   {
+    id: "fiverr-portfolio-1",
+    slug: "shopify-theme-debugging-guide",
+    title: "Shopify Theme Debugging & Troubleshooting Guide",
+    category: "Ecommerce",
+    short_description:
+      "Diagnostic analysis and step-by-step technical guide resolving critical Shopify theme and third-party app overrides.",
+    description:
+      "Conducted a thorough front-end diagnostic analysis to identify app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting manual detailing Liquid code fixes and CSS restructuring.",
+    summary:
+      "Delivered a step-by-step developer troubleshooting manual and fixed critical Shopify theme bugs.",
+    featured_image:
+      "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_card/v1/attachments/project_item/attachment/d8b09eb148c72f7e988dc94ed3036728-1776980863006/Shopify%20Theme%20Debugging%20_%20Fixing%20Guide.png",
+    thumbnail_url:
+      "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_card/v1/attachments/project_item/attachment/d8b09eb148c72f7e988dc94ed3036728-1776980863006/Shopify%20Theme%20Debugging%20_%20Fixing%20Guide.png",
+    tech_stack: ["Shopify Liquid", "CSS Layout", "JS Debugging", "Theme Architecture"],
+    tags: ["Shopify Liquid", "Bug Fixing", "Theme Architecture", "Mobile UX"],
+    role: "Senior Full-Stack Engineer · UI/UX Architect",
+    client_name: "Fiverr E-Commerce Client",
+    year: "2026",
+    is_featured: true,
+    is_published: true,
+    fiverr_url: "https://fiverr.com/jahanzeb1809/fix-shopify-and-website-bugs-fast",
+    challenge:
+      "The client experienced critical theme and app conflicts including an inactive 'Add to Cart' button, a broken featured collection grid on mobile devices, and severe layout shifts following a third-party app installation.",
+    approach:
+      "Isolated specific CSS and JavaScript conflicts, eliminated conflicting Liquid overrides, and developed a comprehensive step-by-step technical breakdown for immediate implementation.",
+    solution:
+      "Restored checkout functionality, fixed mobile collection grids, and eliminated layout shifts while delivering a practical developer debugging guide.",
+    outcomes: [
+      "Restored Add-to-Cart & Checkout Funnel",
+      "Fixed Broken Mobile Grid Layouts",
+      "Eliminated App JavaScript Conflicts",
+      "Delivered Complete Step-by-Step Technical Guide",
+    ],
+  },
+  {
     id: "485281780",
     slug: "custom-native-liquid-sections",
     title: "Custom Native Shopify Liquid Sections",
