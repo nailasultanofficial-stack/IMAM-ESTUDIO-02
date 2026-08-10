@@ -13,13 +13,16 @@ export const Route = createFileRoute("/work/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(projectsQuery),
   head: () => ({
     meta: [
-      { title: "Selected Work — Malik Jahanzaib (@jahanzeb1809)" },
+      { title: "Engineering Case Studies — Malik Jahanzaib (@jahanzeb1809)" },
       {
         name: "description",
         content:
-          "Engineering case studies across Shopify commerce, Next.js SaaS applications, n8n AI automations, and custom web platforms by Malik Jahanzaib.",
+          "Engineering case studies across Shopify commerce, React/Next.js platforms, n8n AI automations, and custom web infrastructure by Malik Jahanzaib.",
       },
-      { property: "og:title", content: "Selected Work — Malik Jahanzaib (@jahanzeb1809)" },
+      {
+        property: "og:title",
+        content: "Engineering Case Studies — Malik Jahanzaib (@jahanzeb1809)",
+      },
       {
         property: "og:description",
         content:
@@ -55,18 +58,18 @@ function WorkPage() {
     <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12 pb-24 pt-32 md:pt-40">
       <header className="max-w-3xl">
         <Reveal direction="down">
-          <p className="eyebrow text-emerald-400">SELECTED WORK</p>
+          <p className="eyebrow text-emerald-400">SELECTED ENGINEERING WORK</p>
         </Reveal>
         <TextReveal
-          text="Featured Case Studies & Product Showcase"
+          text="Engineering Case Studies & Architectural Archive"
           as="h1"
           className="display-1 mt-4 text-foreground font-display"
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            Every case study below represents real production work scoped, architected, and
-            engineered by Malik Jahanzaib (@jahanzeb1809). Engineered for speed, conversion, and
-            scale.
+            A comprehensive index of digital products, e-commerce platforms, Liquid theme section
+            architectures, AI automation pipelines, and full-stack React/Next.js web applications
+            engineered for speed, conversion, and scale.
           </p>
         </Reveal>
       </header>
@@ -75,7 +78,7 @@ function WorkPage() {
       <div
         className="mt-12 flex flex-wrap gap-2.5"
         role="tablist"
-        aria-label="Filter work by category"
+        aria-label="Filter engineering case studies by category"
       >
         {categories.map((category) => (
           <button
@@ -102,7 +105,7 @@ function WorkPage() {
       {/* Projects Grid */}
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((project, i) => (
-          <ProjectCard key={project.id} project={project} eager={i < 3} />
+          <ProjectCard key={project.id} project={project} index={i} eager={i < 3} />
         ))}
       </div>
 

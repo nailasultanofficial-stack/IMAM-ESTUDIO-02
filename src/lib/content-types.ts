@@ -26,12 +26,17 @@ export type Service = {
   display_order: number;
 };
 
+export type CollaborationType =
+  "Collaborative Project" | "Independent Project" | "Engineering Contribution" | "Selected Work";
+
 export type Project = {
   id: string;
-  gig_id: string | null;
+  gig_id?: string | null;
   title: string;
   slug: string;
   category: string;
+  project_type?: string;
+  collaboration_type?: CollaborationType;
   client_name?: string | null;
   description: string;
   short_description?: string;
@@ -39,6 +44,7 @@ export type Project = {
   summary?: string;
   tech_stack?: string[];
   role?: string;
+  contribution?: string;
   year?: string;
   fiverr_url?: string;
   challenge?: string;

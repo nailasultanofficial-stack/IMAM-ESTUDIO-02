@@ -144,16 +144,18 @@ export const FEATURED_GIG_SERVICES = [
 
 export const FEATURED_GIG_PROJECTS = [
   {
-    id: "fiverr-portfolio-1",
+    id: "proj-shopify-theme-debugging",
     slug: "shopify-theme-debugging-guide",
-    title: "Shopify Theme Debugging & Troubleshooting Guide",
-    category: "Shopify Liquid",
+    title: "Shopify Theme Debugging & Technical Architecture",
+    category: "Shopify / Commerce",
+    project_type: "Shopify Theme Engineering",
+    collaboration_type: "Collaborative Project",
     short_description:
-      "Diagnostic analysis and step-by-step technical guide resolving critical Shopify theme bugs, liquid overrides, and mobile layout shifts.",
+      "Diagnostic analysis and technical restructuring resolving critical Shopify theme Liquid overrides and mobile layout shifts.",
     description:
-      "Conducted a thorough front-end diagnostic analysis to identify third-party app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting manual detailing Liquid code fixes and CSS restructuring.",
+      "Conducted a thorough front-end diagnostic analysis to identify app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting architecture detailing Liquid code fixes and CSS layout restructuring.",
     summary:
-      "Delivered a step-by-step developer troubleshooting manual and fixed critical Shopify theme bugs.",
+      "Delivered a step-by-step developer troubleshooting manual and fixed critical Shopify theme Liquid bugs.",
     featured_image:
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_card/v1/attachments/project_item/attachment/d8b09eb148c72f7e988dc94ed3036728-1776980863006/Shopify%20Theme%20Debugging%20_%20Fixing%20Guide.png",
     thumbnail_url:
@@ -161,33 +163,36 @@ export const FEATURED_GIG_PROJECTS = [
     tech_stack: ["Shopify Liquid", "CSS Layout", "JS Debugging", "Theme Architecture"],
     tags: ["Shopify Liquid", "Bug Fixing", "Theme Architecture", "Mobile UX"],
     role: "Senior Full-Stack Engineer · UI/UX Architect",
-    client_name: "Fiverr E-Commerce Client",
+    contribution:
+      "Malik led the diagnostic front-end analysis, isolated third-party JavaScript conflicts, refactored broken Liquid collection logic, and authored the technical step-by-step developer remediation manual.",
+    client_name: "E-Commerce Merchant",
     year: "2026",
     is_featured: true,
     is_published: true,
-    fiverr_url: "https://fiverr.com/jahanzeb1809/fix-shopify-and-website-bugs-fast",
     challenge:
-      "The client experienced critical theme and app conflicts including an inactive 'Add to Cart' button, a broken featured collection grid on mobile devices, and severe layout shifts following a third-party app installation.",
+      "The merchant experienced critical theme conflicts including an inactive 'Add to Cart' trigger, broken featured collection grid layouts on mobile viewports, and severe layout shifts after installing third-party apps.",
     approach:
-      "Isolated specific CSS and JavaScript conflicts, eliminated conflicting Liquid overrides, and developed a comprehensive step-by-step technical breakdown for immediate implementation.",
+      "Isolated specific CSS and JavaScript event conflicts, eliminated conflicting Liquid overrides, and engineered a modular theme layout structure to prevent app collision.",
     solution:
-      "Restored checkout functionality, fixed mobile collection grids, and eliminated layout shifts while delivering a practical developer debugging guide.",
+      "Restored cart drawer functionality, fixed mobile collection grids, and eliminated cumulative layout shifts while establishing clean Liquid customization standards.",
     outcomes: [
       "Restored Add-to-Cart & Checkout Funnel",
-      "Fixed Broken Mobile Grid Layouts",
+      "Fixed Broken Mobile Collection Grids",
       "Eliminated App JavaScript Conflicts",
-      "Delivered Step-by-Step Developer Troubleshooting Guide",
+      "Delivered Step-by-Step Theme Remediation Manual",
     ],
   },
   {
-    id: "485281780",
+    id: "proj-custom-native-liquid-sections",
     slug: "custom-native-liquid-sections",
-    title: "Custom Native Shopify Liquid Sections",
-    category: "Shopify Liquid",
+    title: "Custom Native Shopify Liquid Sections Architecture",
+    category: "Shopify / Commerce",
+    project_type: "Shopify Native Liquid",
+    collaboration_type: "Collaborative Project",
     short_description:
-      "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store conversion speed.",
+      "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store render speeds.",
     description:
-      "Engineered custom native Liquid sections directly inside Shopify theme architectures with custom schemas, inline CSS variables, and sub-second render speeds.",
+      "Engineered custom native Liquid sections directly inside Shopify theme architectures with custom customizer schemas, inline CSS variables, and sub-second render speeds.",
     summary:
       "Built modular, zero-dependency Liquid sections for custom theme architectures on Shopify.",
     featured_image:
@@ -197,17 +202,18 @@ export const FEATURED_GIG_PROJECTS = [
     tech_stack: ["Shopify Liquid", "Custom Schema", "JavaScript (ESNext)", "TailwindCSS"],
     tags: ["Shopify Liquid", "Custom Sections", "Theme Architecture", "CRO"],
     role: "Lead Full-Stack Engineer · UI/UX Architect",
+    contribution:
+      "Malik engineered the custom native Liquid schemas, built responsive touch-drag interactions in vanilla JS, and structured settings schemas for zero-dependency customizer control.",
     client_name: "D2C E-Commerce Brand",
     year: "2026",
     is_featured: true,
     is_published: true,
-    fiverr_url: "https://fiverr.com/jahanzeb1809/fix-shopify-and-website-bugs-fast",
     challenge:
-      "Merchants heavily rely on third-party page builders and apps that inject bloated JavaScript, degrade Core Web Vitals, slow down mobile checkout, and incur recurring monthly costs.",
+      "Merchants rely heavily on third-party page builder apps that inject bloated JavaScript, degrade Core Web Vitals, slow down mobile checkout, and incur recurring monthly app fees.",
     approach:
-      "Engineered custom native Liquid sections directly inside the merchant's theme architecture using schema settings, inline CSS variables, and lightweight vanilla JS.",
+      "Engineered custom native Liquid sections directly inside the merchant's theme architecture using native schema settings, inline CSS variables, and lightweight vanilla JS.",
     solution:
-      "Developed reusable sections (shoppable hotspots, dynamic sticky product bars, mega menus, custom swatch pickers) fully controllable via the native Shopify Theme Customizer without external dependencies.",
+      "Developed reusable sections (shoppable hotspots, dynamic sticky product bars, mega menus, custom swatch pickers) fully controllable via the native Shopify Theme Customizer.",
     outcomes: [
       "Zero Monthly App Subscriptions",
       "Sub-Second Theme Render Speed",
@@ -216,10 +222,12 @@ export const FEATURED_GIG_PROJECTS = [
     ],
   },
   {
-    id: "494892850",
+    id: "proj-shopify-store-redesign",
     slug: "shopify-store-redesign",
     title: "Shopify Store Redesign for High Conversion",
-    category: "Shopify Plus",
+    category: "Shopify / Commerce",
+    project_type: "Shopify Storefront Redesign",
+    collaboration_type: "Collaborative Project",
     short_description:
       "Mobile-first Shopify e-commerce redesign focused on conversion rate optimization, modern UI/UX design, and sub-second page performance.",
     description:
@@ -232,14 +240,14 @@ export const FEATURED_GIG_PROJECTS = [
     tech_stack: ["Shopify Plus", "UI/UX Architecture", "Liquid", "TailwindCSS", "CRO"],
     tags: ["Shopify Plus", "UI/UX Design", "Conversion Rate", "Mobile First"],
     role: "Lead Full-Stack Engineer · UI/UX Architect",
-    client_name: "High-Growth Shopify Brand",
+    contribution:
+      "Malik led the mobile-first UI/UX redesign, created responsive design tokens, engineered the slide-out cart drawer with dynamic upsells, and optimized page speed metrics.",
+    client_name: "High-Growth Apparel Brand",
     year: "2026",
     is_featured: true,
     is_published: true,
-    fiverr_url:
-      "https://fiverr.com/jahanzeb1809/redesign-your-shopify-store-for-high-conversion-and-ui-ux",
     challenge:
-      "The legacy storefront suffered from low mobile conversion rates, clunky navigation, high bounce rate on product detail pages, and slow asset loading.",
+      "The legacy storefront suffered from low mobile conversion rates, clunky navigation, high bounce rates on product detail pages, and slow asset loading.",
     approach:
       "Performed a complete UI/UX audit, created responsive design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
     solution:
@@ -252,10 +260,12 @@ export const FEATURED_GIG_PROJECTS = [
     ],
   },
   {
-    id: "494910179",
+    id: "proj-n8n-ai-automations",
     slug: "n8n-ai-automations",
-    title: "Custom n8n AI Automations & Workflows",
+    title: "Custom n8n AI Automations & Workflow Systems",
     category: "AI & Automation",
+    project_type: "AI Operations & Automation",
+    collaboration_type: "Collaborative Project",
     short_description:
       "End-to-end automated business process workflows connecting LLMs, vector search, webhooks, database syncs, and customer support routing.",
     description:
@@ -268,14 +278,14 @@ export const FEATURED_GIG_PROJECTS = [
     tech_stack: ["n8n Workflows", "AI Agents", "OpenAI API", "Webhooks", "PostgreSQL"],
     tags: ["n8n Workflow", "AI Agents", "OpenAI API", "Business Automation"],
     role: "Senior AI & Automation Architect",
+    contribution:
+      "Malik designed self-hosted n8n automation pipelines, built custom JavaScript node transformers, integrated OpenAI agent tools, and configured PostgreSQL webhook logging.",
     client_name: "SaaS & Operations Agency",
     year: "2026",
     is_featured: true,
     is_published: true,
-    fiverr_url:
-      "https://fiverr.com/jahanzeb1809/build-custom-n8n-ai-automations-and-business-workflows",
     challenge:
-      "Manual lead processing, fragmented CRM updates, and slow response times were causing lost sales pipeline and high operational costs for business teams.",
+      "Manual lead processing, fragmented CRM updates, and slow response times were causing lost sales pipeline and high operational overhead for business teams.",
     approach:
       "Designed self-hosted n8n automation pipelines integrated with OpenAI, Slack, CRM webhooks, and PostgreSQL for real-time data flow.",
     solution:
@@ -288,10 +298,12 @@ export const FEATURED_GIG_PROJECTS = [
     ],
   },
   {
-    id: "494912736",
+    id: "proj-nextjs-saas-web-app",
     slug: "nextjs-saas-web-app",
-    title: "High Performance Next.js SaaS Web App",
+    title: "High Performance Next.js SaaS Web Application",
     category: "React / Next.js",
+    project_type: "Full-Stack SaaS Platform",
+    collaboration_type: "Collaborative Project",
     short_description:
       "Production-ready Next.js SaaS web application built with React 19, Supabase Auth, PostgreSQL RLS security, and Tailwind design system.",
     description:
@@ -304,11 +316,12 @@ export const FEATURED_GIG_PROJECTS = [
     tech_stack: ["Next.js", "React 19", "TypeScript", "Supabase", "TailwindCSS"],
     tags: ["Next.js", "React 19", "Supabase", "TypeScript", "TailwindCSS"],
     role: "Principal Full-Stack Engineer",
+    contribution:
+      "Malik architected the Next.js App Router structure, designed Supabase PostgreSQL Row-Level Security (RLS) policies, built state management using TanStack Query, and styled dark-mode dashboard components.",
     client_name: "B2B Enterprise SaaS",
     year: "2026",
     is_featured: true,
     is_published: true,
-    fiverr_url: "https://fiverr.com/jahanzeb1809/develop-a-high-performance-next-js-saas-web-app",
     challenge:
       "Building a modern SaaS product requires enterprise security, fast initial page loads, seamless state management, and scalable API architecture without vendor lock-in.",
     approach:

@@ -1,6 +1,6 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowLeft, Check, ExternalLink, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, Check, Layers, MessageCircle, Sparkles } from "lucide-react";
 
 import { projectQuery } from "@/lib/public-queries";
 import { Reveal } from "@/components/ui/motion-primitives";
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/work/$slug")({
         ],
       };
     }
-    const title = `${loaderData.title} | Case Study — Malik Jahanzaib (@jahanzeb1809)`;
+    const title = `${loaderData.title} | Engineering Case Study — Malik Jahanzaib (@jahanzeb1809)`;
     const description = loaderData.short_description || loaderData.description?.slice(0, 155) || "";
     return {
       meta: [
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/work/$slug")({
         to="/work"
         className="mt-8 inline-block font-mono text-sm text-emerald-400 underline-offset-4 hover:underline"
       >
-        ← Back to all work
+        ← Back to all case studies
       </Link>
     </div>
   ),
@@ -53,12 +53,13 @@ function ProjectDetail() {
   const { data: project } = useSuspenseQuery(projectQuery(slug));
   if (!project) return null;
 
-  const role = (project as any).role || "Lead Full-Stack Engineer · UI/UX Architect";
-  const challenge = (project as any).challenge;
-  const approach = (project as any).approach;
-  const solution = (project as any).solution;
-  const fiverrUrl = (project as any).fiverr_url;
-  const techStack = (project as any).tech_stack || project.tags || [];
+  const role = project.role || "Lead Full-Stack Engineer · UI/UX Architect";
+  const collaborationType = project.collaboration_type || "Collaborative Project";
+  const contribution = project.contribution;
+  const challenge = project.challenge;
+  const approach = project.approach;
+  const solution = project.solution;
+  const techStack = project.tech_stack || project.tags || [];
 
   return (
     <article className="pb-24 pt-32 md:pt-40">
@@ -77,11 +78,10 @@ function ProjectDetail() {
           <Reveal>
             <div className="flex flex-wrap items-center gap-3">
               <span className="eyebrow text-emerald-400">{project.category}</span>
-              {project.client_name ? (
-                <span className="rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
-                  {project.client_name}
-                </span>
-              ) : null}
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
+                <Layers className="h-3 w-3 text-emerald-400" />
+                {collaborationType}
+              </span>
               {project.year ? (
                 <span className="rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
                   {project.year}
@@ -103,14 +103,14 @@ function ProjectDetail() {
           </Reveal>
 
           <Reveal delay={0.25}>
-            <div className="mt-6 flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-950/20 px-4 py-2.5 backdrop-blur-md">
+            <div className="mt-6 flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-4.5 py-3 backdrop-blur-md">
               <span className="font-mono text-xs text-muted-foreground">Malik's Role:</span>
               <span className="font-mono text-xs font-semibold text-emerald-400">{role}</span>
             </div>
           </Reveal>
         </header>
 
-        {/* Project Hero Banner */}
+        {/* Project Hero Banner — Unobscured View */}
         <Reveal delay={0.3}>
           <div className="relative mt-12 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
             <img
@@ -118,9 +118,9 @@ function ProjectDetail() {
               alt={`${project.title} — case study cover`}
               fetchPriority="high"
               decoding="async"
-              className="aspect-[16/9] w-full object-cover"
+              className="aspect-[16/9] w-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-30" />
           </div>
         </Reveal>
 
@@ -134,6 +134,18 @@ function ProjectDetail() {
                 {project.description}
               </p>
             </section>
+
+            {/* Malik's Contribution */}
+            {contribution ? (
+              <section className="hairline pt-8">
+                <h2 className="eyebrow text-emerald-400">Engineering Contribution</h2>
+                <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-6 backdrop-blur-md">
+                  <p className="text-sm leading-relaxed text-foreground/90 font-mono">
+                    {contribution}
+                  </p>
+                </div>
+              </section>
+            ) : null}
 
             {/* Challenge */}
             {challenge ? (
@@ -173,7 +185,7 @@ function ProjectDetail() {
                   {techStack.map((tech: string) => (
                     <span
                       key={tech}
-                      className="rounded-md border border-border/80 bg-background/80 px-3 py-1.5 font-mono text-xs uppercase text-muted-foreground"
+                      className="rounded-md border border-border/80 bg-background/80 px-3.5 py-1.5 font-mono text-xs uppercase text-muted-foreground"
                     >
                       {tech}
                     </span>
@@ -228,20 +240,28 @@ function ProjectDetail() {
                   <MessageCircle className="h-4 w-4" />
                   Chat on WhatsApp
                 </a>
-
-                {fiverrUrl ? (
-                  <a
-                    href={fiverrUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-10 w-full items-center justify-center gap-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    View Fiverr Gig Listing <ExternalLink className="h-3 w-3" />
-                  </a>
-                ) : null}
               </div>
             </div>
           </aside>
+        </div>
+
+        {/* Editorial Transition Banner */}
+        <div className="hairline mt-20 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+              Have a similar engineering challenge?
+            </span>
+            <h3 className="font-display text-xl font-semibold text-foreground mt-1">
+              Let's engineer your platform for speed &amp; scale.
+            </h3>
+          </div>
+          <Link
+            to="/contact"
+            search={{ source: `case_study_bottom_${project.slug}` }}
+            className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-xl transition-all hover:opacity-90 active:scale-95 shrink-0"
+          >
+            Start a Project →
+          </Link>
         </div>
       </div>
     </article>

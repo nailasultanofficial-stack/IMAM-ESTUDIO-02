@@ -78,7 +78,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
     ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
     ...(projects || []).filter((p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug)),
   ];
-  const limit = num(section.content, "limit", 6);
+  const limit = num(section.content, "limit", 4);
   const shownProjects = displayProjects.slice(0, limit);
   if (shownProjects.length === 0) return null;
 
@@ -90,22 +90,22 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
       {/* Maximum 1680px Shell Cap for Portfolio Content */}
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionHeading
-          eyebrow="SELECTED WORK"
-          title={section.title ?? "Featured Engineering Case Studies"}
+          eyebrow="SELECTED ENGINEERING WORK"
+          title={section.title ?? "Built for speed. Designed for scale."}
           subtitle={
             section.subtitle ??
-            "Architected for speed, conversion, and scale. Real Shopify platforms, React/Next.js SaaS applications, and n8n AI workflows."
+            "A selection of digital products, commerce experiences, automation systems, and high-performance web platforms developed across Shopify, React, Next.js, AI automation, and modern web infrastructure."
           }
-          action={{ label: "View all projects →", to: "/work" }}
+          action={{ label: "View all case studies →", to: "/work" }}
         />
 
-        {/* Primary Featured Project — Editorial 12-Column Hero Card */}
+        {/* Primary Featured Case Study — Editorial 12-Column Hero Card */}
         {heroProject ? (
           <div className="mt-12 md:mt-14">
             <Link to="/work/$slug" params={{ slug: heroProject.slug }} className="group block">
               <TiltCard className="relative overflow-hidden rounded-2xl border border-border/80 bg-surface/90 shadow-2xl backdrop-blur-md transition-all duration-500 hover:border-emerald-500/50 hover:bg-surface hover:shadow-emerald-950/40 lg:grid lg:grid-cols-12 lg:items-stretch">
                 {/* Hero Screenshot Container - Unobscured View */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-muted/20 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-[420px]">
+                <div className="relative aspect-[16/10] overflow-hidden bg-muted/20 lg:col-span-6 lg:aspect-auto lg:h-full lg:min-h-[440px]">
                   <img
                     src={heroProject.featured_image || heroProject.thumbnail_url}
                     alt={`${heroProject.title} — primary featured case study`}
@@ -113,23 +113,25 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
                     decoding="async"
                     className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  {/* Gentle gradient overlay only at edges for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-40 lg:bg-gradient-to-r" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-30 lg:bg-gradient-to-r" />
 
-                  <div className="absolute top-4 left-4 flex items-center gap-2">
+                  <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-emerald-500/50 bg-background/90 px-3.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-emerald-400 backdrop-blur-md shadow-md">
                       ★ Featured Case Study · 01
+                    </span>
+                    <span className="rounded-full border border-border/80 bg-background/90 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md shadow-md">
+                      {heroProject.collaboration_type || "Collaborative Project"}
                     </span>
                   </div>
                 </div>
 
                 {/* Hero Content Details */}
-                <div className="flex flex-col justify-between p-8 lg:col-span-5 lg:p-10">
+                <div className="flex flex-col justify-between p-8 lg:col-span-6 lg:p-10">
                   <div>
                     <div className="flex items-center justify-between">
                       <span className="eyebrow text-emerald-400">{heroProject.category}</span>
                       <span className="font-mono text-[11px] text-muted-foreground font-medium">
-                        {(heroProject as any).year || "2026"}
+                        {heroProject.year || "2026"}
                       </span>
                     </div>
 
@@ -141,8 +143,19 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
                       {heroProject.short_description || heroProject.description}
                     </p>
 
+                    {heroProject.contribution ? (
+                      <div className="mt-5 rounded-xl border border-emerald-500/20 bg-emerald-950/20 p-4">
+                        <span className="font-mono text-xs font-semibold text-emerald-400 uppercase tracking-wider block">
+                          Malik's Contribution:
+                        </span>
+                        <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                          {heroProject.contribution}
+                        </p>
+                      </div>
+                    ) : null}
+
                     <div className="mt-6 flex flex-wrap gap-2">
-                      {((heroProject as any).tech_stack || heroProject.tags || [])
+                      {(heroProject.tech_stack || heroProject.tags || [])
                         .slice(0, 4)
                         .map((tech: string) => (
                           <span
@@ -157,7 +170,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
 
                   <div className="hairline mt-8 flex items-center justify-between pt-6">
                     <span className="font-mono text-xs font-medium text-muted-foreground">
-                      {(heroProject as any).role || "Senior Full-Stack Engineer · UI/UX Architect"}
+                      {heroProject.role || "Senior Full-Stack Engineer · UI/UX Architect"}
                     </span>
                     <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-emerald-400 group-hover:underline">
                       Explore Case Study →
@@ -173,7 +186,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
         {remainingProjects.length > 0 ? (
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {remainingProjects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} eager={i < 2} />
+              <ProjectCard key={project.id} project={project} index={i + 1} eager={i < 2} />
             ))}
           </div>
         ) : null}
@@ -181,11 +194,11 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
         {/* Post-Portfolio Conversion Transition Banner */}
         <div className="mt-16 rounded-2xl border border-border/80 bg-gradient-to-r from-surface/80 via-surface/40 to-surface/80 p-8 text-center backdrop-blur-md md:p-10">
           <h3 className="font-display text-xl font-semibold text-foreground md:text-2xl">
-            Have a similar project in mind?
+            Have a complex engineering challenge in mind?
           </h3>
           <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
-            Let's build a high-performance Shopify store, Next.js web application, or custom n8n AI
-            workflow tailored to your growth goals.
+            Let's build a high-performance Shopify storefront, custom Next.js web platform, or
+            automated n8n AI workflow tailored to your operational goals.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Link
@@ -199,7 +212,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
               to="/work"
               className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-6 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-foreground transition-all hover:border-emerald-500/40 hover:text-emerald-400"
             >
-              View Full Work Catalog
+              View Full Work Archive
             </Link>
           </div>
         </div>
