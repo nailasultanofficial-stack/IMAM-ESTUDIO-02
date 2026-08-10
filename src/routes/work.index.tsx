@@ -7,6 +7,7 @@ import { projectsQuery } from "@/lib/public-queries";
 import { FEATURED_GIG_PROJECTS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import { ARCHIVE_GIG_PROJECTS } from "@/lib/archive-projects";
 import type { Project } from "@/lib/content-types";
 
 export const Route = createFileRoute("/work/")({
@@ -35,16 +36,26 @@ export const Route = createFileRoute("/work/")({
 
 function WorkPage() {
   const { data: fetchedProjects } = useSuspenseQuery(projectsQuery);
-  const projects = useMemo(
-    () =>
-      [
-        ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
-        ...(fetchedProjects || []).filter(
-          (p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug),
-        ),
-      ] as unknown as Project[],
-    [fetchedProjects],
-  );
+  const projects = useMemo(() => {
+    const allProjects = [
+      ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
+      ...(ARCHIVE_GIG_PROJECTS as unknown as Project[]),
+      ...(fetchedProjects || []),
+    ];
+
+    // Deduplicate by slug
+    const uniqueProjects: Project[] = [];
+    const seenSlugs = new Set<string>();
+
+    for (const p of allProjects) {
+      if (!seenSlugs.has(p.slug)) {
+        seenSlugs.add(p.slug);
+        uniqueProjects.push(p);
+      }
+    }
+
+    return uniqueProjects;
+  }, [fetchedProjects]);
   const [filter, setFilter] = useState<string>("All");
 
   const categories = useMemo(() => {
