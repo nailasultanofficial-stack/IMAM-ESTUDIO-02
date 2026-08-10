@@ -96,7 +96,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
             section.subtitle ??
             "A selection of digital products, commerce experiences, automation systems, and high-performance web platforms developed across Shopify, React, Next.js, AI automation, and modern web infrastructure."
           }
-          action={{ label: "View all case studies →", to: "/work" }}
+          action={{ label: "View all projects →", to: "/work" }}
         />
 
         {/* Primary Featured Case Study — Editorial 12-Column Hero Card */}
@@ -108,7 +108,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted/20 lg:col-span-6 lg:aspect-auto lg:h-full lg:min-h-[440px]">
                   <img
                     src={heroProject.featured_image || heroProject.thumbnail_url}
-                    alt={`${heroProject.title} — primary featured case study`}
+                    alt={`${heroProject.title} — primary featured project visual`}
                     loading="eager"
                     decoding="async"
                     className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
@@ -117,11 +117,13 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
 
                   <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-emerald-500/50 bg-background/90 px-3.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-emerald-400 backdrop-blur-md shadow-md">
-                      ★ Featured Case Study · 01
+                      ★ Featured Project · 01
                     </span>
-                    <span className="rounded-full border border-border/80 bg-background/90 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md shadow-md">
-                      {heroProject.collaboration_type || "Collaborative Project"}
-                    </span>
+                    {heroProject.collaboration_type ? (
+                      <span className="rounded-full border border-border/80 bg-background/90 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md shadow-md">
+                        {heroProject.collaboration_type}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
 
@@ -170,10 +172,10 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
 
                   <div className="hairline mt-8 flex items-center justify-between pt-6">
                     <span className="font-mono text-xs font-medium text-muted-foreground">
-                      {heroProject.role || "Senior Full-Stack Engineer · UI/UX Architect"}
+                      {heroProject.role || "Full-Stack Engineering & UI/UX"}
                     </span>
                     <span className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-emerald-400 group-hover:underline">
-                      Explore Case Study →
+                      View Project →
                     </span>
                   </div>
                 </div>

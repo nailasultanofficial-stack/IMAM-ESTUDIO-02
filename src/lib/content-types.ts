@@ -36,7 +36,7 @@ export type Project = {
   slug: string;
   category: string;
   project_type?: string;
-  collaboration_type?: CollaborationType;
+  collaboration_type?: string;
   client_name?: string | null;
   description: string;
   short_description?: string;
@@ -50,7 +50,8 @@ export type Project = {
   challenge?: string;
   approach?: string;
   solution?: string;
-  outcomes: string[];
+  outcomes?: string[];
+  highlights?: string[];
   tags: string[];
   thumbnail_url: string;
   gallery_urls: string[];

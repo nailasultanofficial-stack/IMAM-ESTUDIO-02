@@ -61,15 +61,14 @@ function WorkPage() {
           <p className="eyebrow text-emerald-400">SELECTED ENGINEERING WORK</p>
         </Reveal>
         <TextReveal
-          text="Engineering Case Studies & Architectural Archive"
+          text="Engineering Projects & Portfolio Archive"
           as="h1"
           className="display-1 mt-4 text-foreground font-display"
         />
         <Reveal delay={0.2}>
           <p className="lede mt-6 text-muted-foreground">
-            A comprehensive index of digital products, e-commerce platforms, Liquid theme section
-            architectures, AI automation pipelines, and full-stack React/Next.js web applications
-            engineered for speed, conversion, and scale.
+            A selection of digital products, commerce platforms, interfaces, AI automation
+            workflows, and high-performance web applications engineered for speed and scale.
           </p>
         </Reveal>
       </header>

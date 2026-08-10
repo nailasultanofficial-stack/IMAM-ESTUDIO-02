@@ -149,11 +149,11 @@ export const FEATURED_GIG_PROJECTS = [
     title: "Shopify Theme Debugging & Technical Architecture",
     category: "Shopify / Commerce",
     project_type: "Shopify Theme Engineering",
-    collaboration_type: "Collaborative Project",
+    collaboration_type: "Engineering Contribution",
     short_description:
       "Diagnostic analysis and technical restructuring resolving critical Shopify theme Liquid overrides and mobile layout shifts.",
     description:
-      "Conducted a thorough front-end diagnostic analysis to identify app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting architecture detailing Liquid code fixes and CSS layout restructuring.",
+      "Conducted a front-end diagnostic analysis to identify app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting architecture detailing Liquid code fixes and CSS layout restructuring.",
     summary:
       "Delivered a step-by-step developer troubleshooting manual and fixed critical Shopify theme Liquid bugs.",
     featured_image:
@@ -162,19 +162,24 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_card/v1/attachments/project_item/attachment/d8b09eb148c72f7e988dc94ed3036728-1776980863006/Shopify%20Theme%20Debugging%20_%20Fixing%20Guide.png",
     tech_stack: ["Shopify Liquid", "CSS Layout", "JS Debugging", "Theme Architecture"],
     tags: ["Shopify Liquid", "Bug Fixing", "Theme Architecture", "Mobile UX"],
-    role: "Senior Full-Stack Engineer · UI/UX Architect",
+    role: "Full-Stack Engineering & UI/UX",
     contribution:
-      "Malik led the diagnostic front-end analysis, isolated third-party JavaScript conflicts, refactored broken Liquid collection logic, and authored the technical step-by-step developer remediation manual.",
-    client_name: "E-Commerce Merchant",
+      "Front-end diagnostic analysis, JavaScript conflict isolation, Liquid collection logic refactoring, and technical developer manual authoring.",
     year: "2026",
     is_featured: true,
     is_published: true,
     challenge:
-      "The merchant experienced critical theme conflicts including an inactive 'Add to Cart' trigger, broken featured collection grid layouts on mobile viewports, and severe layout shifts after installing third-party apps.",
+      "The storefront experienced critical theme conflicts including an inactive 'Add to Cart' trigger, broken featured collection grid layouts on mobile viewports, and layout shifts after installing third-party apps.",
     approach:
-      "Isolated specific CSS and JavaScript event conflicts, eliminated conflicting Liquid overrides, and engineered a modular theme layout structure to prevent app collision.",
+      "Isolated CSS and JavaScript event conflicts, eliminated conflicting Liquid overrides, and engineered a modular theme layout structure to prevent app collisions.",
     solution:
       "Restored cart drawer functionality, fixed mobile collection grids, and eliminated cumulative layout shifts while establishing clean Liquid customization standards.",
+    highlights: [
+      "Restored Add-to-Cart & Checkout Funnel",
+      "Fixed Broken Mobile Collection Grids",
+      "Eliminated App JavaScript Conflicts",
+      "Delivered Step-by-Step Theme Remediation Manual",
+    ],
     outcomes: [
       "Restored Add-to-Cart & Checkout Funnel",
       "Fixed Broken Mobile Collection Grids",
@@ -188,7 +193,7 @@ export const FEATURED_GIG_PROJECTS = [
     title: "Custom Native Shopify Liquid Sections Architecture",
     category: "Shopify / Commerce",
     project_type: "Shopify Native Liquid",
-    collaboration_type: "Collaborative Project",
+    collaboration_type: "Selected Work",
     short_description:
       "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store render speeds.",
     description:
@@ -201,19 +206,24 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/485281780/original/48722d6d3f7b018744d9c94c6bdc11d8f14301fa.png",
     tech_stack: ["Shopify Liquid", "Custom Schema", "JavaScript (ESNext)", "TailwindCSS"],
     tags: ["Shopify Liquid", "Custom Sections", "Theme Architecture", "CRO"],
-    role: "Lead Full-Stack Engineer · UI/UX Architect",
+    role: "Full-Stack Engineering & UI/UX",
     contribution:
-      "Malik engineered the custom native Liquid schemas, built responsive touch-drag interactions in vanilla JS, and structured settings schemas for zero-dependency customizer control.",
-    client_name: "D2C E-Commerce Brand",
+      "Custom native Liquid schemas development, responsive touch-drag interaction engineering in vanilla JS, and settings schema structure for native customizer control.",
     year: "2026",
     is_featured: true,
     is_published: true,
     challenge:
       "Merchants rely heavily on third-party page builder apps that inject bloated JavaScript, degrade Core Web Vitals, slow down mobile checkout, and incur recurring monthly app fees.",
     approach:
-      "Engineered custom native Liquid sections directly inside the merchant's theme architecture using native schema settings, inline CSS variables, and lightweight vanilla JS.",
+      "Engineered custom native Liquid sections directly inside the theme architecture using native schema settings, inline CSS variables, and lightweight vanilla JS.",
     solution:
       "Developed reusable sections (shoppable hotspots, dynamic sticky product bars, mega menus, custom swatch pickers) fully controllable via the native Shopify Theme Customizer.",
+    highlights: [
+      "Zero Monthly App Subscriptions",
+      "Sub-Second Theme Render Speed",
+      "100% Native Theme Customizer Integration",
+      "Mobile-Optimized Touch Interactions",
+    ],
     outcomes: [
       "Zero Monthly App Subscriptions",
       "Sub-Second Theme Render Speed",
@@ -227,7 +237,7 @@ export const FEATURED_GIG_PROJECTS = [
     title: "Shopify Store Redesign for High Conversion",
     category: "Shopify / Commerce",
     project_type: "Shopify Storefront Redesign",
-    collaboration_type: "Collaborative Project",
+    collaboration_type: "Selected Work",
     short_description:
       "Mobile-first Shopify e-commerce redesign focused on conversion rate optimization, modern UI/UX design, and sub-second page performance.",
     description:
@@ -239,19 +249,24 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494892850/original/2b61663d23154209df1cef3d91a6e8862f614094.png",
     tech_stack: ["Shopify Plus", "UI/UX Architecture", "Liquid", "TailwindCSS", "CRO"],
     tags: ["Shopify Plus", "UI/UX Design", "Conversion Rate", "Mobile First"],
-    role: "Lead Full-Stack Engineer · UI/UX Architect",
+    role: "Full-Stack Engineering & UI/UX",
     contribution:
-      "Malik led the mobile-first UI/UX redesign, created responsive design tokens, engineered the slide-out cart drawer with dynamic upsells, and optimized page speed metrics.",
-    client_name: "High-Growth Apparel Brand",
+      "Mobile-first UI/UX redesign, responsive design token creation, slide-out cart drawer engineering with dynamic upsells, and page speed optimization.",
     year: "2026",
     is_featured: true,
     is_published: true,
     challenge:
       "The legacy storefront suffered from low mobile conversion rates, clunky navigation, high bounce rates on product detail pages, and slow asset loading.",
     approach:
-      "Performed a complete UI/UX audit, created responsive design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
+      "Performed a UI/UX audit, created responsive design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
     solution:
       "Redesigned homepage, collection filters, sticky cart drawer with dynamic upsells, and trust-building social proof blocks to maximize conversion.",
+    highlights: [
+      "Mobile-First UI/UX Overhaul",
+      "Streamlined Cart Drawer & Upsells",
+      "Core Web Vitals Performance Hardening",
+      "Frictionless Checkout Ergonomics",
+    ],
     outcomes: [
       "Mobile-First UI/UX Overhaul",
       "Streamlined Cart Drawer & Upsells",
@@ -265,7 +280,7 @@ export const FEATURED_GIG_PROJECTS = [
     title: "Custom n8n AI Automations & Workflow Systems",
     category: "AI & Automation",
     project_type: "AI Operations & Automation",
-    collaboration_type: "Collaborative Project",
+    collaboration_type: "Engineering Contribution",
     short_description:
       "End-to-end automated business process workflows connecting LLMs, vector search, webhooks, database syncs, and customer support routing.",
     description:
@@ -279,8 +294,7 @@ export const FEATURED_GIG_PROJECTS = [
     tags: ["n8n Workflow", "AI Agents", "OpenAI API", "Business Automation"],
     role: "Senior AI & Automation Architect",
     contribution:
-      "Malik designed self-hosted n8n automation pipelines, built custom JavaScript node transformers, integrated OpenAI agent tools, and configured PostgreSQL webhook logging.",
-    client_name: "SaaS & Operations Agency",
+      "Self-hosted n8n automation pipeline design, custom JavaScript node transformer development, OpenAI agent tool integration, and PostgreSQL webhook logging configuration.",
     year: "2026",
     is_featured: true,
     is_published: true,
@@ -290,6 +304,12 @@ export const FEATURED_GIG_PROJECTS = [
       "Designed self-hosted n8n automation pipelines integrated with OpenAI, Slack, CRM webhooks, and PostgreSQL for real-time data flow.",
     solution:
       "Deployed automated AI agents capable of classifying inbound inquiries, summarizing client documentation, generating personalized outreach drafts, and updating internal databases instantly.",
+    highlights: [
+      "Automated Customer Lead & Support Routing",
+      "Zero Manual Data Entry across API Integrations",
+      "Custom LLM Context Retrieval (RAG)",
+      "24/7 Operations Monitoring & Automated Alerts",
+    ],
     outcomes: [
       "Automated Customer Lead & Support Routing",
       "Zero Manual Data Entry across API Integrations",
@@ -303,7 +323,7 @@ export const FEATURED_GIG_PROJECTS = [
     title: "High Performance Next.js SaaS Web Application",
     category: "React / Next.js",
     project_type: "Full-Stack SaaS Platform",
-    collaboration_type: "Collaborative Project",
+    collaboration_type: "Selected Work",
     short_description:
       "Production-ready Next.js SaaS web application built with React 19, Supabase Auth, PostgreSQL RLS security, and Tailwind design system.",
     description:
@@ -317,8 +337,7 @@ export const FEATURED_GIG_PROJECTS = [
     tags: ["Next.js", "React 19", "Supabase", "TypeScript", "TailwindCSS"],
     role: "Principal Full-Stack Engineer",
     contribution:
-      "Malik architected the Next.js App Router structure, designed Supabase PostgreSQL Row-Level Security (RLS) policies, built state management using TanStack Query, and styled dark-mode dashboard components.",
-    client_name: "B2B Enterprise SaaS",
+      "Next.js App Router architecture design, Supabase PostgreSQL Row-Level Security (RLS) policies, state management using TanStack Query, and dark-mode dashboard component development.",
     year: "2026",
     is_featured: true,
     is_published: true,
@@ -328,6 +347,12 @@ export const FEATURED_GIG_PROJECTS = [
       "Architected a Next.js App Router project leveraging React Server Components, TanStack Query, Supabase PostgreSQL with strict RLS policies, and TailwindCSS design tokens.",
     solution:
       "Delivered a responsive SaaS web app complete with real-time dashboard analytics, role-based user management, automated billing webhooks, and dark mode aesthetic.",
+    highlights: [
+      "Full Multi-Tenant Authentication & RBAC",
+      "PostgreSQL Row-Level Security (RLS)",
+      "Stripe Recurring Billing Integration",
+      "Sub-100ms Serverless Edge API Responses",
+    ],
     outcomes: [
       "Full Multi-Tenant Authentication & RBAC",
       "PostgreSQL Row-Level Security (RLS)",

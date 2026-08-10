@@ -200,25 +200,25 @@ function ProjectDetail() {
             <div className="rounded-2xl border border-border bg-surface p-7 shadow-xl backdrop-blur-md">
               <div className="flex items-center gap-2 text-emerald-400">
                 <Sparkles className="h-4 w-4" />
-                <h2 className="eyebrow text-emerald-400">Verified Outcomes</h2>
+                <h2 className="eyebrow text-emerald-400">Key Deliverables &amp; Highlights</h2>
               </div>
-              {project.outcomes && project.outcomes.length > 0 ? (
+              {(project.highlights || project.outcomes) &&
+              (project.highlights || project.outcomes)!.length > 0 ? (
                 <ul className="mt-5 space-y-3.5">
-                  {project.outcomes.map((outcome: string) => (
-                    <li key={outcome} className="flex items-start gap-3">
+                  {(project.highlights || project.outcomes)!.map((highlight: string) => (
+                    <li key={highlight} className="flex items-start gap-3">
                       <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
                         <Check className="h-3 w-3" />
                       </div>
                       <span className="text-xs leading-relaxed text-foreground/90 font-medium">
-                        {outcome}
+                        {highlight}
                       </span>
                     </li>
                   ))}
                 </ul>
               ) : (
                 <p className="mt-4 text-xs text-muted-foreground">
-                  Engineered for sub-second performance, conversion optimization, and reliable
-                  scale.
+                  Engineered for performance, mobile usability, and clean maintainability.
                 </p>
               )}
 

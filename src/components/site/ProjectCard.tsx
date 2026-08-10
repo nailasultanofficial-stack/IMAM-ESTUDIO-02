@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Sparkles, Layers } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { TiltCard } from "@/components/ui/motion-primitives";
 import type { Project } from "@/lib/content-types";
 
@@ -12,26 +12,23 @@ export function ProjectCard({
   index?: number;
   eager?: boolean;
 }) {
-  const role = project.role || "Senior Full-Stack Engineer · UI/UX Architect";
+  const role = project.role || "Full-Stack Engineering & UI/UX";
   const techStack = project.tech_stack || project.tags || [];
   const imageSrc = project.featured_image || project.thumbnail_url;
-  const collabBadge = project.collaboration_type || "Collaborative Project";
 
   return (
     <Link to="/work/$slug" params={{ slug: project.slug }} className="group block h-full">
       <TiltCard className="flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-surface/80 shadow-lg backdrop-blur-md transition-all duration-500 hover:border-emerald-500/40 hover:bg-surface hover:shadow-2xl hover:shadow-emerald-950/30">
         <div>
-          {/* Screenshot Container with Unobscured View */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted/30">
+          {/* Screenshot Container - 100% Clean & Unobscured View */}
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted/20 border-b border-border/50">
             <img
               src={imageSrc}
-              alt={`${project.title} — engineering case study screenshot`}
+              alt={`${project.title} — project screenshot`}
               loading={eager ? "eager" : "lazy"}
               decoding="async"
               className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
             />
-            {/* Minimal edge gradient for top/bottom badge legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-20" />
 
             {/* Badges Bar */}
             <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
@@ -39,29 +36,18 @@ export function ProjectCard({
                 <span className="rounded-full border border-emerald-500/40 bg-background/90 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-emerald-400 backdrop-blur-md shadow-sm">
                   {project.category}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-background/90 px-2.5 py-1 font-mono text-[9px] font-medium uppercase tracking-wider text-muted-foreground backdrop-blur-md shadow-sm">
-                  <Layers className="h-2.5 w-2.5 text-emerald-400" />
-                  {collabBadge}
-                </span>
+                {project.collaboration_type ? (
+                  <span className="rounded-full border border-border/80 bg-background/90 px-2.5 py-1 font-mono text-[9px] font-medium uppercase tracking-wider text-muted-foreground backdrop-blur-md shadow-sm">
+                    {project.collaboration_type}
+                  </span>
+                ) : null}
               </div>
               {typeof index === "number" ? (
-                <span className="font-mono text-xs font-bold text-emerald-400/80">
+                <span className="font-mono text-xs font-bold text-emerald-400/90">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               ) : null}
             </div>
-
-            {project.outcomes && project.outcomes.length > 0 ? (
-              <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between rounded-lg border border-border/80 bg-background/90 px-3 py-1.5 backdrop-blur-md shadow-sm">
-                <span className="flex items-center gap-1.5 font-mono text-[10px] font-semibold text-emerald-400 truncate">
-                  <Sparkles className="h-3 w-3 shrink-0" />
-                  {project.outcomes[0]}
-                </span>
-                <span className="shrink-0 font-mono text-[9px] uppercase tracking-wider text-muted-foreground ml-2">
-                  Outcome
-                </span>
-              </div>
-            ) : null}
           </div>
 
           {/* Card Content & Positioning */}
@@ -109,7 +95,7 @@ export function ProjectCard({
 
           <div className="hairline mt-5 flex items-center justify-between pt-4">
             <span className="font-mono text-xs font-semibold text-emerald-400 transition-colors group-hover:underline">
-              View Case Study →
+              View Project →
             </span>
           </div>
         </div>
