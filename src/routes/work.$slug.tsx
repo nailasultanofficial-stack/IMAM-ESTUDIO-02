@@ -62,7 +62,7 @@ function ProjectDetail() {
 
   return (
     <article className="pb-24 pt-32 md:pt-40">
-      <div className="shell">
+      <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12">
         <Reveal direction="down">
           <Link
             to="/work"

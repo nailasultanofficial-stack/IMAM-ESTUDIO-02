@@ -147,11 +147,11 @@ export const FEATURED_GIG_PROJECTS = [
     id: "fiverr-portfolio-1",
     slug: "shopify-theme-debugging-guide",
     title: "Shopify Theme Debugging & Troubleshooting Guide",
-    category: "Ecommerce",
+    category: "Shopify Liquid",
     short_description:
-      "Diagnostic analysis and step-by-step technical guide resolving critical Shopify theme and third-party app overrides.",
+      "Diagnostic analysis and step-by-step technical guide resolving critical Shopify theme bugs, liquid overrides, and mobile layout shifts.",
     description:
-      "Conducted a thorough front-end diagnostic analysis to identify app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting manual detailing Liquid code fixes and CSS restructuring.",
+      "Conducted a thorough front-end diagnostic analysis to identify third-party app overrides causing UI breaks. Developed a comprehensive step-by-step troubleshooting manual detailing Liquid code fixes and CSS restructuring.",
     summary:
       "Delivered a step-by-step developer troubleshooting manual and fixed critical Shopify theme bugs.",
     featured_image:
@@ -176,14 +176,14 @@ export const FEATURED_GIG_PROJECTS = [
       "Restored Add-to-Cart & Checkout Funnel",
       "Fixed Broken Mobile Grid Layouts",
       "Eliminated App JavaScript Conflicts",
-      "Delivered Complete Step-by-Step Technical Guide",
+      "Delivered Step-by-Step Developer Troubleshooting Guide",
     ],
   },
   {
     id: "485281780",
     slug: "custom-native-liquid-sections",
     title: "Custom Native Shopify Liquid Sections",
-    category: "Ecommerce",
+    category: "Shopify Liquid",
     short_description:
       "Modular, zero-dependency Liquid sections engineered to eliminate monthly app subscriptions and boost store conversion speed.",
     description:
@@ -211,15 +211,15 @@ export const FEATURED_GIG_PROJECTS = [
     outcomes: [
       "Zero Monthly App Subscriptions",
       "Sub-Second Theme Render Speed",
-      "100% Native Theme Customizer Schema Integration",
-      "Mobile-Optimized Touch & Drag Interactions",
+      "100% Native Theme Customizer Integration",
+      "Mobile-Optimized Touch Interactions",
     ],
   },
   {
     id: "494892850",
     slug: "shopify-store-redesign",
     title: "Shopify Store Redesign for High Conversion",
-    category: "Fashion & Apparel",
+    category: "Shopify Plus",
     short_description:
       "Mobile-first Shopify e-commerce redesign focused on conversion rate optimization, modern UI/UX design, and sub-second page performance.",
     description:
@@ -241,21 +241,21 @@ export const FEATURED_GIG_PROJECTS = [
     challenge:
       "The legacy storefront suffered from low mobile conversion rates, clunky navigation, high bounce rate on product detail pages, and slow asset loading.",
     approach:
-      "Performed a complete UI/UX audit, created responsive Figma design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
+      "Performed a complete UI/UX audit, created responsive design tokens, and rebuilt the frontend layout using mobile-first grid systems and optimized media loading.",
     solution:
-      "Redesigned homepage, collection filters, sticky cart drawer with dynamic upsells, and trust-building social proof blocks to maximize average order value (AOV).",
+      "Redesigned homepage, collection filters, sticky cart drawer with dynamic upsells, and trust-building social proof blocks to maximize conversion.",
     outcomes: [
       "Mobile-First UI/UX Overhaul",
-      "Streamlined Cart Drawer & One-Click Upsells",
-      "Core Web Vitals Pass across Mobile & Desktop",
-      "Frictionless Checkout Funnel Ergonomics",
+      "Streamlined Cart Drawer & Upsells",
+      "Core Web Vitals Performance Hardening",
+      "Frictionless Checkout Ergonomics",
     ],
   },
   {
     id: "494910179",
     slug: "n8n-ai-automations",
     title: "Custom n8n AI Automations & Workflows",
-    category: "Financial & Business",
+    category: "AI & Automation",
     short_description:
       "End-to-end automated business process workflows connecting LLMs, vector search, webhooks, database syncs, and customer support routing.",
     description:
@@ -291,7 +291,7 @@ export const FEATURED_GIG_PROJECTS = [
     id: "494912736",
     slug: "nextjs-saas-web-app",
     title: "High Performance Next.js SaaS Web App",
-    category: "Software Company",
+    category: "React / Next.js",
     short_description:
       "Production-ready Next.js SaaS web application built with React 19, Supabase Auth, PostgreSQL RLS security, and Tailwind design system.",
     description:
