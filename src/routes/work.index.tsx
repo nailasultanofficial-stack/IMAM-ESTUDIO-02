@@ -112,11 +112,25 @@ function WorkPage() {
         ))}
       </div>
 
-      {/* Projects Grid */}
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} eager={i < 3} />
-        ))}
+      {/* Projects Grid (Asymmetric Bento) */}
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {shown.map((project, i) => {
+          // Asymmetric Taste Framework Layout Pattern:
+          // 0: spans 2 (66%), 1: spans 1 (33%)
+          // 2: spans 1 (33%), 3: spans 2 (66%)
+          // 4, 5, 6: regular (33% each)
+          const patternIndex = i % 7;
+          let colSpanClass = "";
+          if (patternIndex === 0 || patternIndex === 3) {
+            colSpanClass = "lg:col-span-2";
+          }
+
+          return (
+            <div key={project.id} className={colSpanClass}>
+              <ProjectCard project={project} index={i} eager={i < 3} />
+            </div>
+          );
+        })}
       </div>
 
       {shown.length === 0 ? (

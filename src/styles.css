@@ -58,54 +58,59 @@
   --radius: 0.5rem;
 
   /* Public surface: dark editorial. The studio has no light mode by design. */
-  --background: oklch(0.145 0.004 60);
-  --foreground: oklch(0.965 0.003 80);
-  --surface: oklch(0.185 0.005 60);
-  --surface-raised: oklch(0.225 0.006 60);
+  --background: oklch(0.12 0.0 0);
+  --foreground: oklch(0.98 0.002 90);
+  --surface: oklch(0.15 0.0 0);
+  --surface-raised: oklch(0.18 0.0 0);
 
-  --card: oklch(0.185 0.005 60);
-  --card-foreground: oklch(0.965 0.003 80);
-  --popover: oklch(0.205 0.006 60);
-  --popover-foreground: oklch(0.965 0.003 80);
+  --card: oklch(0.15 0.0 0);
+  --card-foreground: oklch(0.98 0.002 90);
+  --popover: oklch(0.16 0.0 0);
+  --popover-foreground: oklch(0.98 0.002 90);
 
-  --primary: oklch(0.78 0.152 62);
-  --primary-foreground: oklch(0.16 0.01 60);
+  /* Sophisticated Electric Neon Accent vs Pitch Black */
+  --primary: oklch(0.82 0.18 150);
+  --primary-foreground: oklch(0.12 0.0 0);
 
-  --secondary: oklch(0.245 0.006 60);
-  --secondary-foreground: oklch(0.95 0.003 80);
+  --secondary: oklch(0.20 0.0 0);
+  --secondary-foreground: oklch(0.96 0.0 0);
 
-  --muted: oklch(0.225 0.005 60);
-  --muted-foreground: oklch(0.68 0.008 70);
+  --muted: oklch(0.20 0.0 0);
+  --muted-foreground: oklch(0.72 0.0 0);
 
-  --accent: oklch(0.26 0.008 60);
-  --accent-foreground: oklch(0.97 0.003 80);
+  --accent: oklch(0.22 0.0 0);
+  --accent-foreground: oklch(0.98 0.0 0);
 
   --destructive: oklch(0.62 0.2 25);
-  --destructive-foreground: oklch(0.98 0.003 80);
-  --success: oklch(0.7 0.13 155);
-  --success-foreground: oklch(0.16 0.01 60);
-  --warning: oklch(0.8 0.14 85);
-  --warning-foreground: oklch(0.16 0.01 60);
+  --destructive-foreground: oklch(0.98 0.0 0);
+  --success: oklch(0.82 0.18 150);
+  --success-foreground: oklch(0.12 0.0 0);
+  --warning: oklch(0.85 0.16 85);
+  --warning-foreground: oklch(0.12 0.0 0);
 
-  --border: oklch(1 0 0 / 9%);
-  --border-strong: oklch(1 0 0 / 18%);
-  --input: oklch(1 0 0 / 13%);
-  --ring: oklch(0.78 0.152 62);
+  --border: oklch(1 0 0 / 12%);
+  --border-strong: oklch(1 0 0 / 22%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.82 0.18 150);
 
-  --sidebar: oklch(0.165 0.004 60);
-  --sidebar-foreground: oklch(0.93 0.003 80);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-accent: oklch(0.24 0.006 60);
-  --sidebar-accent-foreground: oklch(0.97 0.003 80);
+  --sidebar: oklch(0.14 0.0 0);
+  --sidebar-foreground: oklch(0.96 0.0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-accent: oklch(0.22 0.0 0);
+  --sidebar-accent-foreground: oklch(0.98 0.0 0);
 }
 
 /* The app is dark-first; .dark exists so shadcn variants resolve identically. */
 .dark {
-  --background: oklch(0.145 0.004 60);
-  --foreground: oklch(0.965 0.003 80);
+  --background: oklch(0.12 0.0 0);
+  --foreground: oklch(0.98 0.002 90);
 }
 
 @layer base {
+  :root {
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
   * {
     border-color: var(--color-border);
   }
@@ -121,6 +126,13 @@
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    line-height: 1.7;
+  }
+
+  /* Override all transitions to use Apple easing by default and limit to <300ms */
+  *, *::before, *::after {
+    transition-timing-function: var(--ease-apple) !important;
+    transition-duration: 250ms;
   }
 
   ::selection {
@@ -152,7 +164,7 @@
   font-weight: 400;
   font-size: clamp(2.75rem, 1.4rem + 6vw, 6.5rem);
   line-height: 0.95;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.04em;
 }
 
 @utility display-2 {
@@ -160,7 +172,7 @@
   font-weight: 400;
   font-size: clamp(2rem, 1.1rem + 3.6vw, 4rem);
   line-height: 1.02;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 @utility display-3 {
@@ -168,14 +180,14 @@
   font-weight: 400;
   font-size: clamp(1.5rem, 1.05rem + 1.8vw, 2.5rem);
   line-height: 1.12;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }

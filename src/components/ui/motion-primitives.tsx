@@ -199,7 +199,8 @@ export function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 250, damping: 15, mass: 0.1 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 350, damping: 20, mass: 0.1 }}
       className={`relative inline-flex items-center justify-center ${className}`}
     >
       {children}
@@ -254,6 +255,7 @@ export function TiltCard({
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      whileTap={{ scale: 0.97 }}
       style={{
         rotateY,
         rotateX,
