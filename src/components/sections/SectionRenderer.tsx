@@ -74,9 +74,10 @@ function TrustStrip({ section }: { section: PageSection }) {
 }
 
 function FeaturedWork({ section, projects }: { section: PageSection; projects: Project[] }) {
-  const displayProjects = (projects && projects.length > 0
-    ? projects
-    : (FEATURED_GIG_PROJECTS as unknown as Project[])) as unknown as Project[];
+  const displayProjects = [
+    ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
+    ...(projects || []).filter((p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug)),
+  ];
   const limit = num(section.content, "limit", 6);
   const shown = displayProjects.slice(0, limit);
   if (shown.length === 0) return null;
