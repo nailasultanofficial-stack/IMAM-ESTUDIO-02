@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, Code2, Cpu, ShieldCheck, Rocket } from "lucide-react";
-import { Reveal, TextReveal, TiltCard } from "@/components/ui/motion-primitives";
+import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 import type { PageSection } from "@/lib/content-types";
 
 interface ProcessSectionProps {
@@ -41,7 +41,7 @@ export function ProcessSection({ section }: ProcessSectionProps) {
   ];
 
   return (
-    <section className="hairline bg-background py-24 md:py-32">
+    <section className="hairline bg-background py-16 md:py-24">
       <div className="shell">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -76,22 +76,22 @@ export function ProcessSection({ section }: ProcessSectionProps) {
             const IconComponent = phase.icon || Code2;
             return (
               <Reveal key={phase.step || index} delay={0.1 * index}>
-                <TiltCard className="h-full rounded-2xl border border-border bg-surface/60 p-7 backdrop-blur-md transition-all hover:border-border-strong hover:bg-surface">
+                <div className="h-full rounded-xl border border-border bg-surface/60 p-6 transition-all duration-200 hover:border-border-strong hover:bg-surface">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-primary">
                       PHASE {phase.step}
                     </span>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-foreground">
-                      <IconComponent className="h-5 w-5 text-primary" />
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background">
+                      <IconComponent className="h-4 w-4 text-primary" />
                     </div>
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-medium tracking-tight text-foreground">
+                  <h3 className="mt-5 font-sans text-base font-semibold tracking-tight text-foreground">
                     {phase.name}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {phase.description}
                   </p>
-                </TiltCard>
+                </div>
               </Reveal>
             );
           })}

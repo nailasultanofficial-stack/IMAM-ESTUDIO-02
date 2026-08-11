@@ -160,7 +160,12 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/9fd5c903a264fd92acdbf2e2fd739290-1781290886134/Custom%20App-Free%20Global%20Review%20Engine.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/9fd5c903a264fd92acdbf2e2fd739290-1781290886134/Custom%20App-Free%20Global%20Review%20Engine.png",
-    tech_stack: ["Shopify Metaobjects", "Shopify Liquid", "CSV â†’ JSON Data Cleanup", "CSS Masonry Layout"],
+    tech_stack: [
+      "Shopify Metaobjects",
+      "Shopify Liquid",
+      "CSV â†’ JSON Data Cleanup",
+      "CSS Masonry Layout",
+    ],
     tags: ["Shopify", "Metaobjects", "Review Engine", "Liquid", "No-App"],
     role: "Shopify Theme Engineer",
     contribution:
@@ -205,7 +210,12 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/32bd59d08205bff66285bd1764063660-1778413982446/Native%20Variant%20Swatch%20Sync%20System.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/32bd59d08205bff66285bd1764063660-1778413982446/Native%20Variant%20Swatch%20Sync%20System.png",
-    tech_stack: ["Shopify Liquid", "Vanilla JavaScript", "Shopify Variant API", "Custom CSS Swatches"],
+    tech_stack: [
+      "Shopify Liquid",
+      "Vanilla JavaScript",
+      "Shopify Variant API",
+      "Custom CSS Swatches",
+    ],
     tags: ["Shopify", "Liquid", "Variant Swatches", "Cart Fix", "JavaScript"],
     role: "Shopify Theme Engineer",
     contribution:
@@ -250,7 +260,12 @@ export const FEATURED_GIG_PROJECTS = [
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/fd2f01c830263bee62571c11faebccde-1778411479697/Custom%20Shopify%20Tray%20Builder%20%20UI%20UX%20Redesign.png",
     thumbnail_url:
       "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_portfolio_project_large/v1/attachments/project_item/attachment/fd2f01c830263bee62571c11faebccde-1778411479697/Custom%20Shopify%20Tray%20Builder%20%20UI%20UX%20Redesign.png",
-    tech_stack: ["Shopify Liquid", "Vanilla JavaScript", "CSS Clip-Path", "Shopify Line-Item Properties"],
+    tech_stack: [
+      "Shopify Liquid",
+      "Vanilla JavaScript",
+      "CSS Clip-Path",
+      "Shopify Line-Item Properties",
+    ],
     tags: ["Shopify", "Bundle Builder", "Interactive UI", "Custom Section", "Inventory Logic"],
     role: "Shopify Theme Engineer",
     contribution:
@@ -369,4 +384,3 @@ export const FEATURED_GIG_PROJECTS = [
     ],
   },
 ];
-

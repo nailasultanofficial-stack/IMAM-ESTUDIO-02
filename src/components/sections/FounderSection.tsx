@@ -1,6 +1,6 @@
 import React from "react";
-import { ArrowRight, CheckCircle2, ShieldCheck, Terminal, Star } from "lucide-react";
-import { TiltCard, Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import { ArrowRight, CheckCircle2, Terminal } from "lucide-react";
+import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 import type { PageSection } from "@/lib/content-types";
 
 interface FounderSectionProps {
@@ -24,12 +24,12 @@ export function FounderSection({ section }: FounderSectionProps) {
   ];
 
   return (
-    <section className="shell relative py-24 md:py-32">
+    <section className="shell relative py-16 md:py-24">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {/* 3D Perspective Founder Portrait Card */}
         <Reveal direction="left">
-          <TiltCard className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
               <img
                 src={portraitUrl}
                 alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
@@ -41,44 +41,37 @@ export function FounderSection({ section }: FounderSectionProps) {
 
               {/* Founder Overlay Info Badge */}
               <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-border/80 bg-background/85 p-4 backdrop-blur-xl">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
-                      <Terminal className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="font-mono text-xs font-semibold text-foreground">
-                        Malik Jahanzaib (@jahanzeb1809)
-                      </p>
-                      <p className="font-mono text-[11px] text-muted-foreground">
-                        5.0 ★ Client Rating · Pakistan
-                      </p>
-                    </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/20 text-primary">
+                    <Terminal className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold text-foreground">
+                      Malik Jahanzaib
+                    </p>
+                    <p className="font-mono text-[10px] text-muted-foreground">
+                      Senior Full-Stack Engineer
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </TiltCard>
+          </div>
         </Reveal>
 
         {/* Founder Editorial Content */}
         <div>
-          <Reveal direction="down">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-primary">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              <span>Senior Full-Stack Engineer & UI/UX Architect</span>
-            </div>
-          </Reveal>
+          <p className="eyebrow text-primary">The Engineer Behind the Work</p>
 
           <TextReveal
             text={section.title || "Malik Jahanzaib"}
             as="h2"
-            className="display-2 mt-4 text-foreground font-display"
+            className="display-2 mt-3 text-foreground font-display"
           />
 
           <Reveal delay={0.1}>
-            <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-emerald-400">
-              {section.subtitle || "Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"}
+            <p className="mt-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              {section.subtitle || "Senior Full-Stack Engineer & UI/UX Architect"}
             </p>
           </Reveal>
 

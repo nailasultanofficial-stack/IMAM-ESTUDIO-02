@@ -49,7 +49,7 @@ export function HeroSection({ section }: HeroSectionProps) {
           {/* Eyebrow Badge */}
           <Reveal direction="down" delay={0.1}>
             <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold">
                 {eyebrow}
               </span>
@@ -73,37 +73,15 @@ export function HeroSection({ section }: HeroSectionProps) {
             </p>
           </Reveal>
 
-          {/* Disciplines Micro-Tag Strip */}
-          <Reveal delay={0.4}>
-            <div className="mt-7 flex flex-wrap gap-2">
-              {[
-                "Shopify Liquid",
-                "React 19 & Next.js",
-                "n8n AI Automations",
-                "Full-Stack SaaS",
-                "UI/UX Architecture",
-                "Framer Websites",
-              ].map((pill) => (
-                <span
-                  key={pill}
-                  className="rounded-md border border-border/80 bg-surface/60 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur-md"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* CTAs */}
           <Reveal delay={0.5}>
-            <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+            <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
               <a href={primaryCtaUrl}>
-                <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-95">
+                <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
                   {primaryCtaLabel}
                 </MagneticButton>
               </a>
               <a href={secondaryCtaUrl}>
-                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40">
+                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
                   {secondaryCtaLabel}
                 </MagneticButton>
               </a>

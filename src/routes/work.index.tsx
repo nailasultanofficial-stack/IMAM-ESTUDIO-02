@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 
@@ -6,7 +6,7 @@ import { ProjectCard } from "@/components/site/ProjectCard";
 import { projectsQuery } from "@/lib/public-queries";
 import { FEATURED_GIG_PROJECTS } from "@/lib/site";
 import { cn } from "@/lib/utils";
-import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+
 import { ARCHIVE_GIG_PROJECTS } from "@/lib/archive-projects";
 import type { Project } from "@/lib/content-types";
 
@@ -66,22 +66,15 @@ function WorkPage() {
   const shown = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   return (
-    <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12 pb-24 pt-32 md:pt-40">
-      <header className="max-w-3xl">
-        <Reveal direction="down">
-          <p className="eyebrow text-emerald-400">SELECTED ENGINEERING WORK</p>
-        </Reveal>
-        <TextReveal
-          text="Engineering Projects & Portfolio Archive"
-          as="h1"
-          className="display-1 mt-4 text-foreground font-display"
-        />
-        <Reveal delay={0.2}>
-          <p className="lede mt-6 text-muted-foreground">
-            A selection of digital products, commerce platforms, interfaces, AI automation
-            workflows, and high-performance web applications engineered for speed and scale.
-          </p>
-        </Reveal>
+    <div className="shell pb-24 pt-32 md:pt-40">
+      <header className="max-w-2xl">
+        <p className="eyebrow text-primary">Engineering Work</p>
+        <h1 className="display-2 mt-3 font-display text-foreground">
+          {"Engineering Projects & Portfolio Archive"}
+        </h1>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-lg">
+          A selection of commerce platforms, AI workflows, and high-performance web applications.
+        </p>
       </header>
 
       {/* Category Filter Pills */}
@@ -112,14 +105,10 @@ function WorkPage() {
         ))}
       </div>
 
-      {/* Projects Grid (Asymmetric Bento) */}
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((project, i) => {
-          // Asymmetric Taste Framework Layout Pattern:
-          // 0: spans 2 (66%), 1: spans 1 (33%)
-          // 2: spans 1 (33%), 3: spans 2 (66%)
-          // 4, 5, 6: regular (33% each)
-          const patternIndex = i % 7;
+      {/* Top Projects Grid (Asymmetric Bento) */}
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {shown.slice(0, 6).map((project, i) => {
+          const patternIndex = i % 6;
           let colSpanClass = "";
           if (patternIndex === 0 || patternIndex === 3) {
             colSpanClass = "lg:col-span-2";
@@ -132,6 +121,55 @@ function WorkPage() {
           );
         })}
       </div>
+
+      {/* Remaining Archive Projects (Compact List) */}
+      {shown.length > 6 ? (
+        <div className="mt-12">
+          <h3 className="eyebrow text-muted-foreground mb-5">Archive ({shown.length - 6})</h3>
+          <div className="border-b border-border/40">
+            {shown.slice(6).map((project, i) => (
+              <Link
+                key={project.id}
+                to="/work/$slug"
+                params={{ slug: project.slug }}
+                className="group block border-t border-border/40 py-3 hover:bg-surface/30 transition-colors rounded-md px-2 -mx-2"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-5 flex-1 overflow-hidden">
+                    <span className="font-mono text-xs text-muted-foreground/40 hidden sm:block">
+                      {String(i + 7).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-display font-medium text-foreground truncate group-hover:text-primary transition-colors text-sm sm:text-base">
+                        {project.title}
+                      </h4>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+                          {project.category}
+                        </span>
+                        <span className="hidden sm:inline-block w-px h-3 bg-border" />
+                        <span className="font-mono text-[10px] text-muted-foreground truncate hidden sm:inline-block">
+                          {(project.tech_stack || []).slice(0, 3).join(", ") || project.role}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="shrink-0 flex items-center gap-3">
+                    {project.collaboration_type ? (
+                      <span className="hidden md:inline-block border border-border/60 bg-background/50 rounded-full px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
+                        {project.collaboration_type}
+                      </span>
+                    ) : null}
+                    <span className="font-mono text-[11px] font-semibold text-primary group-hover:underline">
+                      View
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {shown.length === 0 ? (
         <p className="mt-16 text-center text-sm text-muted-foreground">

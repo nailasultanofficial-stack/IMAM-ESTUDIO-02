@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import { submitLead } from "@/lib/public.functions";
 import { SITE, whatsappUrl } from "@/lib/site";
-import { Reveal, TextReveal, TiltCard } from "@/components/ui/motion-primitives";
+import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Tell me your name").max(120),
@@ -257,7 +257,7 @@ function ContactPage() {
             <button
               type="submit"
               disabled={mutation.isPending}
-              className="mt-8 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-opacity hover:opacity-95 disabled:opacity-60"
+              className="mt-8 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-opacity hover:opacity-95 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none"
             >
               {mutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
               {mutation.isPending ? "Sending Inquiry..." : "Submit Project Inquiry"}

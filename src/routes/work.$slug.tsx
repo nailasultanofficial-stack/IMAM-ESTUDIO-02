@@ -1,6 +1,6 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowLeft, Check, Layers, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, Check, MessageCircle } from "lucide-react";
 
 import { projectQuery } from "@/lib/public-queries";
 import { Reveal } from "@/components/ui/motion-primitives";
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/work/$slug")({
       <p className="mt-4 text-sm text-muted-foreground">It may have been unpublished or moved.</p>
       <Link
         to="/work"
-        className="mt-8 inline-block font-mono text-sm text-emerald-400 underline-offset-4 hover:underline"
+        className="mt-8 inline-block font-mono text-sm text-primary underline-offset-4 hover:underline"
       >
         ← Back to all case studies
       </Link>
@@ -63,30 +63,38 @@ function ProjectDetail() {
 
   return (
     <article className="pb-24 pt-32 md:pt-40">
-      <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="shell">
+        {/* Back link */}
         <Reveal direction="down">
           <Link
             to="/work"
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-emerald-400"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to Case Studies
           </Link>
         </Reveal>
 
+        {/* Project header */}
         <header className="mt-8 max-w-4xl">
           <Reveal>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="eyebrow text-emerald-400">{project.category}</span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
-                <Layers className="h-3 w-3 text-emerald-400" />
+            {/* Meta strip — inline, no bordered container */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <span className="font-mono text-xs text-primary font-semibold uppercase tracking-wider">
+                {project.category}
+              </span>
+              <span className="h-px w-4 bg-border" />
+              <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
                 {collaborationType}
               </span>
               {project.year ? (
-                <span className="rounded-full border border-border/80 bg-background/80 px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
-                  {project.year}
-                </span>
+                <>
+                  <span className="h-px w-4 bg-border" />
+                  <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                </>
               ) : null}
+              <span className="h-px w-4 bg-border" />
+              <span className="font-mono text-xs text-muted-foreground">{role}</span>
             </div>
           </Reveal>
 
@@ -97,61 +105,56 @@ function ProjectDetail() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="lede mt-6 text-muted-foreground">
+            <p className="lede mt-5 text-muted-foreground max-w-3xl">
               {project.short_description || project.description}
             </p>
           </Reveal>
-
-          <Reveal delay={0.25}>
-            <div className="mt-6 flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-4.5 py-3 backdrop-blur-md">
-              <span className="font-mono text-xs text-muted-foreground">Malik's Role:</span>
-              <span className="font-mono text-xs font-semibold text-emerald-400">{role}</span>
-            </div>
-          </Reveal>
         </header>
 
-        {/* Project Hero Banner — Unobscured View */}
-        <Reveal delay={0.3}>
-          <div className="relative mt-12 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
+        {/* Hero image — full width, visually dominant */}
+        <Reveal delay={0.25}>
+          <div className="relative mt-10 overflow-hidden rounded-xl border border-border/50 bg-surface/40 shadow-xl flex justify-center p-4">
             <img
               src={project.featured_image || project.thumbnail_url}
-              alt={`${project.title} — case study cover`}
+              alt={`Screenshot of ${project.title} — engineering case study`}
               fetchPriority="high"
               decoding="async"
-              className="aspect-[16/9] w-full object-cover object-top"
+              className="w-full h-auto max-h-[65vh] object-contain rounded-lg"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-30" />
           </div>
         </Reveal>
 
-        {/* Main Content Grid */}
-        <div className="mt-16 grid gap-12 lg:grid-cols-[1.8fr_1fr] lg:gap-16">
-          <div className="space-y-12">
-            {/* Overview / Statement */}
+        {/* Main content grid */}
+        <div className="mt-14 grid gap-10 lg:grid-cols-[1.8fr_1fr] lg:gap-16">
+          {/* Left: editorial reading content */}
+          <div className="space-y-10">
+            {/* Overview */}
             <section>
-              <h2 className="eyebrow text-emerald-400">Overview</h2>
-              <p className="mt-4 text-base leading-relaxed text-foreground/90 md:text-lg">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                Overview
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-foreground/85 md:text-lg">
                 {project.description}
               </p>
             </section>
 
-            {/* Malik's Contribution */}
+            {/* Contribution */}
             {contribution ? (
-              <section className="hairline pt-8">
-                <h2 className="eyebrow text-emerald-400">Engineering Contribution</h2>
-                <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-6 backdrop-blur-md">
-                  <p className="text-sm leading-relaxed text-foreground/90 font-mono">
-                    {contribution}
-                  </p>
-                </div>
+              <section className="pt-8 border-t border-border/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                  Engineering Contribution
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/80">{contribution}</p>
               </section>
             ) : null}
 
             {/* Challenge */}
             {challenge ? (
-              <section className="hairline pt-8">
-                <h2 className="eyebrow text-emerald-400">The Challenge</h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <section className="pt-8 border-t border-border/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                  The Challenge
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {challenge}
                 </p>
               </section>
@@ -159,9 +162,11 @@ function ProjectDetail() {
 
             {/* Approach */}
             {approach ? (
-              <section className="hairline pt-8">
-                <h2 className="eyebrow text-emerald-400">The Architectural Approach</h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <section className="pt-8 border-t border-border/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                  Architectural Approach
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {approach}
                 </p>
               </section>
@@ -169,96 +174,94 @@ function ProjectDetail() {
 
             {/* Solution */}
             {solution ? (
-              <section className="hairline pt-8">
-                <h2 className="eyebrow text-emerald-400">The Implementation &amp; Solution</h2>
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <section className="pt-8 border-t border-border/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                  Implementation & Solution
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {solution}
                 </p>
               </section>
             ) : null}
 
-            {/* Tech Stack */}
+            {/* Tech stack */}
             {techStack && techStack.length > 0 ? (
-              <section className="hairline pt-8">
-                <h2 className="eyebrow text-emerald-400">Technologies &amp; Disciplines</h2>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {techStack.map((tech: string) => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-border/80 bg-background/80 px-3.5 py-1.5 font-mono text-xs uppercase text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <section className="pt-8 border-t border-border/40">
+                <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
+                  Technologies
+                </h2>
+                <p className="mt-3 font-mono text-xs text-muted-foreground leading-relaxed">
+                  {techStack.join(" · ")}
+                </p>
               </section>
             ) : null}
           </div>
 
-          {/* Sidebar */}
-          <aside className="h-fit space-y-6 lg:sticky lg:top-28">
-            <div className="rounded-2xl border border-border bg-surface p-7 shadow-xl backdrop-blur-md">
-              <div className="flex items-center gap-2 text-emerald-400">
-                <Sparkles className="h-4 w-4" />
-                <h2 className="eyebrow text-emerald-400">Key Deliverables &amp; Highlights</h2>
-              </div>
+          {/* Right: sticky sidebar */}
+          <aside className="h-fit space-y-4 lg:sticky lg:top-28">
+            {/* Key deliverables */}
+            <div className="rounded-xl border border-border/60 bg-surface/60 p-5 backdrop-blur-md">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold mb-4">
+                Key Deliverables
+              </h2>
               {(project.highlights || project.outcomes) &&
               (project.highlights || project.outcomes)!.length > 0 ? (
-                <ul className="mt-5 space-y-3.5">
+                <ul className="space-y-2.5">
                   {(project.highlights || project.outcomes)!.map((highlight: string) => (
-                    <li key={highlight} className="flex items-start gap-3">
-                      <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                        <Check className="h-3 w-3" />
+                    <li key={highlight} className="flex items-start gap-2.5">
+                      <div className="mt-1 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+                        <Check className="h-2.5 w-2.5" />
                       </div>
-                      <span className="text-xs leading-relaxed text-foreground/90 font-medium">
+                      <span className="text-xs leading-relaxed text-foreground/85">
                         {highlight}
                       </span>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="mt-4 text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Engineered for performance, mobile usability, and clean maintainability.
                 </p>
               )}
+            </div>
 
-              <div className="hairline mt-8 pt-6 space-y-3">
-                <Link
-                  to="/contact"
-                  search={{ source: `case_study_${project.slug}` }}
-                  className="flex h-11 w-full items-center justify-center rounded-xl bg-primary px-6 font-mono text-xs font-semibold text-primary-foreground shadow-lg transition-opacity hover:opacity-90"
-                >
-                  Start a Similar Project →
-                </Link>
+            {/* CTAs */}
+            <div className="space-y-2.5">
+              <Link
+                to="/contact"
+                search={{ source: `case_study_${project.slug}` }}
+                className="flex h-11 w-full items-center justify-center rounded-full bg-primary px-6 font-mono text-xs font-semibold text-primary-foreground shadow-lg transition-opacity hover:opacity-90 active:scale-[0.97]"
+              >
+                Start a Similar Project →
+              </Link>
 
-                <a
-                  href={whatsappUrl(`Hi Malik, I read your case study on "${project.title}"...`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-6 font-mono text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-950/40"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  Chat on WhatsApp
-                </a>
-              </div>
+              <a
+                href={whatsappUrl(`Hi Malik, I read your case study on "${project.title}"...`)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-border/60 bg-surface/50 px-6 font-mono text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary active:scale-[0.97]"
+              >
+                <MessageCircle className="h-3.5 w-3.5" />
+                Chat on WhatsApp
+              </a>
             </div>
           </aside>
         </div>
 
-        {/* Editorial Transition Banner */}
-        <div className="hairline mt-20 pt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Bottom CTA strip */}
+        <div className="mt-16 pt-10 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
           <div>
-            <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-              Have a similar engineering challenge?
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              Similar engineering challenge?
             </span>
-            <h3 className="font-display text-xl font-semibold text-foreground mt-1">
-              Let's engineer your platform for speed &amp; scale.
+            <h3 className="font-display text-xl font-medium text-foreground mt-1">
+              Let's engineer your platform for speed & scale.
             </h3>
           </div>
           <Link
             to="/contact"
             search={{ source: `case_study_bottom_${project.slug}` }}
-            className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-xl transition-all hover:opacity-90 active:scale-95 shrink-0"
+            className="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-lg transition-all hover:opacity-90 active:scale-[0.97] shrink-0"
           >
             Start a Project →
           </Link>
