@@ -1,11 +1,17 @@
 import { MessageCircle } from "lucide-react";
 
-import { whatsappUrl } from "@/lib/site";
+import { whatsappUrl } from "@/lib/utils";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { globalSettingsQuery } from "@/lib/public-queries";
 
 export function WhatsAppFloat() {
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || {};
+  const whatsappNumber = siteConfig.whatsapp || "923091925177";
+
   return (
     <a
-      href={whatsappUrl("Hi Malik — I found your portfolio and I'd like to discuss a project.")}
+      href={whatsappUrl(whatsappNumber, "Hi Malik — I found your portfolio and I'd like to discuss a project.")}
       target="_blank"
       rel="noreferrer"
       aria-label="Message Malik Jahanzaib on WhatsApp"

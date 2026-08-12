@@ -8,7 +8,9 @@ import { z } from "zod";
 import { toast } from "sonner";
 
 import { submitLead } from "@/lib/public.functions";
-import { SITE, whatsappUrl } from "@/lib/site";
+import { DEFAULT_SITE_CONFIG, whatsappUrl } from "@/lib/utils";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { globalSettingsQuery } from "@/lib/public-queries";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 
 const formSchema = z.object({
@@ -54,11 +56,11 @@ export const Route = createFileRoute("/contact")({
   },
   head: () => ({
     meta: [
-      { title: "Start an Engagement — Malik Jahanzaib (@jahanzeb1809)" },
+      { title: "Start an Engagement — Malik Jahanzaib" },
       {
         name: "description",
         content:
-          "Start a project directly with Malik Jahanzaib (@jahanzeb1809), Senior Full-Stack Engineer & UI/UX Architect.",
+          "Start a project directly with Malik Jahanzaib, Senior Full-Stack Engineer & UI/UX Architect.",
       },
       { property: "og:title", content: "Start an Engagement — Malik Jahanzaib" },
       {
@@ -74,6 +76,10 @@ function ContactPage() {
   const { source } = Route.useSearch();
   const navigate = useNavigate();
   const send = useServerFn(submitLead);
+  
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
+  const whatsappNumber = siteConfig.whatsapp || "923091925177";
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -106,7 +112,7 @@ function ContactPage() {
       <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
         <header className="max-w-lg">
           <Reveal direction="down">
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs text-emerald-400">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>Direct Principal Line</span>
             </div>
@@ -133,17 +139,17 @@ function ContactPage() {
             <div>
               <dt className="eyebrow">Engineer Accountable</dt>
               <dd className="mt-1 text-sm font-medium text-foreground">
-                {SITE.founder} ({SITE.handle})
+                {siteConfig.founder} ({siteConfig.handle})
               </dd>
             </div>
             <div>
               <dt className="eyebrow">Instant Messenger</dt>
               <dd className="mt-1">
                 <a
-                  href={whatsappUrl("Hi Malik — I'd like to discuss a project with you.")}
+                  href={whatsappUrl(whatsappNumber, "Hi Malik — I'd like to discuss a project with you.")}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm font-medium text-emerald-400 underline-offset-4 hover:underline"
+                  className="text-sm font-medium text-primary underline-offset-4 hover:underline"
                 >
                   Message on WhatsApp
                 </a>
@@ -153,8 +159,8 @@ function ContactPage() {
         </header>
 
         {mutation.isSuccess ? (
-          <div className="flex h-max flex-col items-start rounded-2xl border border-emerald-500/40 bg-surface/90 p-10 backdrop-blur-xl">
-            <CheckCircle2 className="h-10 w-10 text-emerald-400" />
+          <div className="flex h-max flex-col items-start rounded-2xl border border-primary/40 bg-surface/90 p-10 backdrop-blur-xl">
+            <CheckCircle2 className="h-10 w-10 text-primary" />
             <h2 className="display-3 mt-5 text-foreground font-display">Enquiry Received</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Thank you! I review every inquiry personally and will reply with a technical breakdown

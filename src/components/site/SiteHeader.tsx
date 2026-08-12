@@ -2,13 +2,20 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { NAV_LINKS, SITE, contactHref } from "@/lib/site";
+import { DEFAULT_NAV_LINKS, DEFAULT_SITE_CONFIG, contactHref } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { globalSettingsQuery } from "@/lib/public-queries";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
+  const navLinks = globalSettings?.['nav_links'] || DEFAULT_NAV_LINKS;
 
   // Scroll state — backdrop/border on scroll
   useEffect(() => {
@@ -52,18 +59,18 @@ export function SiteHeader() {
     >
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
         {/* Logo */}
-        <Link to="/" className="group flex items-baseline gap-2" aria-label={`${SITE.name} home`}>
-          <span className="font-display text-lg font-bold tracking-tight text-foreground md:text-xl">
-            MALIK
+        <Link to="/" className="group flex items-baseline gap-2" aria-label={`${siteConfig.name} home`}>
+          <span className="font-display text-lg font-bold tracking-tight text-foreground md:text-xl uppercase">
+            {siteConfig.name?.split(' ')[0] || "MALIK"}
           </span>
-          <span className="eyebrow text-primary transition-colors group-hover:text-foreground">
-            JAHANZAIB
+          <span className="eyebrow text-primary transition-colors group-hover:text-foreground uppercase">
+            {siteConfig.name?.split(' ').slice(1).join(' ') || "JAHANZAIB"}
           </span>
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link: { label: string, to: string }) => {
             const isActive = pathname === link.to || pathname.startsWith(link.to + "/");
             return (
               <Link
@@ -84,8 +91,9 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
+        {/* Desktop CTA & Theme Switcher */}
+        <div className="hidden md:flex items-center gap-4">
+          <ThemeSwitcher />
           <Link
             to="/contact"
             search={{ source: "nav_start_project" }}
@@ -117,7 +125,7 @@ export function SiteHeader() {
           aria-label="Mobile navigation"
         >
           <nav className="shell flex flex-col py-3">
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link: { label: string, to: string }) => {
               const isActive = pathname === link.to || pathname.startsWith(link.to + "/");
               return (
                 <Link
@@ -140,6 +148,9 @@ export function SiteHeader() {
               Start a project
             </a>
           </nav>
+          <div className="px-6 pb-6 pt-2">
+            <ThemeSwitcher />
+          </div>
         </div>
       ) : null}
     </header>

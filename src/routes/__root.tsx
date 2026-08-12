@@ -11,12 +11,13 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { SmoothScrollProvider, CustomCursor } from "@/components/ui/motion-primitives";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { globalSettingsQuery } from "@/lib/public-queries";
 
 function NotFoundComponent() {
   return (
@@ -44,7 +45,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    // No-op or use Sentry later
   }, [error]);
 
   return (
@@ -79,15 +80,22 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  loader: async ({ context, location }) => {
+    // Only prefetch if we are on a public route to avoid blocking admin auth
+    const isPublic = !location.pathname.startsWith("/admin");
+    if (isPublic) {
+      await context.queryClient.ensureQueryData(globalSettingsQuery);
+    }
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)" },
+      { title: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect" },
       {
         name: "description",
         content:
-          "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
+          "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
       },
       { name: "author", content: "Malik Jahanzaib" },
       {
@@ -102,14 +110,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Malik Jahanzaib Portfolio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@jahanzeb1809" },
+      { name: "twitter:site", content: "Malik Jahanzaib" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -131,7 +139,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <ThemeProvider defaultTheme="dark" storageKey="mj-theme">
+          {children}
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>

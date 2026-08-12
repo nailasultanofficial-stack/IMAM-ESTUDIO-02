@@ -5,7 +5,7 @@ import type { Lead, LeadStatus } from "@/lib/content-types";
 import { LEAD_STATUSES } from "@/lib/content-types";
 import { Users, Tag, MessageSquare, Mail, Phone, Calendar, Search, Filter, X } from "lucide-react";
 import { toast } from "sonner";
-import { whatsappUrl } from "@/lib/site";
+import { whatsappUrl } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin/leads")({
   head: () => ({
@@ -237,6 +237,7 @@ function AdminLeadsPage() {
                 </a>
                 <a
                   href={whatsappUrl(
+                    "923091925177",
                     `Hi ${selectedLead.name}, following up on your ${selectedLead.project_type} inquiry with Malik Jahanzaib.`,
                   )}
                   target="_blank"

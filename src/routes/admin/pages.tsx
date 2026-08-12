@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdminPages, upsertAdminPage } from "@/lib/admin.functions";
 import type { SitePage } from "@/lib/content-types";
-import { FileText, Plus, Edit2, Lock, Globe, X } from "lucide-react";
+import { FileText, Plus, Edit2, Lock, Globe, X, Layers } from "lucide-react";
 import { toast } from "sonner";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/admin/pages")({
   head: () => ({
@@ -137,12 +138,23 @@ function AdminPagesPage() {
                     </span>
                   </td>
                   <td className="p-4 text-right">
-                    <button
-                      onClick={() => setEditing(p)}
-                      className="rounded p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-white"
-                    >
-                      <Edit2 className="h-4 w-4" />
-                    </button>
+                    <div className="flex items-center justify-end gap-2">
+                      <Link
+                        to="/admin/pages/$pageId"
+                        params={{ pageId: p.id }}
+                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-emerald-400"
+                        title="Manage Sections"
+                      >
+                        <Layers className="h-4 w-4" />
+                      </Link>
+                      <button
+                        onClick={() => setEditing(p)}
+                        className="rounded p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                        title="Edit Page Properties"
+                      >
+                        <Edit2 className="h-4 w-4" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

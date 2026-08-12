@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content-types";
+import { cleanHtml } from "@/lib/section-utils";
 
 /**
  * ProjectCard — Used in /work archive grid (top bento + compact list).
@@ -83,7 +84,7 @@ export function ProjectCard({
 
           {/* Description */}
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-2 flex-1 md:text-sm">
-            {project.short_description || project.description}
+            {cleanHtml(project.short_description || project.description)}
           </p>
 
           {/* Tech stack */}

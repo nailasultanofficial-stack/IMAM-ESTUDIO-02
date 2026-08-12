@@ -22,17 +22,20 @@ import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AdminMediaRouteImport } from './routes/admin/media'
+import { Route as AdminNavigationRouteImport } from './routes/admin/navigation'
 import { Route as AdminOrdersRouteImport } from './routes/admin/orders'
 import { Route as AdminPagesRouteImport } from './routes/admin/pages'
 import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
 import { Route as AdminSeoRouteImport } from './routes/admin/seo'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminStaffRouteImport } from './routes/admin/staff'
 import { Route as AdminThemeEditorRouteImport } from './routes/admin/theme-editor'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as AdminPagesPageIdRouteImport } from './routes/admin/pages.$pageId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -99,6 +102,11 @@ const AdminMediaRoute = AdminMediaRouteImport.update({
   path: '/media',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminNavigationRoute = AdminNavigationRouteImport.update({
+  id: '/navigation',
+  path: '/navigation',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminOrdersRoute = AdminOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -122,6 +130,11 @@ const AdminSeoRoute = AdminSeoRouteImport.update({
 const AdminServicesRoute = AdminServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminStaffRoute = AdminStaffRouteImport.update({
@@ -154,6 +167,11 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => WorkRoute,
 } as any)
+const AdminPagesPageIdRoute = AdminPagesPageIdRouteImport.update({
+  id: '/$pageId',
+  path: '/$pageId',
+  getParentRoute: () => AdminPagesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -168,11 +186,13 @@ export interface FileRoutesByFullPath {
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/navigation': typeof AdminNavigationRoute
   '/admin/orders': typeof AdminOrdersRoute
-  '/admin/pages': typeof AdminPagesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/staff': typeof AdminStaffRoute
   '/admin/theme-editor': typeof AdminThemeEditorRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -180,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
+  '/admin/pages/$pageId': typeof AdminPagesPageIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -191,11 +212,13 @@ export interface FileRoutesByTo {
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/navigation': typeof AdminNavigationRoute
   '/admin/orders': typeof AdminOrdersRoute
-  '/admin/pages': typeof AdminPagesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/staff': typeof AdminStaffRoute
   '/admin/theme-editor': typeof AdminThemeEditorRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -203,6 +226,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/services': typeof ServicesIndexRoute
   '/work': typeof WorkIndexRoute
+  '/admin/pages/$pageId': typeof AdminPagesPageIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -218,11 +242,13 @@ export interface FileRoutesById {
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/media': typeof AdminMediaRoute
+  '/admin/navigation': typeof AdminNavigationRoute
   '/admin/orders': typeof AdminOrdersRoute
-  '/admin/pages': typeof AdminPagesRoute
+  '/admin/pages': typeof AdminPagesRouteWithChildren
   '/admin/projects': typeof AdminProjectsRoute
   '/admin/seo': typeof AdminSeoRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/staff': typeof AdminStaffRoute
   '/admin/theme-editor': typeof AdminThemeEditorRoute
   '/services/$slug': typeof ServicesSlugRoute
@@ -230,6 +256,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/work/': typeof WorkIndexRoute
+  '/admin/pages/$pageId': typeof AdminPagesPageIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -246,11 +273,13 @@ export interface FileRouteTypes {
     | '/admin/leads'
     | '/admin/login'
     | '/admin/media'
+    | '/admin/navigation'
     | '/admin/orders'
     | '/admin/pages'
     | '/admin/projects'
     | '/admin/seo'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin/staff'
     | '/admin/theme-editor'
     | '/services/$slug'
@@ -258,6 +287,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/services/'
     | '/work/'
+    | '/admin/pages/$pageId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -269,11 +299,13 @@ export interface FileRouteTypes {
     | '/admin/leads'
     | '/admin/login'
     | '/admin/media'
+    | '/admin/navigation'
     | '/admin/orders'
     | '/admin/pages'
     | '/admin/projects'
     | '/admin/seo'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin/staff'
     | '/admin/theme-editor'
     | '/services/$slug'
@@ -281,6 +313,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/services'
     | '/work'
+    | '/admin/pages/$pageId'
   id:
     | '__root__'
     | '/'
@@ -295,11 +328,13 @@ export interface FileRouteTypes {
     | '/admin/leads'
     | '/admin/login'
     | '/admin/media'
+    | '/admin/navigation'
     | '/admin/orders'
     | '/admin/pages'
     | '/admin/projects'
     | '/admin/seo'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin/staff'
     | '/admin/theme-editor'
     | '/services/$slug'
@@ -307,6 +342,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/services/'
     | '/work/'
+    | '/admin/pages/$pageId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -412,6 +448,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMediaRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/navigation': {
+      id: '/admin/navigation'
+      path: '/navigation'
+      fullPath: '/admin/navigation'
+      preLoaderRoute: typeof AdminNavigationRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/orders': {
       id: '/admin/orders'
       path: '/orders'
@@ -445,6 +488,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/admin/services'
       preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/staff': {
@@ -489,8 +539,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof WorkRoute
     }
+    '/admin/pages/$pageId': {
+      id: '/admin/pages/$pageId'
+      path: '/$pageId'
+      fullPath: '/admin/pages/$pageId'
+      preLoaderRoute: typeof AdminPagesPageIdRouteImport
+      parentRoute: typeof AdminPagesRoute
+    }
   }
 }
+
+interface AdminPagesRouteChildren {
+  AdminPagesPageIdRoute: typeof AdminPagesPageIdRoute
+}
+
+const AdminPagesRouteChildren: AdminPagesRouteChildren = {
+  AdminPagesPageIdRoute: AdminPagesPageIdRoute,
+}
+
+const AdminPagesRouteWithChildren = AdminPagesRoute._addFileChildren(
+  AdminPagesRouteChildren,
+)
 
 interface AdminRouteChildren {
   AdminAuditLogsRoute: typeof AdminAuditLogsRoute
@@ -498,11 +567,13 @@ interface AdminRouteChildren {
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminMediaRoute: typeof AdminMediaRoute
+  AdminNavigationRoute: typeof AdminNavigationRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
-  AdminPagesRoute: typeof AdminPagesRoute
+  AdminPagesRoute: typeof AdminPagesRouteWithChildren
   AdminProjectsRoute: typeof AdminProjectsRoute
   AdminSeoRoute: typeof AdminSeoRoute
   AdminServicesRoute: typeof AdminServicesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminStaffRoute: typeof AdminStaffRoute
   AdminThemeEditorRoute: typeof AdminThemeEditorRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -514,11 +585,13 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminLeadsRoute: AdminLeadsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminMediaRoute: AdminMediaRoute,
+  AdminNavigationRoute: AdminNavigationRoute,
   AdminOrdersRoute: AdminOrdersRoute,
-  AdminPagesRoute: AdminPagesRoute,
+  AdminPagesRoute: AdminPagesRouteWithChildren,
   AdminProjectsRoute: AdminProjectsRoute,
   AdminSeoRoute: AdminSeoRoute,
   AdminServicesRoute: AdminServicesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminStaffRoute: AdminStaffRoute,
   AdminThemeEditorRoute: AdminThemeEditorRoute,
   AdminIndexRoute: AdminIndexRoute,

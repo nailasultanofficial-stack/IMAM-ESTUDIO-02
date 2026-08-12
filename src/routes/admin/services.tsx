@@ -241,6 +241,21 @@ function AdminServicesPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Gig Reference ID
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 408370669"
+                    value={editing.gig_id || ""}
+                    onChange={(e) => setEditing({ ...editing, gig_id: e.target.value })}
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white font-mono"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
                     Starting Price ($)
                   </label>
                   <input
@@ -248,6 +263,19 @@ function AdminServicesPage() {
                     value={editing.starting_price ?? ""}
                     onChange={(e) =>
                       setEditing({ ...editing, starting_price: Number(e.target.value) })
+                    }
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Hourly Rate ($)
+                  </label>
+                  <input
+                    type="number"
+                    value={editing.hourly_rate ?? ""}
+                    onChange={(e) =>
+                      setEditing({ ...editing, hourly_rate: Number(e.target.value) })
                     }
                     className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
                   />
@@ -276,6 +304,66 @@ function AdminServicesPage() {
                   onChange={(e) => setEditing({ ...editing, full_description: e.target.value })}
                   className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Features (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.features?.join(", ") || ""}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        features: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
+                      })
+                    }
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Tech Stack (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.tech_stack?.join(", ") || ""}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        tech_stack: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
+                      })
+                    }
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Image URL
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.image_url || ""}
+                    onChange={(e) => setEditing({ ...editing, image_url: e.target.value })}
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    CTA Label
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.cta_label || ""}
+                    onChange={(e) => setEditing({ ...editing, cta_label: e.target.value })}
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
               </div>
 
               <div className="flex gap-6 pt-2">

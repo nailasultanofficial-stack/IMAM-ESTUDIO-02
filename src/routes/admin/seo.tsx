@@ -77,7 +77,7 @@ function AdminSeoPage() {
             setEditing({
               route: "/",
               title:
-                "Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect",
+                "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect",
               description:
                 "Shopify commerce, AI automation pipelines, and full-stack SaaS engineering.",
               keywords: ["Shopify", "AI", "SaaS", "Engineering"],

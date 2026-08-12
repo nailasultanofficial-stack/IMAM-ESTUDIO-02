@@ -7,7 +7,14 @@ import {
   getProjects,
   getServiceBySlug,
   getServices,
+  getGlobalSettings,
 } from "@/lib/public.functions";
+
+export const globalSettingsQuery = queryOptions({
+  queryKey: ["public", "globalSettings"],
+  queryFn: () => getGlobalSettings(),
+  staleTime: 60_000,
+});
 
 export const homepageQuery = queryOptions({
   queryKey: ["public", "homepage"],

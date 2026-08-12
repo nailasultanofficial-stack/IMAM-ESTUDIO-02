@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { HeroAtmosphereCanvas } from "@/components/3d/HeroAtmosphereCanvas";
 import { TextReveal, MagneticButton, Reveal } from "@/components/ui/motion-primitives";
+import { Link } from "@tanstack/react-router";
 import type { PageSection } from "@/lib/content-types";
 
 interface HeroSectionProps {
@@ -18,7 +18,7 @@ export function HeroSection({ section }: HeroSectionProps) {
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
   const mobileImage =
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
-  const eyebrow = content["eyebrow"] || "MALIK JAHANZAIB (@jahanzeb1809)";
+  const eyebrow = content["eyebrow"] || "MALIK JAHANZAIB";
   const primaryCtaLabel = content["primary_cta_label"] || "Start an engagement";
   const primaryCtaUrl = content["primary_cta_url"] || "/contact?source=hero_primary";
   const secondaryCtaLabel = content["secondary_cta_label"] || "Explore work";
@@ -32,7 +32,7 @@ export function HeroSection({ section }: HeroSectionProps) {
           <source media="(max-width: 767px)" srcSet={mobileImage} />
           <img
             src={desktopImage}
-            alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
+            alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect"
             fetchPriority="high"
             decoding="async"
             className="h-full w-full object-cover object-center md:object-[70%_center] opacity-85 md:opacity-90"
@@ -48,9 +48,9 @@ export function HeroSection({ section }: HeroSectionProps) {
         <div className="max-w-3xl">
           {/* Eyebrow Badge */}
           <Reveal direction="down" delay={0.1}>
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 backdrop-blur-md">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 backdrop-blur-md">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary font-semibold">
                 {eyebrow}
               </span>
             </div>
@@ -75,16 +75,32 @@ export function HeroSection({ section }: HeroSectionProps) {
 
           <Reveal delay={0.5}>
             <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
-              <a href={primaryCtaUrl}>
-                <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
-                  {primaryCtaLabel}
-                </MagneticButton>
-              </a>
-              <a href={secondaryCtaUrl}>
-                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
-                  {secondaryCtaLabel}
-                </MagneticButton>
-              </a>
+              {primaryCtaUrl.startsWith("/") ? (
+                <Link to={primaryCtaUrl as any}>
+                  <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
+                    {primaryCtaLabel}
+                  </MagneticButton>
+                </Link>
+              ) : (
+                <a href={primaryCtaUrl}>
+                  <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
+                    {primaryCtaLabel}
+                  </MagneticButton>
+                </a>
+              )}
+              {secondaryCtaUrl.startsWith("/") ? (
+                <Link to={secondaryCtaUrl as any}>
+                  <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
+                    {secondaryCtaLabel}
+                  </MagneticButton>
+                </Link>
+              ) : (
+                <a href={secondaryCtaUrl}>
+                  <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
+                    {secondaryCtaLabel}
+                  </MagneticButton>
+                </a>
+              )}
             </div>
           </Reveal>
         </div>

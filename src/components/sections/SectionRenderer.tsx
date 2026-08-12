@@ -10,7 +10,7 @@ import { TechEcosystemCanvas } from "@/components/3d/TechEcosystemCanvas";
 import { Reveal, TextReveal, MagneticButton } from "@/components/ui/motion-primitives";
 import type { PageSection, Project, Service } from "@/lib/content-types";
 import { str, strList, num, paragraphs } from "@/lib/section-utils";
-import { whatsappUrl, FEATURED_GIG_SERVICES, FEATURED_GIG_PROJECTS } from "@/lib/site";
+import { whatsappUrl } from "@/lib/utils";
 import { FeaturedWorkInteractive } from "@/components/sections/FeaturedWorkInteractive";
 
 type Ctx = { services: Service[]; projects: Project[] };
@@ -63,7 +63,7 @@ function TrustStrip({ section }: { section: PageSection }) {
       <div className="shell flex flex-wrap items-center justify-center gap-x-10 gap-y-3.5">
         {displayItems.map((item) => (
           <div key={item} className="flex items-center gap-2.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground font-medium">
               {item}
             </span>
@@ -75,10 +75,7 @@ function TrustStrip({ section }: { section: PageSection }) {
 }
 
 function FeaturedWork({ section, projects }: { section: PageSection; projects: Project[] }) {
-  const displayProjects = [
-    ...(FEATURED_GIG_PROJECTS as unknown as Project[]),
-    ...(projects || []).filter((p) => !FEATURED_GIG_PROJECTS.some((fgp) => fgp.slug === p.slug)),
-  ];
+  const displayProjects = projects || [];
   const limit = num(section.content, "limit", 5);
   const shownProjects = displayProjects.slice(0, limit);
   if (shownProjects.length === 0) return null;
@@ -86,15 +83,22 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
   return (
     <section className="hairline bg-background py-16 md:py-24">
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 md:px-8 lg:px-12">
-        <SectionHeading
-          eyebrow="SELECTED ENGINEERING WORK"
-          title={section.title ?? "Built for speed. Designed for scale."}
-          subtitle={
-            section.subtitle ??
-            "A curated selection of commerce experiences, automation systems, and high-performance web platforms."
-          }
-          action={{ label: "View full archive →", to: "/work" }}
-        />
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <SectionHeading
+            eyebrow="SELECTED ENGINEERING WORK"
+            title={section.title ?? "Built for speed. Designed for scale."}
+            subtitle={
+              section.subtitle ??
+              "A curated selection of commerce experiences, automation systems, and high-performance web platforms."
+            }
+          />
+          <Link
+            to="/work"
+            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
+          >
+            View full archive →
+          </Link>
+        </div>
 
         <div className="mt-10 md:mt-14">
           <FeaturedWorkInteractive projects={shownProjects} />
@@ -104,8 +108,8 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
   );
 }
 
-function CapabilitiesSection({ section }: { section: PageSection; services: Service[] }) {
-  const displayServices = FEATURED_GIG_SERVICES as unknown as Service[];
+function CapabilitiesSection({ section, services }: { section: PageSection; services: Service[] }) {
+  const displayServices = services || [];
   const limit = num(section.content, "limit", 8);
   const shown = displayServices.slice(0, limit);
   if (shown.length === 0) return null;
@@ -113,15 +117,22 @@ function CapabilitiesSection({ section }: { section: PageSection; services: Serv
   return (
     <section className="hairline bg-surface/30 py-12 md:py-20">
       <div className="shell">
-        <SectionHeading
-          eyebrow="Capabilities"
-          title={section.title ?? "Engineering Disciplines"}
-          subtitle={
-            section.subtitle ??
-            "From custom Shopify Liquid to Next.js SaaS platforms & n8n AI automations."
-          }
-          action={{ label: "Explore all capabilities", to: "/services" }}
-        />
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <SectionHeading
+            eyebrow="Capabilities"
+            title={section.title ?? "Engineering Disciplines"}
+            subtitle={
+              section.subtitle ??
+              "From custom Shopify Liquid to Next.js SaaS platforms & n8n AI automations."
+            }
+          />
+          <Link
+            to="/services"
+            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
+          >
+            Explore all capabilities →
+          </Link>
+        </div>
         <div className="mt-8 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {shown.map((service, i) => (
             <ServiceCard key={service.id} service={service} index={i} />
@@ -209,12 +220,12 @@ function FinalCta({ section }: { section: PageSection }) {
             </Link>
             {wa ? (
               <a
-                href={whatsappUrl("Hi Malik — I'd like to discuss a project with you.")}
+                href={whatsappUrl(wa, "Hi Malik — I'd like to discuss a project with you.")}
                 target="_blank"
                 rel="noreferrer"
               >
                 <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
-                  <MessageCircle className="mr-2 h-4 w-4 text-emerald-400" />
+                  <MessageCircle className="mr-2 h-4 w-4 text-primary" />
                   {str(c, "secondary_cta_label", "Message on WhatsApp")}
                 </MagneticButton>
               </a>
@@ -249,12 +260,10 @@ export function SectionHeading({
   eyebrow,
   title,
   subtitle,
-  action,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string | null;
-  action?: { label: string; to: "/work" | "/services" | "/process" | "/about" };
 }) {
   return (
     <div className="max-w-2xl">
@@ -262,15 +271,6 @@ export function SectionHeading({
       <h2 className="display-3 mt-3 text-foreground font-display">{title}</h2>
       {subtitle ? (
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-w-xl">{subtitle}</p>
-      ) : null}
-      {action ? (
-        <Link
-          to={action.to}
-          className="group mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
-        >
-          {action.label}
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </Link>
       ) : null}
     </div>
   );

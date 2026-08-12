@@ -15,12 +15,12 @@ export const Route = createFileRoute("/services/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Capability unavailable — Malik Jahanzaib (@jahanzeb1809)" },
+          { title: "Capability unavailable — Malik Jahanzaib" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const title = `${loaderData.title} — Malik Jahanzaib (@jahanzeb1809)`;
+    const title = `${loaderData.title} — Malik Jahanzaib`;
     return {
       meta: [
         { title },
@@ -32,12 +32,13 @@ export const Route = createFileRoute("/services/$slug")({
   },
   notFoundComponent: () => (
     <div className="shell py-40 text-center">
-      <h1 className="display-3 text-foreground">Capability not found</h1>
+      <h1 className="display-3 font-display text-foreground">Capability not found</h1>
+      <p className="mt-4 text-sm text-muted-foreground">It may have been unpublished or moved.</p>
       <Link
         to="/services"
-        className="mt-8 inline-block text-sm text-primary underline-offset-4 hover:underline"
+        className="mt-8 inline-block font-mono text-sm text-primary underline-offset-4 hover:underline"
       >
-        Back to capabilities
+        ← Back to all capabilities
       </Link>
     </div>
   ),
@@ -54,16 +55,16 @@ function ServiceDetail() {
       <div className="shell">
         <Link
           to="/services"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-3 w-3" />
           All capabilities
         </Link>
 
         <div className="mt-8 grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
           <div>
             <p className="eyebrow text-primary">{service.category}</p>
-            <h1 className="display-1 mt-5 text-foreground">{service.title}</h1>
+            <h1 className="display-1 mt-5 font-display text-foreground">{service.title}</h1>
             <p className="lede mt-6">{service.short_description}</p>
 
             <div className="hairline mt-10 space-y-4 pt-8">

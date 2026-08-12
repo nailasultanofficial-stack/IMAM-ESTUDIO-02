@@ -17,6 +17,8 @@ import {
   Menu,
   X,
   ExternalLink,
+  Settings2,
+  Navigation,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -32,10 +34,12 @@ export const Route = createFileRoute("/admin")({
 
 const NAV_ITEMS = [
   { label: "Dashboard", to: "/admin/dashboard", icon: LayoutDashboard },
+  { label: "Global Settings", to: "/admin/settings", icon: Settings2 },
+  { label: "Navigation", to: "/admin/navigation", icon: Navigation },
+  { label: "Pages", to: "/admin/pages", icon: FileText },
   { label: "Services", to: "/admin/services", icon: Layers },
   { label: "Projects", to: "/admin/projects", icon: Briefcase },
   { label: "Theme Editor", to: "/admin/theme-editor", icon: Palette },
-  { label: "Pages", to: "/admin/pages", icon: FileText },
   { label: "Leads CRM", to: "/admin/leads", icon: Users },
   { label: "Orders & Quotes", to: "/admin/orders", icon: ShoppingBag },
   { label: "Media Library", to: "/admin/media", icon: ImageIcon },

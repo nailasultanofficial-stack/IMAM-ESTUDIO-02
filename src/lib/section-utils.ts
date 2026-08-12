@@ -45,3 +45,25 @@ export function formatPrice(amount: number | null | undefined): string {
     maximumFractionDigits: 0,
   }).format(amount);
 }
+
+/**
+ * Decode HTML entities and collapse excess whitespace in scraped content.
+ * Used to clean `description` fields from archive-projects.ts that were
+ * extracted from raw HTML and contain `&amp;`, `&lt;`, non-breaking spaces,
+ * and padded whitespace sequences.
+ */
+export function cleanHtml(raw: string | null | undefined): string {
+  if (!raw) return "";
+  return raw
+    // Decode common HTML entities
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\u00a0/g, " ")
+    // Collapse run-on whitespace from HTML-to-text extraction
+    .replace(/[ \t]{3,}/g, " ")
+    .trim();
+}

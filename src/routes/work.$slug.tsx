@@ -2,9 +2,10 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, Check, MessageCircle } from "lucide-react";
 
-import { projectQuery } from "@/lib/public-queries";
+import { projectQuery, globalSettingsQuery } from "@/lib/public-queries";
 import { Reveal } from "@/components/ui/motion-primitives";
-import { whatsappUrl } from "@/lib/site";
+import { whatsappUrl, DEFAULT_SITE_CONFIG } from "@/lib/utils";
+import { cleanHtml } from "@/lib/section-utils";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: async ({ context, params }) => {
@@ -16,12 +17,12 @@ export const Route = createFileRoute("/work/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Case study unavailable — Malik Jahanzaib (@jahanzeb1809)" },
+          { title: "Case study unavailable — Malik Jahanzaib" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const title = `${loaderData.title} | Engineering Case Study — Malik Jahanzaib (@jahanzeb1809)`;
+    const title = `${loaderData.title} | Engineering Case Study — Malik Jahanzaib`;
     const description = loaderData.short_description || loaderData.description?.slice(0, 155) || "";
     return {
       meta: [
@@ -51,6 +52,10 @@ export const Route = createFileRoute("/work/$slug")({
 function ProjectDetail() {
   const { slug } = Route.useParams();
   const { data: project } = useSuspenseQuery(projectQuery(slug));
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
+  const whatsappNumber = siteConfig.whatsapp || "923091925177";
+
   if (!project) return null;
 
   const role = project.role || "Lead Full-Stack Engineer · UI/UX Architect";
@@ -106,7 +111,7 @@ function ProjectDetail() {
 
           <Reveal delay={0.2}>
             <p className="lede mt-5 text-muted-foreground max-w-3xl">
-              {project.short_description || project.description}
+              {cleanHtml(project.short_description || project.description)}
             </p>
           </Reveal>
         </header>
@@ -134,7 +139,7 @@ function ProjectDetail() {
                 Overview
               </h2>
               <p className="mt-3 text-base leading-relaxed text-foreground/85 md:text-lg">
-                {project.description}
+                {cleanHtml(project.description)}
               </p>
             </section>
 
@@ -144,7 +149,7 @@ function ProjectDetail() {
                 <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-semibold">
                   Engineering Contribution
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/80">{contribution}</p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/80">{cleanHtml(contribution)}</p>
               </section>
             ) : null}
 
@@ -155,7 +160,7 @@ function ProjectDetail() {
                   The Challenge
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {challenge}
+                  {cleanHtml(challenge)}
                 </p>
               </section>
             ) : null}
@@ -167,7 +172,7 @@ function ProjectDetail() {
                   Architectural Approach
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {approach}
+                  {cleanHtml(approach)}
                 </p>
               </section>
             ) : null}
@@ -179,7 +184,7 @@ function ProjectDetail() {
                   Implementation & Solution
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {solution}
+                  {cleanHtml(solution)}
                 </p>
               </section>
             ) : null}
@@ -191,7 +196,7 @@ function ProjectDetail() {
                   Technologies
                 </h2>
                 <p className="mt-3 font-mono text-xs text-muted-foreground leading-relaxed">
-                  {techStack.join(" · ")}
+                  {techStack.map((t: string) => cleanHtml(t)).join(" · ")}
                 </p>
               </section>
             ) : null}
@@ -213,7 +218,7 @@ function ProjectDetail() {
                         <Check className="h-2.5 w-2.5" />
                       </div>
                       <span className="text-xs leading-relaxed text-foreground/85">
-                        {highlight}
+                        {cleanHtml(highlight)}
                       </span>
                     </li>
                   ))}
@@ -236,7 +241,7 @@ function ProjectDetail() {
               </Link>
 
               <a
-                href={whatsappUrl(`Hi Malik, I read your case study on "${project.title}"...`)}
+                href={whatsappUrl(whatsappNumber, `Hi Malik, I read your case study on "${project.title}"...`)}
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-11 w-full items-center justify-center gap-2 rounded-full border border-border/60 bg-surface/50 px-6 font-mono text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary active:scale-[0.97]"

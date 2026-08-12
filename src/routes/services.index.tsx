@@ -3,7 +3,6 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { ServiceCard } from "@/components/site/ServiceCard";
 import { servicesQuery } from "@/lib/public-queries";
-import { FEATURED_GIG_SERVICES } from "@/lib/site";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 import type { Service } from "@/lib/content-types";
 
@@ -11,13 +10,13 @@ export const Route = createFileRoute("/services/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(servicesQuery),
   head: () => ({
     meta: [
-      { title: "Engineering Services — Malik Jahanzaib (@jahanzeb1809)" },
+      { title: "Engineering Services — Malik Jahanzaib" },
       {
         name: "description",
         content:
           "Custom Shopify Liquid sections, high-conversion store redesigns, custom n8n AI automations, Next.js SaaS applications, and Framer design systems by Malik Jahanzaib.",
       },
-      { property: "og:title", content: "Engineering Services — Malik Jahanzaib (@jahanzeb1809)" },
+      { property: "og:title", content: "Engineering Services — Malik Jahanzaib" },
       {
         property: "og:description",
         content:
@@ -29,7 +28,7 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesPage() {
-  const services = FEATURED_GIG_SERVICES as unknown as Service[];
+  const { data: services } = useSuspenseQuery(servicesQuery);
 
   const grouped = services.reduce<Record<string, Service[]>>((acc, service) => {
     const category = service.category || "General Engineering";
@@ -63,7 +62,7 @@ function ServicesPage() {
           <section key={category}>
             <div className="hairline flex items-baseline justify-between pt-6">
               <h2 className="display-3 text-foreground font-display">{category}</h2>
-              <span className="font-mono text-xs font-semibold text-emerald-400">
+              <span className="font-mono text-xs font-semibold text-primary">
                 {String(items.length).padStart(2, "0")} Offered
               </span>
             </div>
@@ -75,6 +74,12 @@ function ServicesPage() {
           </section>
         ))}
       </div>
+
+      {services.length === 0 ? (
+        <p className="mt-16 text-center text-sm text-muted-foreground">
+          No services published yet.
+        </p>
+      ) : null}
     </div>
   );
 }

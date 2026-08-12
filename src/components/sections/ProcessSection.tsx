@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight, Code2, Cpu, ShieldCheck, Rocket } from "lucide-react";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import { Link } from "@tanstack/react-router";
 import type { PageSection } from "@/lib/content-types";
 
 interface ProcessSectionProps {
@@ -60,13 +61,13 @@ export function ProcessSection({ section }: ProcessSectionProps) {
             </Reveal>
           </div>
           <Reveal delay={0.2}>
-            <a
-              href="/process"
-              className="group inline-flex shrink-0 items-center gap-2 font-medium text-foreground underline-offset-4 hover:underline"
+            <Link
+              to="/process"
+              className="group mt-14 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
             >
               <span>See the full process</span>
-              <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-            </a>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </Reveal>
         </div>
 

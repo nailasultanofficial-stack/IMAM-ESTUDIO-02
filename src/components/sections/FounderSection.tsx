@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight, CheckCircle2, Terminal } from "lucide-react";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
+import { Link } from "@tanstack/react-router";
 import type { PageSection } from "@/lib/content-types";
 
 interface FounderSectionProps {
@@ -32,7 +33,7 @@ export function FounderSection({ section }: FounderSectionProps) {
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
               <img
                 src={portraitUrl}
-                alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)"
+                alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect"
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -93,13 +94,13 @@ export function FounderSection({ section }: FounderSectionProps) {
 
           <Reveal delay={0.4}>
             <div className="mt-10 flex items-center gap-6">
-              <a
-                href="/about"
-                className="group inline-flex items-center gap-2.5 font-medium text-foreground underline-offset-4 hover:underline"
+              <Link
+                to="/about"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
               >
                 <span>Read Malik's engineering approach</span>
-                <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-              </a>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </Reveal>
         </div>

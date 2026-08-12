@@ -3,10 +3,12 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
+@custom-variant alt (&:is(.alt *));
 
 /*
  * MALIK JAHANZAIB OS design system.
- * Dark editorial minimalism. All colour values are oklch semantic tokens.
+ * Sophisticated editorial minimalism. All colour values are oklch semantic tokens.
  * Never hardcode colour utilities in components — use the tokens below.
  */
 
@@ -54,10 +56,10 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 }
 
-:root {
+/* Default / Dark Mode */
+:root, .dark {
   --radius: 0.5rem;
 
-  /* Public surface: dark editorial. The studio has no light mode by design. */
   --background: oklch(0.12 0.0 0);
   --foreground: oklch(0.98 0.002 90);
   --surface: oklch(0.15 0.0 0);
@@ -100,10 +102,90 @@
   --sidebar-accent-foreground: oklch(0.98 0.0 0);
 }
 
-/* The app is dark-first; .dark exists so shadcn variants resolve identically. */
-.dark {
-  --background: oklch(0.12 0.0 0);
-  --foreground: oklch(0.98 0.002 90);
+/* Light Mode (High Contrast, Editorial Print) */
+.light {
+  --background: oklch(0.98 0.01 80);
+  --foreground: oklch(0.15 0.02 250);
+  --surface: oklch(0.95 0.01 80);
+  --surface-raised: oklch(0.92 0.01 80);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 250);
+
+  --primary: oklch(0.55 0.15 150);
+  --primary-foreground: oklch(0.98 0.01 80);
+
+  --secondary: oklch(0.92 0.01 80);
+  --secondary-foreground: oklch(0.20 0.02 250);
+
+  --muted: oklch(0.92 0.01 80);
+  --muted-foreground: oklch(0.45 0.02 250);
+
+  --accent: oklch(0.90 0.01 80);
+  --accent-foreground: oklch(0.15 0.02 250);
+
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.55 0.15 150);
+  --success-foreground: oklch(0.98 0.01 80);
+  --warning: oklch(0.65 0.16 85);
+  --warning-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0 0 0 / 10%);
+  --border-strong: oklch(0 0 0 / 20%);
+  --input: oklch(0 0 0 / 12%);
+  --ring: oklch(0.55 0.15 150);
+
+  --sidebar: oklch(0.96 0.01 80);
+  --sidebar-foreground: oklch(0.20 0.02 250);
+  --sidebar-border: oklch(0 0 0 / 8%);
+  --sidebar-accent: oklch(0.92 0.01 80);
+  --sidebar-accent-foreground: oklch(0.15 0.02 250);
+}
+
+/* Alternate Mode (Deep Blueprint / Naval) */
+.alt {
+  --background: oklch(0.18 0.03 260);
+  --foreground: oklch(0.95 0.01 260);
+  --surface: oklch(0.22 0.04 260);
+  --surface-raised: oklch(0.25 0.04 260);
+
+  --card: oklch(0.22 0.04 260);
+  --card-foreground: oklch(0.95 0.01 260);
+  --popover: oklch(0.20 0.04 260);
+  --popover-foreground: oklch(0.95 0.01 260);
+
+  --primary: oklch(0.80 0.1 200);
+  --primary-foreground: oklch(0.18 0.03 260);
+
+  --secondary: oklch(0.28 0.04 260);
+  --secondary-foreground: oklch(0.95 0.01 260);
+
+  --muted: oklch(0.28 0.04 260);
+  --muted-foreground: oklch(0.70 0.02 260);
+
+  --accent: oklch(0.30 0.05 260);
+  --accent-foreground: oklch(0.95 0.01 260);
+
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.98 0.0 0);
+  --success: oklch(0.80 0.1 200);
+  --success-foreground: oklch(0.18 0.03 260);
+  --warning: oklch(0.85 0.16 85);
+  --warning-foreground: oklch(0.18 0.03 260);
+
+  --border: oklch(1 1 1 / 15%);
+  --border-strong: oklch(1 1 1 / 25%);
+  --input: oklch(1 1 1 / 18%);
+  --ring: oklch(0.80 0.1 200);
+
+  --sidebar: oklch(0.20 0.04 260);
+  --sidebar-foreground: oklch(0.90 0.02 260);
+  --sidebar-border: oklch(1 1 1 / 10%);
+  --sidebar-accent: oklch(0.28 0.04 260);
+  --sidebar-accent-foreground: oklch(0.95 0.01 260);
 }
 
 @layer base {
@@ -129,6 +211,8 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     line-height: 1.7;
+    /* Add smooth transition for theme switching */
+    transition: background-color 0.5s var(--ease-apple), color 0.5s var(--ease-apple);
   }
 
   /* Global transition defaults — Apple easing, capped at 250ms.

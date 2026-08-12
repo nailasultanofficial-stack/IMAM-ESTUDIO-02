@@ -4,11 +4,11 @@ import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "Engineering Process — Malik Jahanzaib (@jahanzeb1809)" },
+      { title: "Engineering Process — Malik Jahanzaib" },
       {
         name: "description",
         content:
-          "4-phase engineering methodology by Malik Jahanzaib (@jahanzeb1809): Discovery, Architecture, Sprints, and Production Launch.",
+          "4-phase engineering methodology by Malik Jahanzaib: Discovery, Architecture, Sprints, and Production Launch.",
       },
       { property: "og:title", content: "Engineering Process — Malik Jahanzaib" },
       {
@@ -96,7 +96,7 @@ function ProcessPage() {
                     <h2 className="font-display text-2xl font-semibold text-foreground">
                       {phase.title}
                     </h2>
-                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-emerald-400 font-semibold">
+                    <span className="font-mono text-xs uppercase tracking-[0.16em] text-primary font-semibold">
                       {phase.duration}
                     </span>
                   </div>
@@ -108,12 +108,9 @@ function ProcessPage() {
                   <h3 className="eyebrow">Deliverables</h3>
                   <ul className="mt-3 space-y-2">
                     {phase.deliverables.map((item) => (
-                      <li
-                        key={item}
-                        className="text-sm text-foreground/85 font-medium flex items-center gap-2"
-                      >
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        {item}
+                      <li key={item} className="flex items-start gap-2.5">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span className="text-sm text-foreground/85 font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>

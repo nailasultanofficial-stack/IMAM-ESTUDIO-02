@@ -1,31 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback, useId } from "react";
+import { useState, useEffect, useCallback, useId, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Project } from "@/lib/content-types";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-/**
- * FeaturedWorkInteractive — Editorial Master / Detail
- *
- * Desktop: 65% left (dominant image + metadata) / 35% right (editorial project index)
- * Mobile: compact vertical selector + single featured project
- *
- * Design principles:
- * - Navigator is PURE TYPOGRAPHY — no cards, no panels, no borders, no rounded containers
- * - Inactive items are quiet. Active item has a left accent bar + full opacity.
- * - Image is the hero of the section — large, clean, no decorative overlays
- * - Keyboard: only responds when navigator region is focused (no global listener)
- * - No autoplay. No animation on keyboard navigation.
- * - AnimatePresence mode="sync" for immediate feel
- * - aria-selected + role="tab" / "tabpanel" semantics
- */
+import { cleanHtml } from "@/lib/section-utils";
 
 const EASING = [0.16, 1, 0.3, 1] as const;
 
-// Remap Fiverr category labels to real engineering service names
 function displayCategory(cat: string): string {
   const map: Record<string, string> = {
     "Shopify / Commerce": "Shopify / Commerce",
@@ -39,12 +23,23 @@ function displayCategory(cat: string): string {
 }
 
 export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [isPointerSelection, setIsPointerSelection] = useState(false);
   const tabId = useId();
   const panelId = useId();
+  
+  // Refs for scrolling the active item into view
+  const navRailRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const activeProject = projects[activeIndex];
+  const activeProject = projects[activeProjectIndex];
+
+  const handleProjectSelect = useCallback((idx: number) => {
+    if (idx !== activeProjectIndex) {
+      setIsPointerSelection(true);
+      setActiveProjectIndex(idx);
+    }
+  }, [activeProjectIndex]);
 
   // Preload all project images
   useEffect(() => {
@@ -57,28 +52,35 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
     });
   }, [projects]);
 
-  // Keyboard navigation — only fires when navigator is focused
+  // Scroll active item into view when activeProjectIndex changes
+  useEffect(() => {
+    const activeBtn = itemRefs.current[activeProjectIndex];
+    if (activeBtn && navRailRef.current) {
+      activeBtn.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [activeProjectIndex]);
+
   const handleNavKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "ArrowDown") {
         e.preventDefault();
         setIsPointerSelection(false);
-        setActiveIndex((i) => Math.min(i + 1, projects.length - 1));
+        handleProjectSelect(Math.min(activeProjectIndex + 1, projects.length - 1));
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setIsPointerSelection(false);
-        setActiveIndex((i) => Math.max(i - 1, 0));
+        handleProjectSelect(Math.max(activeProjectIndex - 1, 0));
       } else if (e.key === "Home") {
         e.preventDefault();
         setIsPointerSelection(false);
-        setActiveIndex(0);
+        handleProjectSelect(0);
       } else if (e.key === "End") {
         e.preventDefault();
         setIsPointerSelection(false);
-        setActiveIndex(projects.length - 1);
+        handleProjectSelect(projects.length - 1);
       }
     },
-    [projects.length],
+    [projects.length, activeProjectIndex, handleProjectSelect],
   );
 
   if (!activeProject) return null;
@@ -86,70 +88,73 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
   const techStack = (activeProject.tech_stack || activeProject.tags || []).slice(0, 4);
 
   return (
-    <div className="fw-grid">
-      {/* ─── Left: Featured Project Panel ─────────────────────────────── */}
+    <div className="fw-wrapper">
+      
+      {/* ─── Left: Featured Project (Media + Info) ──────────────────── */}
       <div
         className="fw-main"
         role="tabpanel"
         id={panelId}
-        aria-labelledby={`${tabId}-${activeIndex}`}
+        aria-labelledby={`${tabId}-${activeProjectIndex}`}
       >
         <AnimatePresence mode="sync" initial={false}>
           <motion.div
             key={activeProject.id}
+            className="fw-main-content group"
             initial={isPointerSelection ? { opacity: 0, y: 6 } : false}
             animate={{ opacity: 1, y: 0 }}
             exit={isPointerSelection ? { opacity: 0 } : { opacity: 1 }}
             transition={{ duration: 0.18, ease: EASING }}
           >
-            {/* Project image — full width, natural aspect ratio */}
-            <Link
-              to="/work/$slug"
-              params={{ slug: activeProject.slug }}
-              aria-label={`View case study: ${activeProject.title}`}
-              className="fw-image-link group"
-            >
-              <img
-                src={activeProject.featured_image || activeProject.thumbnail_url}
-                alt={`Screenshot of ${activeProject.title} — ${displayCategory(activeProject.category)} engineering project`}
-                className="fw-image group-hover:scale-[1.015]"
-                loading="eager"
-                decoding="async"
-              />
-            </Link>
+            {/* Project media — intrinsic aspect ratio, no crop */}
+            <div className="fw-image-col">
+              <Link
+                to="/work/$slug"
+                params={{ slug: activeProject.slug }}
+                aria-label={`View case study: ${activeProject.title}`}
+                className="fw-image-wrapper block"
+              >
+                <img
+                  src={activeProject.featured_image || activeProject.thumbnail_url}
+                  alt={`Screenshot of ${activeProject.title}`}
+                  className="fw-image group-hover:scale-[1.01]"
+                  loading="eager"
+                  decoding="async"
+                />
+              </Link>
+            </div>
 
-            {/* Metadata below image — compact, editorial */}
-            <div className="fw-meta">
-              <div className="fw-meta-top">
-                <div className="fw-meta-category">
-                  <span className="fw-index">{String(activeIndex + 1).padStart(2, "0")}</span>
-                  <span className="fw-sep" />
-                  <span className="fw-cat">{displayCategory(activeProject.category)}</span>
-                </div>
-                <Link
-                  to="/work/$slug"
-                  params={{ slug: activeProject.slug }}
-                  className="fw-view-link group"
-                  aria-label={`Read the ${activeProject.title} case study`}
-                >
-                  <span>View Case Study</span>
-                  <ArrowRight className="fw-view-arrow" aria-hidden="true" />
-                </Link>
+            {/* Project info */}
+            <div className="fw-info-col">
+              <div className="fw-meta-category mb-4">
+                <span className="fw-index">{String(activeProjectIndex + 1).padStart(2, "0")}</span>
+                <span className="fw-sep" />
+                <span className="fw-cat">{displayCategory(activeProject.category)}</span>
               </div>
-
+              
               <h3 className="fw-title">{activeProject.title}</h3>
-
+              
               <p className="fw-desc">
-                {activeProject.short_description || activeProject.description}
+                {cleanHtml(activeProject.short_description || activeProject.description)}
               </p>
+              
+              {techStack.length > 0 && <p className="fw-tech">{techStack.map((t) => cleanHtml(t)).join(" · ")}</p>}
 
-              {techStack.length > 0 && <p className="fw-tech">{techStack.join(" · ")}</p>}
+              <Link
+                to="/work/$slug"
+                params={{ slug: activeProject.slug }}
+                className="fw-view-link mt-8"
+                aria-label={`Read the ${activeProject.title} case study`}
+              >
+                <span>View Case Study</span>
+                <ArrowRight className="fw-view-arrow" aria-hidden="true" />
+              </Link>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* ─── Right: Editorial Project Index ───────────────────────────── */}
+      {/* ─── Right: Project Navigator (Mini Cards) ────────────────── */}
       <div
         className="fw-nav"
         role="tablist"
@@ -157,138 +162,114 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
         aria-orientation="vertical"
         onKeyDown={handleNavKeyDown}
       >
-        {/* Mobile: compact vertical selector */}
-        <div className="fw-mobile-list">
+        <button 
+          className="fw-nav-arrow fw-nav-arrow-up" 
+          onClick={() => handleProjectSelect(Math.max(activeProjectIndex - 1, 0))}
+          disabled={activeProjectIndex === 0}
+          aria-label="Previous project"
+        >
+          <ChevronUp size={16} />
+        </button>
+
+        <div className="fw-nav-rail" ref={navRailRef}>
           {projects.map((project, idx) => {
-            const isActive = activeIndex === idx;
+            const isActive = activeProjectIndex === idx;
             return (
               <button
                 key={project.id}
+                ref={(el) => { itemRefs.current[idx] = el; }}
                 id={`${tabId}-${idx}`}
                 role="tab"
                 type="button"
                 tabIndex={isActive ? 0 : -1}
                 aria-selected={isActive}
                 aria-controls={panelId}
-                onClick={() => {
-                  setIsPointerSelection(true);
-                  setActiveIndex(idx);
-                }}
+                onClick={() => handleProjectSelect(idx)}
                 className={cn(
-                  "fw-mobile-item",
-                  isActive ? "fw-mobile-item-active" : "fw-mobile-item-inactive",
+                  "fw-nav-item",
+                  isActive ? "fw-nav-item-active" : "fw-nav-item-inactive",
                 )}
               >
-                <span className="fw-mi-num">{String(idx + 1).padStart(2, "0")}</span>
-                <span className="fw-mi-title">{project.title}</span>
+                <div className="fw-nav-thumb-wrapper">
+                  <img 
+                    src={project.thumbnail_url || project.featured_image} 
+                    alt={`Thumbnail for ${project.title}`} 
+                    className="fw-nav-thumb-img" 
+                    loading="lazy" 
+                  />
+                </div>
+                <div className="fw-nav-item-info">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="fw-nav-num">{String(idx + 1).padStart(2, "0")}</span>
+                    <span className="fw-nav-cat">{displayCategory(project.category)}</span>
+                  </div>
+                  <span className="fw-nav-title">{project.title}</span>
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Desktop: editorial project index — pure typography */}
-        <ol className="fw-desktop-list" aria-label="Project index">
-          {projects.map((project, idx) => {
-            const isActive = activeIndex === idx;
-            return (
-              <li key={project.id} className="fw-project-item">
-                <button
-                  id={`${tabId}-${idx}`}
-                  role="tab"
-                  type="button"
-                  tabIndex={isActive ? 0 : -1}
-                  aria-selected={isActive}
-                  aria-controls={panelId}
-                  onClick={() => {
-                    setIsPointerSelection(true);
-                    setActiveIndex(idx);
-                  }}
-                  className="fw-project-btn"
-                >
-                  {/* Active accent bar */}
-                  <div
-                    className={cn(
-                      "fw-accent",
-                      isActive ? "fw-accent-active" : "fw-accent-inactive",
-                    )}
-                    aria-hidden="true"
-                  />
-
-                  <div className="fw-project-content">
-                    <div
-                      className={cn(
-                        "fw-project-num",
-                        isActive ? "fw-num-active" : "fw-num-inactive",
-                      )}
-                    >
-                      {String(idx + 1).padStart(2, "0")}
-                    </div>
-                    <div className="fw-project-text">
-                      <span
-                        className={cn(
-                          "fw-project-name",
-                          isActive ? "fw-name-active" : "fw-name-inactive",
-                        )}
-                      >
-                        {project.title}
-                      </span>
-                      <span
-                        className={cn(
-                          "fw-project-cat",
-                          isActive ? "fw-pcat-active" : "fw-pcat-inactive",
-                        )}
-                      >
-                        {displayCategory(project.category)}
-                      </span>
-                    </div>
-                  </div>
-                </button>
-
-                {/* Separator — only between items, not after last */}
-                {idx < projects.length - 1 && <div className="fw-item-sep" aria-hidden="true" />}
-              </li>
-            );
-          })}
-        </ol>
+        <button 
+          className="fw-nav-arrow fw-nav-arrow-down" 
+          onClick={() => handleProjectSelect(Math.min(activeProjectIndex + 1, projects.length - 1))}
+          disabled={activeProjectIndex === projects.length - 1}
+          aria-label="Next project"
+        >
+          <ChevronDown size={16} />
+        </button>
       </div>
 
-      {/* Scoped styles — all layout and design in one place */}
+      {/* Scoped styles */}
       <style>{`
         /* ─── Grid layout ─────────────────────────────────────────────── */
-        .fw-grid {
+        .fw-wrapper {
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          gap: 3rem;
         }
 
-        /* ─── Featured image ──────────────────────────────────────────── */
-        .fw-image-link {
-          display: block;
+        /* ─── Main Project Panel ──────────────────────────────────────── */
+        .fw-main {
           width: 100%;
-          overflow: hidden;
+        }
+
+        .fw-main-content {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .fw-image-col {
+          width: 100%;
+        }
+
+        .fw-image-wrapper {
+          width: 100%;
           border-radius: 0.75rem;
-          background: oklch(0.15 0 0);
-          border: 1px solid oklch(1 0 0 / 10%);
+          background: var(--color-surface);
+          border: 1px solid var(--color-border);
+          overflow: hidden;
+          padding: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .fw-image {
-          width: 100%;
+          max-width: 100%;
+          width: auto;
           height: auto;
-          max-height: 55vh;
+          max-height: 70vh;
           object-fit: contain;
-          padding: 0.75rem;
           display: block;
-          transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* ─── Metadata below image ────────────────────────────────────── */
-        .fw-meta { margin-top: 1.25rem; }
-
-        .fw-meta-top {
+        .fw-info-col {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
+          flex-direction: column;
+          justify-content: center;
         }
 
         .fw-meta-category {
@@ -309,7 +290,7 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
           display: block;
           width: 1rem;
           height: 1px;
-          background: oklch(1 0 0 / 14%);
+          background: var(--color-border);
         }
 
         .fw-cat {
@@ -321,10 +302,36 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
           color: var(--color-muted-foreground);
         }
 
+        .fw-title {
+          font-family: var(--font-display);
+          font-size: clamp(1.375rem, 0.95rem + 1.8vw, 2.25rem);
+          font-weight: 400;
+          line-height: 1.15;
+          letter-spacing: -0.025em;
+          color: var(--color-foreground);
+          margin-bottom: 0.75rem;
+        }
+
+        .fw-desc {
+          font-size: 0.875rem;
+          line-height: 1.65;
+          color: var(--color-muted-foreground);
+          max-width: 42rem;
+        }
+
+        .fw-tech {
+          margin-top: 1rem;
+          font-family: var(--font-mono);
+          font-size: 0.6875rem;
+          color: var(--color-muted-foreground);
+          opacity: 0.8;
+          letter-spacing: 0.04em;
+        }
+
         .fw-view-link {
           display: inline-flex;
           align-items: center;
-          gap: 0.375rem;
+          gap: 0.5rem;
           font-family: var(--font-mono);
           font-size: 0.6875rem;
           font-weight: 600;
@@ -332,8 +339,7 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
           letter-spacing: 0.1em;
           color: var(--color-primary);
           transition: color 150ms;
-          flex-shrink: 0;
-          white-space: nowrap;
+          width: fit-content;
         }
         .fw-view-link:hover { color: var(--color-foreground); }
         .fw-view-link:active { transform: scale(0.97); }
@@ -347,89 +353,125 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
           transform: translateX(2px);
         }
 
-        .fw-title {
-          margin-top: 0.75rem;
-          font-family: var(--font-display);
-          font-size: clamp(1.375rem, 0.95rem + 1.8vw, 2.25rem);
-          font-weight: 400;
-          line-height: 1.1;
-          letter-spacing: -0.025em;
-          color: var(--color-foreground);
-        }
-
-        .fw-desc {
-          margin-top: 0.625rem;
-          font-size: 0.875rem;
-          line-height: 1.65;
-          color: var(--color-muted-foreground);
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          max-width: 42rem;
-        }
-
-        .fw-tech {
-          margin-top: 0.625rem;
-          font-family: var(--font-mono);
-          font-size: 0.6875rem;
-          color: oklch(0.72 0 0 / 70%);
-          letter-spacing: 0.04em;
-        }
-
-        /* ─── Navigator (right panel) ─────────────────────────────────── */
+        /* ─── Project Navigator (Mini Cards) ──────────────────────────── */
         .fw-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
           width: 100%;
         }
 
-        /* ─── Mobile list (< 1024px) ──────────────────────────────────── */
-        .fw-mobile-list {
+        .fw-nav-rail {
           display: flex;
           flex-direction: column;
-          gap: 0;
-          border: 1px solid oklch(1 0 0 / 10%);
-          border-radius: 0.75rem;
-          overflow: hidden;
+          gap: 0.5rem;
+          max-height: 600px;
+          overflow-y: auto;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;  /* IE and Edge */
+        }
+        .fw-nav-rail::-webkit-scrollbar {
+          display: none;
         }
 
-        .fw-mobile-item {
+        .fw-nav-arrow {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          padding: 0.75rem 1rem;
-          text-align: left;
-          cursor: pointer;
-          border: none;
+          justify-content: center;
+          width: 100%;
+          padding: 0.5rem;
+          border-radius: 0.5rem;
           background: transparent;
-          border-bottom: 1px solid oklch(1 0 0 / 8%);
-          min-height: 48px;
-          transition: background 150ms;
+          border: 1px solid transparent;
+          color: var(--color-muted-foreground);
+          cursor: pointer;
+          transition: all 150ms;
+        }
+        .fw-nav-arrow:hover:not(:disabled) {
+          background: var(--color-surface-raised);
+          color: var(--color-foreground);
+        }
+        .fw-nav-arrow:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
         }
 
-        .fw-mobile-item:last-child { border-bottom: none; }
-
-        .fw-mobile-item-active {
-          background: oklch(0.82 0.18 150 / 8%);
+        .fw-nav-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 0.625rem;
+          border-radius: 0.625rem;
+          border: 1px solid transparent;
+          background: transparent;
+          cursor: pointer;
+          text-align: left;
+          transition: all 150ms;
         }
 
-        .fw-mobile-item-inactive:hover {
-          background: oklch(1 0 0 / 4%);
+        .fw-nav-item-active {
+          background: var(--color-surface-raised);
+          border-color: var(--color-border);
         }
 
-        .fw-mi-num {
+        .fw-nav-item-inactive:hover {
+          background: var(--color-surface);
+        }
+
+        .fw-nav-thumb-wrapper {
+          width: 64px;
+          height: 48px;
+          border-radius: 0.375rem;
+          background: var(--color-surface);
+          overflow: hidden;
+          flex-shrink: 0;
+          border: 1px solid var(--color-border);
+        }
+
+        .fw-nav-thumb-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          opacity: 0.6;
+          transition: opacity 150ms;
+        }
+
+        .fw-nav-item-active .fw-nav-thumb-img {
+          opacity: 1;
+        }
+        .fw-nav-item-inactive:hover .fw-nav-thumb-img {
+          opacity: 0.8;
+        }
+
+        .fw-nav-item-info {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .fw-nav-num {
           font-family: var(--font-mono);
           font-size: 0.625rem;
           font-weight: 600;
           color: var(--color-primary);
-          flex-shrink: 0;
-          width: 1.25rem;
         }
 
-        .fw-mobile-item-inactive .fw-mi-num {
-          color: oklch(0.72 0 0 / 50%);
+        .fw-nav-item-inactive .fw-nav-num {
+          color: var(--color-muted-foreground);
+          opacity: 0.5;
         }
 
-        .fw-mi-title {
+        .fw-nav-cat {
+          font-family: var(--font-mono);
+          font-size: 0.5625rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--color-muted-foreground);
+        }
+
+        .fw-nav-title {
           font-size: 0.8125rem;
           font-weight: 500;
           color: var(--color-foreground);
@@ -438,161 +480,71 @@ export function FeaturedWorkInteractive({ projects }: { projects: Project[] }) {
           text-overflow: ellipsis;
         }
 
-        .fw-mobile-item-inactive .fw-mi-title {
+        .fw-nav-item-inactive .fw-nav-title {
           color: var(--color-muted-foreground);
         }
 
-        /* Hide mobile list on desktop */
-        @media (min-width: 1024px) {
-          .fw-mobile-list { display: none; }
-        }
-
-        /* ─── Desktop list (>= 1024px) ────────────────────────────────── */
-        .fw-desktop-list {
-          display: none;
-          flex-direction: column;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        @media (min-width: 1024px) {
-          .fw-desktop-list { display: flex; }
-        }
-
-        .fw-project-item {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .fw-project-btn {
-          position: relative;
-          display: flex;
-          align-items: flex-start;
-          gap: 0;
-          padding: 0.875rem 0 0.875rem 1rem;
-          text-align: left;
-          cursor: pointer;
-          border: none;
-          background: transparent;
-          min-height: 44px;
-          width: 100%;
-          transition: none;
-        }
-
-        .fw-project-btn:focus-visible {
-          outline: 2px solid var(--color-ring);
-          outline-offset: -2px;
-          border-radius: 2px;
-        }
-
-        /* Left accent bar */
-        .fw-accent {
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 2px;
-          border-radius: 999px;
-          background: var(--color-primary);
-          transition: height 180ms cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .fw-accent-active { height: 2rem; }
-        .fw-accent-inactive { height: 0; }
-
-        .fw-project-content {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.875rem;
-          flex: 1;
-        }
-
-        .fw-project-num {
-          font-family: var(--font-mono);
-          font-size: 0.6875rem;
-          font-weight: 600;
-          flex-shrink: 0;
-          margin-top: 0.125rem;
-          transition: color 150ms;
-          min-width: 1.5rem;
-        }
-
-        .fw-num-active { color: var(--color-primary); }
-        .fw-num-inactive { color: oklch(0.72 0 0 / 35%); }
-
-        .fw-project-btn:hover .fw-num-inactive {
-          color: oklch(0.72 0 0 / 65%);
-        }
-
-        .fw-project-text {
-          display: flex;
-          flex-direction: column;
-          gap: 0.1875rem;
-          flex: 1;
-          min-width: 0;
-        }
-
-        .fw-project-name {
-          display: block;
-          font-size: 0.8125rem;
-          font-weight: 500;
-          line-height: 1.3;
-          transition: color 150ms;
-        }
-
-        .fw-name-active { color: var(--color-foreground); }
-        .fw-name-inactive { color: oklch(0.72 0 0 / 55%); }
-
-        .fw-project-btn:hover .fw-name-inactive {
-          color: oklch(0.72 0 0 / 85%);
-        }
-
-        .fw-project-cat {
-          display: block;
-          font-family: var(--font-mono);
-          font-size: 0.625rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          transition: color 150ms;
-        }
-
-        .fw-pcat-active { color: oklch(0.72 0 0 / 55%); }
-        .fw-pcat-inactive { color: oklch(0.72 0 0 / 30%); }
-
-        /* Thin separator between items */
-        .fw-item-sep {
-          height: 1px;
-          background: oklch(1 0 0 / 7%);
-          margin-left: 1rem;
+        /* Hide arrows on mobile */
+        @media (max-width: 1023px) {
+          .fw-nav-arrow { display: none; }
+          .fw-nav-rail {
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 0.5rem;
+          }
+          .fw-nav-item {
+            flex: 0 0 240px;
+            scroll-snap-align: start;
+            border: 1px solid var(--color-border);
+          }
         }
 
         /* ─── Responsive grid layout ──────────────────────────────────── */
         @media (min-width: 1024px) {
-          .fw-grid {
-            display: grid;
-            grid-template-columns: 68fr 32fr;
-            gap: 3.5rem;
-            align-items: start;
+          .fw-wrapper {
+            flex-direction: row;
+            gap: 2.5rem;
+            align-items: flex-start;
+          }
+          
+          .fw-main {
+            flex: 1;
+            min-width: 0;
           }
 
-          .fw-image {
-            max-height: none;
-            padding: 1rem;
+          .fw-main-content {
+            flex-direction: row;
+            gap: 2rem;
+            align-items: center;
+          }
+
+          .fw-image-col {
+            flex: 1.2;
+            min-width: 0;
+          }
+
+          .fw-info-col {
+            flex: 0.8;
+            min-width: 0;
+          }
+
+          .fw-nav {
+            width: 320px;
+            flex-shrink: 0;
           }
         }
 
         @media (min-width: 1280px) {
-          .fw-grid {
-            grid-template-columns: 1fr 280px;
-            gap: 3.5rem;
-          }
-        }
-
-        @media (min-width: 1536px) {
-          .fw-grid {
-            grid-template-columns: 1fr 300px;
+          .fw-wrapper {
             gap: 4rem;
+          }
+          .fw-main-content {
+            gap: 3rem;
+          }
+          .fw-image-col {
+            flex: 1.4;
           }
         }
       `}</style>

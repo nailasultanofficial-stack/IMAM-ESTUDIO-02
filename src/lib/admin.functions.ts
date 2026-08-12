@@ -270,6 +270,48 @@ export const deleteAdminProject = createServerFn({ method: "POST" })
   });
 
 // ---------------- THEME EDITOR / PAGE SECTIONS ----------------
+export const getAdminPageSections = createServerFn({ method: "GET" })
+  .inputValidator((data: unknown) => z.object({ token: z.string().optional(), pageId: z.string() }).parse(data))
+  .handler(async ({ data }): Promise<PageSection[]> => {
+    const supabase = adminClient(data.token);
+    const { data: sections, error } = await supabase
+      .from("page_sections")
+      .select("*")
+      .eq("page_id", data.pageId)
+      .order("display_order", { ascending: true });
+    if (error) throw new Error(error.message);
+    return (sections ?? []) as unknown as PageSection[];
+  });
+
+export const updateAdminPageSections = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) =>
+    z
+      .object({
+        token: z.string().optional(),
+        pageId: z.string(),
+        sections: z.array(
+          z.object({
+            id: z.string(),
+            display_order: z.number(),
+            is_visible: z.boolean(),
+          })
+        ),
+      })
+      .parse(data),
+  )
+  .handler(async ({ data }) => {
+    const supabase = adminClient(data.token);
+    const promises = data.sections.map((section) =>
+      supabase
+        .from("page_sections")
+        .update({ display_order: section.display_order, is_visible: section.is_visible })
+        .eq("id", section.id)
+        .eq("page_id", data.pageId)
+    );
+    await Promise.all(promises);
+    return { ok: true };
+  });
+
 export const getAdminThemeSections = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => z.object({ token: z.string().optional() }).parse(data))
   .handler(async ({ data }): Promise<PageSection[]> => {
@@ -405,6 +447,33 @@ export const upsertAdminPage = createServerFn({ method: "POST" })
     }
     return row as unknown as SitePage;
   });
+
+// ---------------- GLOBAL SETTINGS ----------------
+export const getAdminGlobalSettings = createServerFn({ method: "GET" })
+  .inputValidator((data: unknown) => z.object({ token: z.string().optional() }).parse(data))
+  .handler(async ({ data }) => {
+    const supabase = adminClient(data.token);
+    const { data: rows, error } = await (supabase.from as any)("global_settings").select("*");
+    if (error) throw new Error(error.message);
+    const settings: Record<string, any> = {};
+    rows?.forEach((r: { key: string; value: any }) => {
+      settings[r.key] = r.value;
+    });
+    return settings;
+  });
+
+export const updateAdminGlobalSetting = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) =>
+    z.object({ token: z.string().optional(), key: z.string(), value: z.any() }).parse(data),
+  )
+  .handler(async ({ data }) => {
+    const supabase = adminClient(data.token);
+    const { error } = await (supabase.from as any)("global_settings")
+      .upsert({ key: data.key, value: data.value, updated_at: new Date().toISOString() }, { onConflict: "key" });
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
 
 // ---------------- LEADS CRM ----------------
 export const getAdminLeads = createServerFn({ method: "GET" })

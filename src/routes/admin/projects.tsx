@@ -242,6 +242,31 @@ function AdminProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Client Name
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.client_name || ""}
+                    onChange={(e) => setEditing({ ...editing, client_name: e.target.value })}
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Category
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.category || ""}
+                    onChange={(e) => setEditing({ ...editing, category: e.target.value })}
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
                     Gig Reference ID
                   </label>
                   <input
@@ -276,6 +301,58 @@ function AdminProjectsPage() {
                   value={editing.description || ""}
                   onChange={(e) => setEditing({ ...editing, description: e.target.value })}
                   className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Tags (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.tags?.join(", ") || ""}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        tags: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
+                      })
+                    }
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                    Outcomes (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={editing.outcomes?.join(", ") || ""}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        outcomes: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
+                      })
+                    }
+                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono uppercase text-zinc-400">
+                  Gallery URLs (comma separated)
+                </label>
+                <textarea
+                  rows={2}
+                  value={editing.gallery_urls?.join(",\n") || ""}
+                  onChange={(e) =>
+                    setEditing({
+                      ...editing,
+                      gallery_urls: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
+                    })
+                  }
+                  className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white font-mono"
                 />
               </div>
 

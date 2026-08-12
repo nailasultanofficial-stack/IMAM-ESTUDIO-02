@@ -4,7 +4,6 @@ import { z } from "zod";
 
 import type { Database } from "@/integrations/supabase/types";
 import type { PageSection, Project, SeoSetting, Service, SitePage } from "@/lib/content-types";
-import { FEATURED_GIG_SERVICES, FEATURED_GIG_PROJECTS } from "@/lib/site";
 
 /**
  * Public read layer.
@@ -80,9 +79,7 @@ export const getProjectBySlug = createServerFn({ method: "GET" })
       .eq("is_published", true)
       .maybeSingle();
     if (error) throw new Error(error.message);
-    if (row) return row as unknown as Project;
-    const fallback = FEATURED_GIG_PROJECTS.find((p) => p.slug === data.slug);
-    return (fallback ?? null) as unknown as Project | null;
+    return (row ?? null) as unknown as Project | null;
   });
 
 export type HomepagePayload = {
@@ -213,3 +210,16 @@ export const submitLead = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+export const getGlobalSettings = createServerFn({ method: "GET" }).handler(
+  async (): Promise<Record<string, any>> => {
+    const { data: rows, error } = await (publicClient().from as any)("global_settings").select("*");
+    if (error) throw new Error(error.message);
+    const settings: Record<string, any> = {};
+    rows?.forEach((r: any) => {
+      settings[r.key] = r.value;
+    });
+    return settings;
+  },
+);
+
