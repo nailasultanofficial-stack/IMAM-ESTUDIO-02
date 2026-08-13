@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/lib/content-types";
+import { FiverrCTA } from "@/components/ui/fiverr-cta";
 
 /**
  * ServiceCard — Compact capability module.
@@ -17,16 +18,16 @@ import type { Service } from "@/lib/content-types";
  */
 export function ServiceCard({ service, index }: { service: Service; index?: number }) {
   return (
-    <Link
-      to="/services/$slug"
-      params={{ slug: service.slug }}
-      className="group block h-full"
-      aria-label={`Explore capability: ${service.title}`}
-    >
-      <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-surface/30 transition-all duration-200 hover:border-primary/30 hover:bg-surface/70 hover:shadow-md hover:shadow-primary/5">
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-surface/30 transition-all duration-200 hover:border-primary/30 hover:bg-surface/70 hover:shadow-md hover:shadow-primary/5">
+      <Link
+        to="/services/$slug"
+        params={{ slug: service.slug }}
+        className="flex flex-col flex-1"
+        aria-label={`Explore capability: ${service.title}`}
+      >
         {/* Remote Service Image (Uncropped) */}
         {service.image_url && (
-          <div className="w-full bg-surface-raised/40 border-b border-border/40 overflow-hidden">
+          <div className="w-full bg-surface-raised/40 border-b border-border/40 overflow-hidden aspect-video">
             <img 
               src={service.image_url} 
               alt={service.title} 
@@ -59,13 +60,20 @@ export function ServiceCard({ service, index }: { service: Service; index?: numb
             {service.short_description}
           </p>
 
-          {/* CTA */}
-          <div className="mt-4 flex items-center gap-1 font-mono text-[11px] font-semibold text-primary group-hover:text-foreground transition-colors duration-200">
-            <span>Explore</span>
-            <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+          {/* CTAs */}
+          <div className="mt-5 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1 font-mono text-[11px] font-semibold text-primary group-hover:text-foreground transition-colors duration-200">
+              <span>Explore</span>
+              <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </div>
+            
+            {/* Embedded Fiverr CTA - Clickable without triggering the wrapper Link since it's absolutely positioned or z-indexed if needed, wait, we actually need to pull it out of the Link to avoid nesting! */}
           </div>
         </div>
+      </Link>
+      <div className="px-4 pb-4 md:px-5 md:pb-5">
+        <FiverrCTA className="w-full" />
       </div>
-    </Link>
+    </div>
   );
 }

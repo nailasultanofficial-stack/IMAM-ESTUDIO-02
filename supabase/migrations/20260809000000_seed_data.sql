@@ -1,15 +1,15 @@
--- ============================================================
--- Seed data for MALIK JAHANZAIB OS
+﻿-- ============================================================
+-- Seed data for IMAM ESTUDIO OS
 -- Idempotent seeding for homepage, services, projects, seo
 -- ============================================================
 
 -- 1. Default Pages
 INSERT INTO public.pages (slug, title, template, is_system, is_published, seo_title, seo_description)
 VALUES
-  ('home', 'Homepage', 'home', true, true, 'Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect', 'Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS web apps, and n8n AI automations.'),
-  ('about', 'About', 'default', true, true, 'About Malik Jahanzaib (@jahanzeb1809)', 'Senior Full-Stack Engineer and UI/UX Architect helping brands replace slow template websites with high performance platforms.'),
-  ('process', 'Process', 'default', true, true, 'Engineering Methodology — Malik Jahanzaib', '4-phase engineering methodology for building high-integrity software.'),
-  ('contact', 'Contact', 'default', true, true, 'Start an Engagement — Malik Jahanzaib', 'Discuss your Shopify commerce, Next.js SaaS, or custom n8n AI automation project.')
+  ('home', 'Homepage', 'home', true, true, 'IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect', 'Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS web apps, and n8n AI automations.'),
+  ('about', 'About', 'default', true, true, 'About IMAM ESTUDIO', 'Senior Full-Stack Engineer and UI/UX Architect helping brands replace slow template websites with high performance platforms.'),
+  ('process', 'Process', 'default', true, true, 'Engineering Methodology — IMAM ESTUDIO', '4-phase engineering methodology for building high-integrity software.'),
+  ('contact', 'Contact', 'default', true, true, 'Start an Engagement — IMAM ESTUDIO', 'Discuss your Shopify commerce, Next.js SaaS, or custom n8n AI automation project.')
 ON CONFLICT (slug) DO UPDATE SET
   title = EXCLUDED.title,
   seo_title = EXCLUDED.seo_title,
@@ -33,7 +33,7 @@ BEGIN
       'Engineering High-Conversion Shopify & React Platforms.',
       'Senior Full-Stack Engineer & UI/UX Architect building high-performance commerce, SaaS apps, and n8n AI automation systems.',
       '{
-        "eyebrow": "MALIK JAHANZAIB (@jahanzeb1809)",
+        "eyebrow": "IMAM ESTUDIO",
         "primary_cta_label": "Start an engagement",
         "primary_cta_url": "/contact?source=hero",
         "secondary_cta_label": "Explore work",
@@ -61,11 +61,11 @@ BEGIN
     (
       home_id,
       'founder',
-      'Malik Jahanzaib',
-      'Senior Full-Stack Engineer & UI/UX Architect (@jahanzeb1809)',
+      'IMAM ESTUDIO',
+      'Senior Full-Stack Engineer & UI/UX Architect',
       '{
         "portrait_url": "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs/494912736/original/d6e1fa4814b3a1d6029d55646baf670ccd1160b3.png",
-        "bio": "Welcome! I am Malik Jahanzaib, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems. From custom Next.js platforms and Framer websites to advanced Shopify development, I build scalable, conversion-focused digital experiences.",
+        "bio": "Welcome! I am IMAM ESTUDIO, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems. From custom Next.js platforms and Framer websites to advanced Shopify development, I build scalable, conversion-focused digital experiences.",
         "skills": ["Custom Shopify Liquid", "Shopify Store Redesign", "n8n AI Automations", "Next.js / React 19", "Headless Commerce", "Mobile-First UI/UX"]
       }'::jsonb,
       2, true, false
@@ -107,7 +107,7 @@ BEGIN
       'Direct Principal Engineering Access',
       'No account managers. No middle layers.',
       '{
-        "headline": "Direct collaboration with Malik Jahanzaib (@jahanzeb1809).",
+        "headline": "Direct collaboration with IMAM ESTUDIO.",
         "points": [
           "Direct line to the principal engineer scoping and writing your code.",
           "Custom Shopify solutions that eliminate bloated, recurring app fees.",
@@ -132,7 +132,7 @@ BEGIN
 END
 $$;
 
--- 3. Seed Services (From Malik Jahanzaib Fiverr Data + Core Expertise)
+-- 3. Seed Services (From IMAM ESTUDIO Fiverr Data + Core Expertise)
 INSERT INTO public.services (gig_id, title, slug, category, short_description, full_description, starting_price, hourly_rate, features, tech_stack, image_url, cta_label, is_featured, is_published, display_order)
 VALUES
   (
@@ -299,12 +299,12 @@ ON CONFLICT (slug) DO UPDATE SET
 -- 5. Default SEO Settings
 INSERT INTO public.seo_settings (route, title, description, keywords, noindex)
 VALUES
-  ('/', 'Malik Jahanzaib (@jahanzeb1809) — Senior Full-Stack Engineer & UI/UX Architect', 'Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS apps, and n8n AI automations.', ARRAY['Shopify Developer', 'React Engineer', 'Next.js SaaS', 'n8n AI Automations', 'UI/UX Architect'], false),
-  ('/work', 'Selected Case Studies — Malik Jahanzaib', 'Case studies across Shopify commerce, Next.js SaaS applications, n8n AI automations, and UI/UX design.', ARRAY['Case Studies', 'Shopify Projects', 'Next.js Apps', 'n8n Workflows'], false),
-  ('/services', 'Engineering Capabilities — Malik Jahanzaib', 'Custom Shopify Liquid, Next.js SaaS development, n8n AI workflow automations, and UI/UX architecture.', ARRAY['Shopify Services', 'n8n Automations', 'Next.js Development', 'Framer Sites'], false),
-  ('/about', 'About Malik Jahanzaib (@jahanzeb1809)', 'Senior Full-Stack Engineer & UI/UX Architect helping brands replace slow template websites with high performance platforms.', ARRAY['Malik Jahanzaib', 'Senior Engineer', 'UI UX Architect'], false),
-  ('/process', 'Engineering Process — Malik Jahanzaib', '4-phase engineering methodology for building high-integrity software and conversion platforms.', ARRAY['Methodology', 'Engineering Process'], false),
-  ('/contact', 'Contact & Inquiries — Malik Jahanzaib', 'Start a project directly with Senior Full-Stack Engineer Malik Jahanzaib.', ARRAY['Contact Malik', 'Hire Shopify Developer', 'Hire Next.js Developer'], false)
+  ('/', 'IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect', 'Engineering High Conversion Shopify and React Platforms, custom Next.js SaaS apps, and n8n AI automations.', ARRAY['Shopify Developer', 'React Engineer', 'Next.js SaaS', 'n8n AI Automations', 'UI/UX Architect'], false),
+  ('/work', 'Selected Case Studies — IMAM ESTUDIO', 'Case studies across Shopify commerce, Next.js SaaS applications, n8n AI automations, and UI/UX design.', ARRAY['Case Studies', 'Shopify Projects', 'Next.js Apps', 'n8n Workflows'], false),
+  ('/services', 'Engineering Capabilities — IMAM ESTUDIO', 'Custom Shopify Liquid, Next.js SaaS development, n8n AI workflow automations, and UI/UX architecture.', ARRAY['Shopify Services', 'n8n Automations', 'Next.js Development', 'Framer Sites'], false),
+  ('/about', 'About IMAM ESTUDIO', 'Senior Full-Stack Engineer & UI/UX Architect helping brands replace slow template websites with high performance platforms.', ARRAY['IMAM ESTUDIO', 'Senior Engineer', 'UI UX Architect'], false),
+  ('/process', 'Engineering Process — IMAM ESTUDIO', '4-phase engineering methodology for building high-integrity software and conversion platforms.', ARRAY['Methodology', 'Engineering Process'], false),
+  ('/contact', 'Contact & Inquiries — IMAM ESTUDIO', 'Start a project directly with Senior Full-Stack Engineer IMAM ESTUDIO.', ARRAY['Contact Malik', 'Hire Shopify Developer', 'Hire Next.js Developer'], false)
 ON CONFLICT (route) DO UPDATE SET
   title = EXCLUDED.title,
   description = EXCLUDED.description,

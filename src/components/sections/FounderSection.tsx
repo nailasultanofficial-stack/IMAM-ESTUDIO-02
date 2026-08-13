@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowRight, CheckCircle2, Terminal } from "lucide-react";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
-import { Link } from "@tanstack/react-router";
 import type { PageSection } from "@/lib/content-types";
 
 interface FounderSectionProps {
@@ -14,7 +13,7 @@ export function FounderSection({ section }: FounderSectionProps) {
     "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/main%20founderimaeg.jpeg";
   const bio =
     content["bio"] ||
-    "Welcome! I am Malik Jahanzaib, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems.";
+    "Welcome! I am IMAM ESTUDIO, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems.";
   const skills: string[] = content["skills"] || [
     "Custom Native Shopify Liquid",
     "Shopify Store Redesign for CRO",
@@ -33,7 +32,7 @@ export function FounderSection({ section }: FounderSectionProps) {
             <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
               <img
                 src={portraitUrl}
-                alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect"
+                alt="IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect"
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -48,7 +47,7 @@ export function FounderSection({ section }: FounderSectionProps) {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold text-foreground">
-                      Malik Jahanzaib
+                      IMAM ESTUDIO
                     </p>
                     <p className="font-mono text-[10px] text-muted-foreground">
                       Senior Full-Stack Engineer
@@ -65,7 +64,7 @@ export function FounderSection({ section }: FounderSectionProps) {
           <p className="eyebrow text-primary">The Engineer Behind the Work</p>
 
           <TextReveal
-            text={section.title || "Malik Jahanzaib"}
+            text={section.title || "IMAM ESTUDIO"}
             as="h2"
             className="display-2 mt-3 text-foreground font-display"
           />
@@ -94,13 +93,13 @@ export function FounderSection({ section }: FounderSectionProps) {
 
           <Reveal delay={0.4}>
             <div className="mt-10 flex items-center gap-6">
-              <Link
-                to="/about"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+              <a
+                href="/about"
+                className="group inline-flex items-center gap-2.5 font-medium text-foreground underline-offset-4 hover:underline"
               >
-                <span>Read Malik's engineering approach</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+                <span>Read my engineering approach</span>
+                <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
           </Reveal>
         </div>

@@ -72,7 +72,7 @@ export function ProjectCard({
             <span className="font-mono text-[10px] text-muted-foreground/70 leading-snug">
               {project.role || "Full-Stack Engineering"}
             </span>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/60 transition-all duration-200 group-hover:border-primary/50 group-hover:bg-primary group-hover:text-black">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/60 transition-all duration-200 group-hover:border-primary/50 group-hover:bg-primary group-hover:text-primary-foreground">
               <ArrowUpRight className="h-3 w-3" />
             </div>
           </div>

@@ -48,9 +48,8 @@ export function formatPrice(amount: number | null | undefined): string {
 
 /**
  * Decode HTML entities and collapse excess whitespace in scraped content.
- * Used to clean `description` fields from archive-projects.ts that were
- * extracted from raw HTML and contain `&amp;`, `&lt;`, non-breaking spaces,
- * and padded whitespace sequences.
+ * Used to clean description fields that were extracted from raw HTML
+ * and contain `&amp;`, `&lt;`, non-breaking spaces, and padded whitespace sequences.
  */
 export function cleanHtml(raw: string | null | undefined): string {
   if (!raw) return "";

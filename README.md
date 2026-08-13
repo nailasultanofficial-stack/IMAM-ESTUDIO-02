@@ -1,6 +1,6 @@
 # MALIK JAHANZAIB OS — Engineering Portfolio & Platform
 
-MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition platform for **Malik Jahanzaib (@jahanzeb1809)**, Senior Full-Stack Engineer & UI/UX Architect based in Pakistan.
+MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition platform for **Malik Jahanzaib**, Senior Full-Stack Engineer & UI/UX Architect based in Pakistan.
 
 ## Primary Positioning
 
@@ -23,4 +23,4 @@ MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition pl
 
 - **Production URL**: [https://imam-estudio-02.vercel.app](https://imam-estudio-02.vercel.app)
 - **GitHub Repository**: [nailasultanofficial-stack/IMAM-ESTUDIO-02](https://github.com/nailasultanofficial-stack/IMAM-ESTUDIO-02.git)
-- **Fiverr Profile**: Malik Jahanzaib (@jahanzeb1809)
+- **Fiverr Profile**: Malik Jahanzaib

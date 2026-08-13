@@ -21,20 +21,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Eye, EyeOff, Edit, Trash2, Plus, ArrowLeft } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { updateAdminSection } from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/admin/pages/$pageId")({
   head: () => ({
     meta: [
-      { title: "Page Editor — MALIK JAHANZAIB OS" },
+      { title: "Page Editor — IMAM ESTUDIO OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -66,21 +57,21 @@ function SortableSectionItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/60 p-4 transition-colors ${
-        isDragging ? "border-emerald-500 shadow-lg shadow-emerald-500/10" : ""
+      className={`flex items-center justify-between rounded-lg border border-border bg-surface/60 p-4 transition-colors ${
+        isDragging ? "border-primary shadow-lg shadow-emerald-500/10" : ""
       }`}
     >
       <div className="flex items-center gap-4">
         <button
           {...attributes}
           {...listeners}
-          className="cursor-grab text-zinc-500 hover:text-white active:cursor-grabbing"
+          className="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
         >
           <GripVertical className="h-5 w-5" />
         </button>
         <div>
-          <h3 className="font-semibold text-white">{section.section_type}</h3>
-          {section.title && <p className="text-xs text-zinc-400">{section.title}</p>}
+          <h3 className="font-semibold text-foreground">{section.section_type}</h3>
+          {section.title && <p className="text-xs text-muted-foreground">{section.title}</p>}
         </div>
       </div>
       <div className="flex items-center gap-2">
@@ -88,8 +79,8 @@ function SortableSectionItem({
           onClick={() => onToggleVisibility(section.id)}
           className={`rounded p-1.5 transition-colors ${
             section.is_visible
-              ? "text-emerald-400 hover:bg-emerald-400/10"
-              : "text-zinc-500 hover:bg-zinc-800 hover:text-white"
+              ? "text-primary hover:bg-primary/10"
+              : "text-muted-foreground hover:bg-surface-raised hover:text-foreground"
           }`}
           title={section.is_visible ? "Visible" : "Hidden"}
         >
@@ -97,14 +88,14 @@ function SortableSectionItem({
         </button>
         <button
           onClick={() => onEdit(section)}
-          className="rounded p-1.5 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+          className="rounded p-1.5 text-muted-foreground hover:bg-surface-raised hover:text-foreground"
           title="Edit Content"
         >
           <Edit className="h-4 w-4" />
         </button>
         <button
           onClick={() => onDelete(section.id)}
-          className="rounded p-1.5 text-zinc-400 hover:bg-red-500/10 hover:text-red-400"
+          className="rounded p-1.5 text-muted-foreground hover:bg-red-500/10 hover:text-red-400"
           title="Delete Section"
           disabled={section.is_locked}
         >
@@ -121,8 +112,6 @@ function PageEditor() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
-  const [editingSection, setEditingSection] = useState<PageSection | null>(null);
-  const [editContent, setEditContent] = useState<string>("");
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -190,29 +179,6 @@ function PageEditor() {
     }
   };
 
-  const handleEditSave = async () => {
-    if (!editingSection) return;
-    setSaving(true);
-    try {
-      const parsedContent = JSON.parse(editContent);
-      const updated = await updateAdminSection({
-        data: {
-          id: editingSection.id,
-          content: parsedContent,
-        },
-      });
-      setSections((prev) =>
-        prev.map((s) => (s.id === updated.id ? { ...s, content: parsedContent } : s))
-      );
-      toast.success("Section content updated");
-      setEditingSection(null);
-    } catch (e: any) {
-      toast.error(e.message || "Invalid JSON format");
-    } finally {
-      setSaving(false);
-    }
-  };
-
   const toggleVisibility = (id: string) => {
     setSections((prev) =>
       prev.map((s) => (s.id === id ? { ...s, is_visible: !s.is_visible } : s))
@@ -233,20 +199,20 @@ function PageEditor() {
         <div className="flex items-center gap-4">
           <Link
             to="/admin/pages"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-surface/60 text-muted-foreground hover:text-foreground hover:bg-surface-raised transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">Page Editor</h1>
-            <p className="mt-1 text-xs text-zinc-400 font-mono">
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">Page Editor</h1>
+            <p className="mt-1 text-xs text-muted-foreground font-mono">
               Drag and drop to reorder sections. Changes must be saved.
             </p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button
-            className="flex items-center gap-2 rounded-lg bg-zinc-800 px-4 py-2 text-xs font-semibold text-zinc-300 hover:bg-zinc-700"
+            className="flex items-center gap-2 rounded-lg bg-surface-raised px-4 py-2 text-xs font-semibold text-muted-foreground hover:bg-surface-raised"
           >
             <Plus className="h-4 w-4" />
             <span>Add Section</span>
@@ -254,7 +220,7 @@ function PageEditor() {
           <button
             onClick={handleSave}
             disabled={!hasChanges || saving}
-            className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
@@ -262,11 +228,11 @@ function PageEditor() {
       </div>
 
       {loading ? (
-        <p className="text-xs font-mono text-zinc-500 py-8">Loading sections...</p>
+        <p className="text-xs font-mono text-muted-foreground py-8">Loading sections...</p>
       ) : sections.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-zinc-800 bg-zinc-900/30 p-12 text-center">
-          <p className="text-sm text-zinc-400 mb-4">No sections found for this page.</p>
-          <button className="inline-flex items-center gap-2 rounded-lg bg-emerald-500/10 text-emerald-400 px-4 py-2 text-xs font-semibold hover:bg-emerald-500/20">
+        <div className="rounded-xl border border-dashed border-border bg-surface/30 p-12 text-center">
+          <p className="text-sm text-muted-foreground mb-4">No sections found for this page.</p>
+          <button className="inline-flex items-center gap-2 rounded-lg bg-primary/10 text-primary px-4 py-2 text-xs font-semibold hover:bg-primary/20">
             <Plus className="h-4 w-4" />
             <span>Add First Section</span>
           </button>
@@ -284,10 +250,7 @@ function PageEditor() {
                   <SortableSectionItem
                     key={section.id}
                     section={section}
-                    onEdit={(s) => {
-                      setEditingSection(s);
-                      setEditContent(JSON.stringify(s.content, null, 2));
-                    }}
+                    onEdit={() => toast.info("Section editor modal coming soon")}
                     onToggleVisibility={toggleVisibility}
                     onDelete={deleteSection}
                   />
@@ -296,43 +259,6 @@ function PageEditor() {
             </SortableContext>
           </DndContext>
         </div>
-      )}
-
-      {editingSection && (
-        <Dialog open={!!editingSection} onOpenChange={() => setEditingSection(null)}>
-          <DialogContent className="sm:max-w-2xl bg-zinc-950 border-zinc-800">
-            <DialogHeader>
-              <DialogTitle className="text-white">Edit {editingSection.section_type}</DialogTitle>
-              <DialogDescription className="text-zinc-400">
-                Update the JSON content for this section. Must be valid JSON.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="py-4">
-              <textarea
-                value={editContent}
-                onChange={(e) => setEditContent(e.target.value)}
-                className="w-full h-64 bg-zinc-900 border border-zinc-800 rounded-md p-4 text-sm text-zinc-300 font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                spellCheck={false}
-              />
-            </div>
-            <DialogFooter>
-              <button
-                onClick={() => setEditingSection(null)}
-                className="px-4 py-2 text-sm text-zinc-400 hover:text-white"
-                disabled={saving}
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleEditSave}
-                disabled={saving}
-                className="px-4 py-2 bg-emerald-500 text-zinc-950 rounded-md text-sm font-medium hover:bg-emerald-400 disabled:opacity-50"
-              >
-                {saving ? "Saving..." : "Save Content"}
-              </button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
       )}
     </div>
   );

@@ -8,10 +8,12 @@ import { FounderSection } from "@/components/sections/FounderSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { TechEcosystemCanvas } from "@/components/3d/TechEcosystemCanvas";
 import { Reveal, TextReveal, MagneticButton } from "@/components/ui/motion-primitives";
-import type { PageSection, Project, Service } from "@/lib/content-types";
 import { str, strList, num, paragraphs } from "@/lib/section-utils";
-import { whatsappUrl } from "@/lib/utils";
+import { whatsappUrl } from "@/lib/site";
 import { FeaturedWorkInteractive } from "@/components/sections/FeaturedWorkInteractive";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { globalSettingsQuery } from "@/lib/public-queries";
+import type { PageSection, Project, Service } from "@/lib/content-types";
 
 type Ctx = { services: Service[]; projects: Project[] };
 
@@ -20,6 +22,9 @@ type Ctx = { services: Service[]; projects: Project[] };
  * controlled from /admin/theme-editor — this file only owns presentation.
  */
 export function SectionRenderer({ section, ctx }: { section: PageSection; ctx: Ctx }) {
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.["site_config"] || {};
+
   switch (section.section_type) {
     case "hero":
       return <HeroSection section={section} />;
@@ -38,7 +43,7 @@ export function SectionRenderer({ section, ctx }: { section: PageSection; ctx: C
     case "collaboration":
       return <CollaborationSection section={section} />;
     case "final_cta":
-      return <FinalCta section={section} />;
+      return <FinalCta section={section} siteConfig={siteConfig} />;
     default:
       return <GenericSection section={section} />;
   }
@@ -63,7 +68,7 @@ function TrustStrip({ section }: { section: PageSection }) {
       <div className="shell flex flex-wrap items-center justify-center gap-x-10 gap-y-3.5">
         {displayItems.map((item) => (
           <div key={item} className="flex items-center gap-2.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground font-medium">
               {item}
             </span>
@@ -185,9 +190,10 @@ function CollaborationSection({ section }: { section: PageSection }) {
   );
 }
 
-function FinalCta({ section }: { section: PageSection }) {
+function FinalCta({ section, siteConfig }: { section: PageSection; siteConfig?: any }) {
   const c = section.content;
-  const wa = str(c, "whatsapp", "+923191106310");
+  const wa = str(c, "whatsapp", siteConfig?.whatsapp || "");
+  const founderName = siteConfig?.founder?.split(" ")[0] || "IMAM";
 
   return (
     <section className="hairline relative overflow-hidden bg-background py-20 md:py-28">
@@ -220,12 +226,12 @@ function FinalCta({ section }: { section: PageSection }) {
             </Link>
             {wa ? (
               <a
-                href={whatsappUrl(wa, "Hi Malik — I'd like to discuss a project with you.")}
+                href={whatsappUrl(wa, `Hi ${founderName} — I'd like to discuss a project with you.`)}
                 target="_blank"
                 rel="noreferrer"
               >
                 <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
-                  <MessageCircle className="mr-2 h-4 w-4 text-primary" />
+                  <MessageCircle className="mr-2 h-4 w-4 text-emerald-400" />
                   {str(c, "secondary_cta_label", "Message on WhatsApp")}
                 </MagneticButton>
               </a>

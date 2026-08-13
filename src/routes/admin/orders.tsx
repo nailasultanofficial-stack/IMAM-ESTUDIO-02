@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/orders")({
   head: () => ({
     meta: [
-      { title: "Orders & Quotes — MALIK JAHANZAIB OS" },
+      { title: "Orders & Quotes — IMAM ESTUDIO OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -69,10 +69,10 @@ function AdminOrdersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">
             Quotes & Operational Orders
           </h1>
-          <p className="mt-1 text-xs text-zinc-400 font-mono">
+          <p className="mt-1 text-xs text-muted-foreground font-mono">
             Manage proposals, custom quotes, payment state, and project fulfillment.
           </p>
         </div>
@@ -86,7 +86,7 @@ function AdminOrdersPage() {
               fulfillment_status: "Unfulfilled",
             })
           }
-          className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-primary"
         >
           <Plus className="h-4 w-4" />
           <span>Create Quote / Order</span>
@@ -94,12 +94,12 @@ function AdminOrdersPage() {
       </div>
 
       {loading ? (
-        <p className="text-xs font-mono text-zinc-500 py-8">Loading operational orders...</p>
+        <p className="text-xs font-mono text-muted-foreground py-8">Loading operational orders...</p>
       ) : (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden">
+        <div className="rounded-xl border border-border bg-surface/60 overflow-hidden">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-400 font-mono uppercase bg-zinc-950/80">
+              <tr className="border-b border-border text-muted-foreground font-mono uppercase bg-background/80">
                 <th className="p-4">Reference</th>
                 <th className="p-4">Engagement Title</th>
                 <th className="p-4">Amount</th>
@@ -111,32 +111,32 @@ function AdminOrdersPage() {
             </thead>
             <tbody className="divide-y divide-zinc-800/60">
               {orders.map((o) => (
-                <tr key={o.id} className="hover:bg-zinc-900/40">
-                  <td className="p-4 font-mono font-bold text-emerald-400">{o.reference}</td>
-                  <td className="p-4 font-semibold text-white">{o.title}</td>
-                  <td className="p-4 font-mono text-white">
+                <tr key={o.id} className="hover:bg-surface/40">
+                  <td className="p-4 font-mono font-bold text-primary">{o.reference}</td>
+                  <td className="p-4 font-semibold text-foreground">{o.title}</td>
+                  <td className="p-4 font-mono text-foreground">
                     ${Number(o.amount).toLocaleString()}{" "}
-                    <span className="text-[0.65rem] text-zinc-500">{o.currency}</span>
+                    <span className="text-[0.65rem] text-muted-foreground">{o.currency}</span>
                   </td>
                   <td className="p-4">
                     <span
                       className={`rounded px-2 py-0.5 font-mono text-[0.65rem] ${
                         o.payment_status === "Paid"
-                          ? "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                          ? "border border-primary/30 bg-primary/10 text-primary"
                           : "border border-amber-500/30 bg-amber-500/10 text-amber-400"
                       }`}
                     >
                       {o.payment_status}
                     </span>
                   </td>
-                  <td className="p-4 font-mono text-zinc-300">{o.fulfillment_status}</td>
-                  <td className="p-4 font-mono text-zinc-500">
+                  <td className="p-4 font-mono text-muted-foreground">{o.fulfillment_status}</td>
+                  <td className="p-4 font-mono text-muted-foreground">
                     {new Date(o.created_at).toLocaleDateString()}
                   </td>
                   <td className="p-4 text-right">
                     <button
                       onClick={() => setEditing(o)}
-                      className="rounded bg-zinc-800 px-3 py-1 text-xs text-zinc-300 hover:bg-zinc-700"
+                      className="rounded bg-surface-raised px-3 py-1 text-xs text-muted-foreground hover:bg-surface-raised"
                     >
                       Edit
                     </button>
@@ -150,19 +150,19 @@ function AdminOrdersPage() {
 
       {editing ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-100 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-              <h2 className="text-lg font-bold text-white">
+          <div className="w-full max-w-lg rounded-xl border border-border bg-background p-6 text-foreground shadow-2xl">
+            <div className="flex items-center justify-between border-b border-border pb-4">
+              <h2 className="text-lg font-bold text-foreground">
                 {editing.id ? "Edit Quote/Order" : "Create Quote/Order"}
               </h2>
-              <button onClick={() => setEditing(null)} className="text-zinc-400 hover:text-white">
+              <button onClick={() => setEditing(null)} className="text-muted-foreground hover:text-foreground">
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             <form onSubmit={handleSave} className="mt-6 space-y-4">
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400">
+                <label className="block text-xs font-mono uppercase text-muted-foreground">
                   Engagement Title
                 </label>
                 <input
@@ -170,13 +170,13 @@ function AdminOrdersPage() {
                   required
                   value={editing.title || ""}
                   onChange={(e) => setEditing({ ...editing, title: e.target.value })}
-                  className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                  <label className="block text-xs font-mono uppercase text-muted-foreground">
                     Amount ($)
                   </label>
                   <input
@@ -184,25 +184,25 @@ function AdminOrdersPage() {
                     required
                     value={editing.amount ?? 0}
                     onChange={(e) => setEditing({ ...editing, amount: Number(e.target.value) })}
-                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                    className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                  <label className="block text-xs font-mono uppercase text-muted-foreground">
                     Currency
                   </label>
                   <input
                     type="text"
                     value={editing.currency || "USD"}
                     onChange={(e) => setEditing({ ...editing, currency: e.target.value })}
-                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                    className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                  <label className="block text-xs font-mono uppercase text-muted-foreground">
                     Payment Status
                   </label>
                   <select
@@ -210,7 +210,7 @@ function AdminOrdersPage() {
                     onChange={(e) =>
                       setEditing({ ...editing, payment_status: e.target.value as any })
                     }
-                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                    className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                   >
                     <option value="Pending">Pending</option>
                     <option value="Paid">Paid</option>
@@ -219,7 +219,7 @@ function AdminOrdersPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase text-zinc-400">
+                  <label className="block text-xs font-mono uppercase text-muted-foreground">
                     Fulfillment
                   </label>
                   <select
@@ -227,7 +227,7 @@ function AdminOrdersPage() {
                     onChange={(e) =>
                       setEditing({ ...editing, fulfillment_status: e.target.value as any })
                     }
-                    className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                    className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                   >
                     <option value="Unfulfilled">Unfulfilled</option>
                     <option value="In Progress">In Progress</option>
@@ -237,18 +237,18 @@ function AdminOrdersPage() {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-6 border-t border-zinc-800">
+              <div className="flex justify-end gap-3 pt-6 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setEditing(null)}
-                  className="rounded px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white"
+                  className="rounded px-4 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="rounded bg-emerald-500 px-5 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400 disabled:opacity-50"
+                  className="rounded bg-primary px-5 py-2 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50"
                 >
                   {saving ? "Saving..." : "Save Order"}
                 </button>

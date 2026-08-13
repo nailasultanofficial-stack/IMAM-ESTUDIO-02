@@ -25,7 +25,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Admin Control Plane — MALIK JAHANZAIB OS" },
+      { title: "Admin Control Plane — IMAM ESTUDIO OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -95,9 +95,9 @@ function AdminLayout() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-zinc-400">
+      <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
         <div className="flex items-center gap-3 font-mono text-sm">
-          <div className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           <span>Verifying Authorization...</span>
         </div>
       </div>
@@ -111,13 +111,13 @@ function AdminLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-zinc-950 text-zinc-100 font-sans">
+    <div className="flex min-h-screen bg-background text-foreground font-sans">
       {/* Sidebar Desktop */}
-      <aside className="hidden w-64 shrink-0 flex-col border-r border-zinc-800/80 bg-zinc-950 p-4 lg:flex">
-        <div className="flex items-center justify-between px-3 py-3 border-b border-zinc-800/60 pb-4">
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-border bg-background p-4 lg:flex">
+        <div className="flex items-center justify-between px-3 py-3 border-b border-border pb-4">
           <div>
-            <span className="font-bold text-white tracking-tight">MALIK JAHANZAIB</span>
-            <span className="ml-2 rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-[0.65rem] font-mono text-emerald-400">
+            <span className="font-bold text-foreground tracking-tight">IMAM ESTUDIO</span>
+            <span className="ml-2 rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-[0.65rem] font-mono text-primary">
               OS
             </span>
           </div>
@@ -125,7 +125,7 @@ function AdminLayout() {
             href="/"
             target="_blank"
             rel="noreferrer"
-            className="text-zinc-400 hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
             title="View Live Public Site"
           >
             <ExternalLink className="h-4 w-4" />
@@ -143,8 +143,8 @@ function AdminLayout() {
                 to={item.to}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium transition-colors ${
                   active
-                    ? "bg-zinc-800/80 text-emerald-400 font-semibold"
-                    : "text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"
+                    ? "bg-surface-raised/80 text-primary font-semibold"
+                    : "text-muted-foreground hover:bg-surface hover:text-foreground"
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0" />
@@ -154,13 +154,13 @@ function AdminLayout() {
           })}
         </nav>
 
-        <div className="border-t border-zinc-800/80 pt-4">
+        <div className="border-t border-border pt-4">
           <div className="mb-3 px-3">
-            <p className="text-[0.7rem] font-mono text-zinc-500 truncate">{user?.email}</p>
+            <p className="text-[0.7rem] font-mono text-muted-foreground truncate">{user?.email}</p>
           </div>
           <button
             onClick={handleLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-zinc-400 transition-colors hover:bg-red-500/10 hover:text-red-400"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-red-500/10 hover:text-red-400"
           >
             <LogOut className="h-4 w-4" />
             <span>Sign Out</span>
@@ -170,10 +170,10 @@ function AdminLayout() {
 
       {/* Mobile Menu */}
       {mobileOpen ? (
-        <div className="fixed inset-0 z-50 flex flex-col bg-zinc-950 p-6 lg:hidden">
-          <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
-            <span className="font-bold text-white">MALIK JAHANZAIB OS</span>
-            <button onClick={() => setMobileOpen(false)} className="text-zinc-400">
+        <div className="fixed inset-0 z-50 flex flex-col bg-background p-6 lg:hidden">
+          <div className="flex items-center justify-between pb-4 border-b border-border">
+            <span className="font-bold text-foreground">IMAM ESTUDIO OS</span>
+            <button onClick={() => setMobileOpen(false)} className="text-muted-foreground">
               <X className="h-6 w-6" />
             </button>
           </div>
@@ -185,9 +185,9 @@ function AdminLayout() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-900"
+                  className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-muted-foreground hover:bg-surface"
                 >
-                  <Icon className="h-5 w-5 text-emerald-400" />
+                  <Icon className="h-5 w-5 text-primary" />
                   <span>{item.label}</span>
                 </Link>
               );
@@ -198,19 +198,19 @@ function AdminLayout() {
 
       {/* Main Content Area */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        <header className="flex h-14 items-center justify-between border-b border-zinc-800/80 bg-zinc-950 px-6 lg:justify-end">
-          <button onClick={() => setMobileOpen(true)} className="text-zinc-400 lg:hidden">
+        <header className="flex h-14 items-center justify-between border-b border-border bg-background px-6 lg:justify-end">
+          <button onClick={() => setMobileOpen(true)} className="text-muted-foreground lg:hidden">
             <Menu className="h-6 w-6" />
           </button>
           <div className="flex items-center gap-4 text-xs">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               Production Active
             </span>
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto bg-zinc-950 p-6">
+        <main className="flex-1 overflow-y-auto bg-background p-6">
           <Outlet />
         </main>
       </div>

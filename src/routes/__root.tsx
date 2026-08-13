@@ -91,26 +91,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect" },
+      { title: "IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect" },
       {
         name: "description",
         content:
-          "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
+          "IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect engineering high-conversion Shopify stores, Next.js applications, SaaS platforms, and n8n AI automations.",
       },
-      { name: "author", content: "Malik Jahanzaib" },
+      { name: "author", content: "IMAM ESTUDIO" },
       {
         property: "og:title",
-        content: "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect",
+        content: "IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect",
       },
       {
         property: "og:description",
         content:
           "Engineering high-conversion Shopify stores, React & Next.js platforms, SaaS applications, and n8n AI automations.",
       },
-      { property: "og:site_name", content: "Malik Jahanzaib Portfolio" },
+      { property: "og:site_name", content: "IMAM ESTUDIO Portfolio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "Malik Jahanzaib" },
+      { name: "twitter:site", content: "IMAM ESTUDIO" },
     ],
     links: [
       {
@@ -137,6 +137,16 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var theme = localStorage.getItem('mj-theme') || 'dark';
+                document.documentElement.classList.add(theme);
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body>
         <ThemeProvider defaultTheme="dark" storageKey="mj-theme">

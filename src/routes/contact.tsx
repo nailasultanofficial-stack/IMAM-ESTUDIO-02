@@ -8,7 +8,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 
 import { submitLead } from "@/lib/public.functions";
-import { DEFAULT_SITE_CONFIG, whatsappUrl } from "@/lib/utils";
+import { whatsappUrl } from "@/lib/site";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { globalSettingsQuery } from "@/lib/public-queries";
 import { Reveal, TextReveal } from "@/components/ui/motion-primitives";
@@ -56,13 +56,13 @@ export const Route = createFileRoute("/contact")({
   },
   head: () => ({
     meta: [
-      { title: "Start an Engagement — Malik Jahanzaib" },
+      { title: "Start an Engagement — IMAM ESTUDIO" },
       {
         name: "description",
         content:
-          "Start a project directly with Malik Jahanzaib, Senior Full-Stack Engineer & UI/UX Architect.",
+          "Start a project directly with IMAM ESTUDIO, Senior Full-Stack Engineer & UI/UX Architect.",
       },
-      { property: "og:title", content: "Start an Engagement — Malik Jahanzaib" },
+      { property: "og:title", content: "Start an Engagement — IMAM ESTUDIO" },
       {
         property: "og:description",
         content: "High-conversion Shopify stores, Next.js applications, and n8n AI automations.",
@@ -73,13 +73,11 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || {};
   const { source } = Route.useSearch();
   const navigate = useNavigate();
   const send = useServerFn(submitLead);
-  
-  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
-  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
-  const whatsappNumber = siteConfig.whatsapp || "923091925177";
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -112,7 +110,7 @@ function ContactPage() {
       <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
         <header className="max-w-lg">
           <Reveal direction="down">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs text-emerald-400">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span>Direct Principal Line</span>
             </div>
@@ -127,7 +125,7 @@ function ContactPage() {
           <Reveal delay={0.1}>
             <p className="lede mt-5 text-muted-foreground">
               Describe your project or business bottleneck. You will get a technical opinion and
-              transparent milestone quote directly from Malik Jahanzaib.
+              transparent milestone quote directly from IMAM ESTUDIO.
             </p>
           </Reveal>
 
@@ -139,17 +137,17 @@ function ContactPage() {
             <div>
               <dt className="eyebrow">Engineer Accountable</dt>
               <dd className="mt-1 text-sm font-medium text-foreground">
-                {siteConfig.founder} ({siteConfig.handle})
+                {siteConfig.founder} {siteConfig.handle ? `(${siteConfig.handle})` : ''}
               </dd>
             </div>
             <div>
               <dt className="eyebrow">Instant Messenger</dt>
               <dd className="mt-1">
                 <a
-                  href={whatsappUrl(whatsappNumber, "Hi Malik — I'd like to discuss a project with you.")}
+                  href={whatsappUrl(siteConfig.whatsapp || "", "Hi Malik — I'd like to discuss a project with you.")}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+                  className="text-sm font-medium text-emerald-400 underline-offset-4 hover:underline"
                 >
                   Message on WhatsApp
                 </a>
@@ -159,8 +157,8 @@ function ContactPage() {
         </header>
 
         {mutation.isSuccess ? (
-          <div className="flex h-max flex-col items-start rounded-2xl border border-primary/40 bg-surface/90 p-10 backdrop-blur-xl">
-            <CheckCircle2 className="h-10 w-10 text-primary" />
+          <div className="flex h-max flex-col items-start rounded-2xl border border-emerald-500/40 bg-surface/90 p-10 backdrop-blur-xl">
+            <CheckCircle2 className="h-10 w-10 text-emerald-400" />
             <h2 className="display-3 mt-5 text-foreground font-display">Enquiry Received</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Thank you! I review every inquiry personally and will reply with a technical breakdown
@@ -270,7 +268,7 @@ function ContactPage() {
             </button>
 
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              Direct submission to Malik Jahanzaib. Zero spam, zero sales funnel sequences.
+              Direct submission to IMAM ESTUDIO. Zero spam, zero sales funnel sequences.
             </p>
           </form>
         )}

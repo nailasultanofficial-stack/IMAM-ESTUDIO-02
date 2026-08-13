@@ -10,13 +10,13 @@ export const Route = createFileRoute("/services/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(servicesQuery),
   head: () => ({
     meta: [
-      { title: "Engineering Services — Malik Jahanzaib" },
+      { title: "Engineering Services — IMAM ESTUDIO" },
       {
         name: "description",
         content:
-          "Custom Shopify Liquid sections, high-conversion store redesigns, custom n8n AI automations, Next.js SaaS applications, and Framer design systems by Malik Jahanzaib.",
+          "Custom Shopify Liquid sections, high-conversion store redesigns, custom n8n AI automations, Next.js SaaS applications, and Framer design systems by IMAM ESTUDIO.",
       },
-      { property: "og:title", content: "Engineering Services — Malik Jahanzaib" },
+      { property: "og:title", content: "Engineering Services — IMAM ESTUDIO" },
       {
         property: "og:description",
         content:
@@ -62,7 +62,7 @@ function ServicesPage() {
           <section key={category}>
             <div className="hairline flex items-baseline justify-between pt-6">
               <h2 className="display-3 text-foreground font-display">{category}</h2>
-              <span className="font-mono text-xs font-semibold text-primary">
+              <span className="font-mono text-xs font-semibold text-emerald-400">
                 {String(items.length).padStart(2, "0")} Offered
               </span>
             </div>

@@ -12,15 +12,15 @@ export const Route = createFileRoute("/work/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(projectsQuery),
   head: () => ({
     meta: [
-      { title: "Engineering Case Studies — Malik Jahanzaib" },
+      { title: "Engineering Case Studies — IMAM ESTUDIO" },
       {
         name: "description",
         content:
-          "Engineering case studies across Shopify commerce, React/Next.js platforms, n8n AI automations, and custom web infrastructure by Malik Jahanzaib.",
+          "Engineering case studies across Shopify commerce, React/Next.js platforms, n8n AI automations, and custom web infrastructure by IMAM ESTUDIO.",
       },
       {
         property: "og:title",
-        content: "Engineering Case Studies — Malik Jahanzaib",
+        content: "Engineering Case Studies — IMAM ESTUDIO",
       },
       {
         property: "og:description",
@@ -69,10 +69,10 @@ function WorkPage() {
             aria-selected={filter === category}
             onClick={() => setFilter(category)}
             className={cn(
-              "inline-flex items-center justify-center rounded-full border px-4 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-all hover:scale-105 active:scale-95",
+              "rounded-full border px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] transition-all duration-300",
               filter === category
                 ? "border-primary bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20"
-                : "border-border/60 bg-surface/50 text-muted-foreground hover:border-border hover:text-foreground",
+                : "border-border/80 bg-surface/60 text-muted-foreground hover:border-border-strong hover:text-foreground",
             )}
           >
             {category}{" "}

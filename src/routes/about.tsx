@@ -1,13 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Award, CheckCircle2, Globe, MapPin, Star } from "lucide-react";
+import { Star, MapPin, Globe, Award, CheckCircle2 } from "lucide-react";
 
-import { paragraphs } from "@/lib/section-utils";
-import { DEFAULT_SITE_CONFIG } from "@/lib/utils";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { globalSettingsQuery } from "@/lib/public-queries";
+import { paragraphs } from "@/lib/section-utils";
 import { Reveal, TextReveal, TiltCard } from "@/components/ui/motion-primitives";
 
-const ABOUT_TEXT = `Welcome! I'm Malik Jahanzaib, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems.
+const ABOUT_TEXT = `Welcome! I'm IMAM ESTUDIO, a Senior Full-Stack Engineer and UI/UX Architect. I help brands replace slow, template-based websites with high-performance web applications, headless eCommerce solutions, and AI-powered automation systems.
 
 From custom Next.js platforms and Framer websites to advanced Shopify development, I build scalable, conversion-focused digital experiences.
 
@@ -18,17 +17,17 @@ export const Route = createFileRoute("/about")({
     meta: [
       {
         title:
-          "About Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect",
+          "About IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect",
       },
       {
         name: "description",
         content:
-          "Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect based in Pakistan. Engineering high-conversion Shopify, React, Next.js, and n8n AI systems.",
+          "IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect based in Pakistan. Engineering high-conversion Shopify, React, Next.js, and n8n AI systems.",
       },
       {
         property: "og:title",
         content:
-          "About Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect",
+          "About IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect",
       },
       {
         property: "og:description",
@@ -61,7 +60,7 @@ const PRINCIPLES = [
 
 function AboutPage() {
   const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
-  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
+  const siteConfig = globalSettings?.['site_config'] || {};
 
   return (
     <div className="pb-24 pt-32 md:pt-40">
@@ -71,12 +70,12 @@ function AboutPage() {
             <p className="eyebrow text-primary">Senior Engineer Profile</p>
           </Reveal>
           <TextReveal
-            text="Malik Jahanzaib"
+            text="IMAM ESTUDIO"
             as="h1"
             className="display-1 mt-3 text-foreground font-display"
           />
           <Reveal delay={0.1}>
-            <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-primary font-semibold">
+            <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold">
               {siteConfig.role} · {siteConfig.handle}
             </p>
           </Reveal>
@@ -105,7 +104,7 @@ function AboutPage() {
                     "Mobile-First UI/UX Systems",
                   ].map((skill) => (
                     <div key={skill} className="flex items-center gap-2.5">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
                       <span className="text-sm font-medium text-foreground">{skill}</span>
                     </div>
                   ))}
@@ -118,11 +117,11 @@ function AboutPage() {
             <Reveal direction="left">
               <TiltCard className="h-max rounded-2xl border border-border bg-surface p-7 shadow-xl">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-primary font-bold">
+                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-emerald-400 font-bold">
                     Verified Profile
                   </span>
-                  <div className="flex items-center gap-1 rounded-full border border-warning/30 bg-warning/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-warning">
-                    <Star className="h-3.5 w-3.5 fill-warning" />
+                  <div className="flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 font-mono text-xs font-semibold text-amber-400">
+                    <Star className="h-3.5 w-3.5 fill-amber-400" />
                     <span>5.0</span>
                   </div>
                 </div>
@@ -130,7 +129,7 @@ function AboutPage() {
                 <div className="mt-4 aspect-[4/5] w-full overflow-hidden rounded-xl bg-muted border border-border/80">
                   <img
                     src="https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/main%20founderimaeg.jpeg"
-                    alt="Malik Jahanzaib — Senior Full-Stack Engineer & UI/UX Architect"
+                    alt="IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect"
                     loading="lazy"
                     decoding="async"
                     className="h-full w-full object-cover"
@@ -154,14 +153,14 @@ function AboutPage() {
                       <Globe className="h-3.5 w-3.5 text-primary" /> Languages:
                     </span>
                     <span className="font-mono text-foreground font-medium">
-                      {(siteConfig.languages || []).join(", ")}
+                      {siteConfig.languages?.join(", ") || ""}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <Award className="h-3.5 w-3.5 text-primary" /> Handle:
                     </span>
-                    <span className="font-mono text-primary font-medium">{siteConfig.handle}</span>
+                    <span className="font-mono text-emerald-400 font-medium">{siteConfig.handle}</span>
                   </div>
                 </div>
 

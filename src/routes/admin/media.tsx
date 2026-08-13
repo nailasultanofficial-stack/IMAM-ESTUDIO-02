@@ -18,7 +18,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/admin/media")({
   head: () => ({
     meta: [
-      { title: "Media Library — MALIK JAHANZAIB OS" },
+      { title: "Media Library — IMAM ESTUDIO OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -78,8 +78,8 @@ function AdminMediaPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Media Asset Library</h1>
-          <p className="mt-1 text-xs text-zinc-400 font-mono">
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Media Asset Library</h1>
+          <p className="mt-1 text-xs text-muted-foreground font-mono">
             Register, audit references, and manage Supabase & Cloudinary media.
           </p>
         </div>
@@ -88,10 +88,10 @@ function AdminMediaPage() {
             setEditing({
               filename: "Hero Portrait.png",
               url: "https://yqaslfozryelumtlkoxk.supabase.co/storage/v1/object/public/asset/Cinematic%20Portrait%20in%20a%20Dark%20Tech%20Studio.png",
-              alt_text: "Malik Jahanzaib Hero Portrait",
+              alt_text: "IMAM ESTUDIO Hero Portrait",
             })
           }
-          className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-zinc-950 hover:bg-primary"
         >
           <Plus className="h-4 w-4" />
           <span>Add Media Asset</span>
@@ -99,9 +99,9 @@ function AdminMediaPage() {
       </div>
 
       {loading ? (
-        <p className="text-xs font-mono text-zinc-500 py-8">Loading media assets...</p>
+        <p className="text-xs font-mono text-muted-foreground py-8">Loading media assets...</p>
       ) : assets.length === 0 ? (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-12 text-center text-xs font-mono text-zinc-500">
+        <div className="rounded-xl border border-border bg-surface/60 p-12 text-center text-xs font-mono text-muted-foreground">
           No media assets registered in database yet. Click "Add Media Asset" to register media
           references.
         </div>
@@ -110,9 +110,9 @@ function AdminMediaPage() {
           {assets.map((asset) => (
             <div
               key={asset.id}
-              className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 space-y-3"
+              className="rounded-xl border border-border bg-surface/60 p-4 space-y-3"
             >
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-zinc-950 border border-zinc-800">
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-background border border-border">
                 <img
                   src={asset.url}
                   alt={asset.alt_text || asset.filename}
@@ -120,15 +120,15 @@ function AdminMediaPage() {
                 />
               </div>
               <div>
-                <p className="text-xs font-semibold text-white truncate">{asset.filename}</p>
-                <p className="text-[0.65rem] font-mono text-zinc-500 truncate mt-0.5">
+                <p className="text-xs font-semibold text-foreground truncate">{asset.filename}</p>
+                <p className="text-[0.65rem] font-mono text-muted-foreground truncate mt-0.5">
                   {asset.url}
                 </p>
               </div>
-              <div className="flex items-center justify-between pt-2 border-t border-zinc-800/80">
+              <div className="flex items-center justify-between pt-2 border-t border-border">
                 <button
                   onClick={() => handleCopyUrl(asset.url)}
-                  className="flex items-center gap-1.5 rounded bg-zinc-800 px-2.5 py-1 text-[0.7rem] text-zinc-300 hover:bg-zinc-700"
+                  className="flex items-center gap-1.5 rounded bg-surface-raised px-2.5 py-1 text-[0.7rem] text-muted-foreground hover:bg-surface-raised"
                 >
                   <Copy className="h-3 w-3" />
                   Copy URL
@@ -137,7 +137,7 @@ function AdminMediaPage() {
                   href={asset.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded p-1 text-zinc-400 hover:text-white"
+                  className="rounded p-1 text-muted-foreground hover:text-foreground"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
@@ -149,28 +149,28 @@ function AdminMediaPage() {
 
       {editing ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-100 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-              <h2 className="text-lg font-bold text-white">Register Media Asset</h2>
-              <button onClick={() => setEditing(null)} className="text-zinc-400 hover:text-white">
+          <div className="w-full max-w-lg rounded-xl border border-border bg-background p-6 text-foreground shadow-2xl">
+            <div className="flex items-center justify-between border-b border-border pb-4">
+              <h2 className="text-lg font-bold text-foreground">Register Media Asset</h2>
+              <button onClick={() => setEditing(null)} className="text-muted-foreground hover:text-foreground">
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             <form onSubmit={handleSave} className="mt-6 space-y-4">
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400">Filename</label>
+                <label className="block text-xs font-mono uppercase text-muted-foreground">Filename</label>
                 <input
                   type="text"
                   required
                   value={editing.filename || ""}
                   onChange={(e) => setEditing({ ...editing, filename: e.target.value })}
-                  className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400">
+                <label className="block text-xs font-mono uppercase text-muted-foreground">
                   Public Asset URL
                 </label>
                 <input
@@ -178,31 +178,31 @@ function AdminMediaPage() {
                   required
                   value={editing.url || ""}
                   onChange={(e) => setEditing({ ...editing, url: e.target.value })}
-                  className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white font-mono"
+                  className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono uppercase text-zinc-400">Alt Text</label>
+                <label className="block text-xs font-mono uppercase text-muted-foreground">Alt Text</label>
                 <input
                   type="text"
                   value={editing.alt_text || ""}
                   onChange={(e) => setEditing({ ...editing, alt_text: e.target.value })}
-                  className="mt-1 w-full rounded border border-zinc-800 bg-zinc-900 p-2 text-sm text-white"
+                  className="mt-1 w-full rounded border border-border bg-surface p-2 text-sm text-foreground"
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-6 border-t border-zinc-800">
+              <div className="flex justify-end gap-3 pt-6 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setEditing(null)}
-                  className="rounded px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white"
+                  className="rounded px-4 py-2 text-xs font-semibold text-muted-foreground hover:text-foreground"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded bg-emerald-500 px-5 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400"
+                  className="rounded bg-primary px-5 py-2 text-xs font-semibold text-zinc-950 hover:bg-primary"
                 >
                   Save Asset
                 </button>

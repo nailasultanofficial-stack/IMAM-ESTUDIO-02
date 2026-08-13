@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { DEFAULT_NAV_LINKS, DEFAULT_SITE_CONFIG, contactHref } from "@/lib/utils";
+import { contactHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -14,8 +14,8 @@ export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   
   const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
-  const siteConfig = globalSettings?.['site_config'] || DEFAULT_SITE_CONFIG;
-  const navLinks = globalSettings?.['nav_links'] || DEFAULT_NAV_LINKS;
+  const siteConfig = globalSettings?.['site_config'] || {};
+  const navLinks = globalSettings?.['nav_links'] || [];
 
   // Scroll state — backdrop/border on scroll
   useEffect(() => {
@@ -61,10 +61,10 @@ export function SiteHeader() {
         {/* Logo */}
         <Link to="/" className="group flex items-baseline gap-2" aria-label={`${siteConfig.name} home`}>
           <span className="font-display text-lg font-bold tracking-tight text-foreground md:text-xl uppercase">
-            {siteConfig.name?.split(' ')[0] || "MALIK"}
+            {siteConfig.name?.split(' ')[0] || "IMAM"}
           </span>
           <span className="eyebrow text-primary transition-colors group-hover:text-foreground uppercase">
-            {siteConfig.name?.split(' ').slice(1).join(' ') || "JAHANZAIB"}
+            {siteConfig.name?.split(' ').slice(1).join(' ') || "ESTUDIO"}
           </span>
         </Link>
 

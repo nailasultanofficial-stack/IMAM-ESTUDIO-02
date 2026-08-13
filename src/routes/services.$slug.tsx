@@ -4,6 +4,7 @@ import { ArrowLeft, Check } from "lucide-react";
 
 import { serviceQuery } from "@/lib/public-queries";
 import { formatPrice, paragraphs } from "@/lib/section-utils";
+import { FiverrCTA } from "@/components/ui/fiverr-cta";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: async ({ context, params }) => {
@@ -15,12 +16,12 @@ export const Route = createFileRoute("/services/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Capability unavailable — Malik Jahanzaib" },
+          { title: "Capability unavailable — IMAM ESTUDIO" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const title = `${loaderData.title} — Malik Jahanzaib`;
+    const title = `${loaderData.title} — IMAM ESTUDIO`;
     return {
       meta: [
         { title },
@@ -124,6 +125,10 @@ function ServiceDetail() {
             >
               {service.cta_label}
             </Link>
+
+            <div className="mt-4">
+              <FiverrCTA className="w-full h-11 rounded-full" />
+            </div>
           </aside>
         </div>
       </div>

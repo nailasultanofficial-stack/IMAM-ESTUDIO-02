@@ -5,12 +5,14 @@ import type { Lead, LeadStatus } from "@/lib/content-types";
 import { LEAD_STATUSES } from "@/lib/content-types";
 import { Users, Tag, MessageSquare, Mail, Phone, Calendar, Search, Filter, X } from "lucide-react";
 import { toast } from "sonner";
-import { whatsappUrl } from "@/lib/utils";
+import { whatsappUrl } from "@/lib/site";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { globalSettingsQuery } from "@/lib/public-queries";
 
 export const Route = createFileRoute("/admin/leads")({
   head: () => ({
     meta: [
-      { title: "Leads CRM — MALIK JAHANZAIB OS" },
+      { title: "Leads CRM — IMAM ESTUDIO OS" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -24,6 +26,8 @@ function AdminLeadsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [updating, setUpdating] = useState(false);
+  const { data: globalSettings } = useSuspenseQuery(globalSettingsQuery);
+  const siteConfig = globalSettings?.['site_config'] || {};
 
   const load = async () => {
     try {
@@ -71,25 +75,25 @@ function AdminLeadsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Leads & Inquiries CRM</h1>
-          <p className="mt-1 text-xs text-zinc-400 font-mono">
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Leads & Inquiries CRM</h1>
+          <p className="mt-1 text-xs text-muted-foreground font-mono">
             Protected by PostgreSQL RLS. Anonymous users cannot read leads.
           </p>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-surface/60 p-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-mono text-zinc-400 mr-2">Status:</span>
+          <span className="text-xs font-mono text-muted-foreground mr-2">Status:</span>
           {["All", ...LEAD_STATUSES].map((s) => (
             <button
               key={s}
               onClick={() => setFilterStatus(s)}
               className={`rounded-full px-3 py-1 text-xs font-mono transition-colors ${
                 filterStatus === s
-                  ? "bg-emerald-500 text-zinc-950 font-bold"
-                  : "bg-zinc-950 text-zinc-400 hover:text-white"
+                  ? "bg-primary text-zinc-950 font-bold"
+                  : "bg-background text-muted-foreground hover:text-foreground"
               }`}
             >
               {s}
@@ -98,24 +102,24 @@ function AdminLeadsPage() {
         </div>
 
         <div className="relative w-full max-w-xs">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-500" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search leads..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border border-zinc-800 bg-zinc-950 py-2 pl-9 pr-4 text-xs text-white placeholder-zinc-600 focus:outline-none"
+            className="w-full rounded-lg border border-border bg-background py-2 pl-9 pr-4 text-xs text-foreground placeholder-zinc-600 focus:outline-none"
           />
         </div>
       </div>
 
       {loading ? (
-        <p className="text-xs font-mono text-zinc-500 py-8">Loading CRM leads...</p>
+        <p className="text-xs font-mono text-muted-foreground py-8">Loading CRM leads...</p>
       ) : (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden">
+        <div className="rounded-xl border border-border bg-surface/60 overflow-hidden">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-400 font-mono uppercase bg-zinc-950/80">
+              <tr className="border-b border-border text-muted-foreground font-mono uppercase bg-background/80">
                 <th className="p-4">Contact</th>
                 <th className="p-4">Project Type</th>
                 <th className="p-4">CTA Attribution</th>
@@ -128,16 +132,16 @@ function AdminLeadsPage() {
               {filteredLeads.map((l) => (
                 <tr
                   key={l.id}
-                  className="hover:bg-zinc-900/40 cursor-pointer"
+                  className="hover:bg-surface/40 cursor-pointer"
                   onClick={() => setSelectedLead(l)}
                 >
                   <td className="p-4">
-                    <div className="font-semibold text-white">{l.name}</div>
-                    <div className="text-[0.7rem] text-zinc-400">{l.email}</div>
+                    <div className="font-semibold text-foreground">{l.name}</div>
+                    <div className="text-[0.7rem] text-muted-foreground">{l.email}</div>
                   </td>
-                  <td className="p-4 text-zinc-300">{l.project_type}</td>
+                  <td className="p-4 text-muted-foreground">{l.project_type}</td>
                   <td className="p-4">
-                    <span className="inline-flex items-center gap-1 rounded bg-zinc-950 px-2 py-0.5 font-mono text-[0.65rem] text-emerald-400 border border-zinc-800">
+                    <span className="inline-flex items-center gap-1 rounded bg-background px-2 py-0.5 font-mono text-[0.65rem] text-primary border border-border">
                       <Tag className="h-3 w-3" />
                       {l.source_cta}
                     </span>
@@ -147,7 +151,7 @@ function AdminLeadsPage() {
                       value={l.status}
                       onClick={(e) => e.stopPropagation()}
                       onChange={(e) => handleStatusChange(l.id, e.target.value as LeadStatus)}
-                      className="rounded border border-zinc-800 bg-zinc-950 px-2 py-1 text-xs text-emerald-400 font-mono focus:outline-none"
+                      className="rounded border border-border bg-background px-2 py-1 text-xs text-primary font-mono focus:outline-none"
                     >
                       {LEAD_STATUSES.map((st) => (
                         <option key={st} value={st}>
@@ -156,7 +160,7 @@ function AdminLeadsPage() {
                       ))}
                     </select>
                   </td>
-                  <td className="p-4 text-zinc-500 font-mono">
+                  <td className="p-4 text-muted-foreground font-mono">
                     {new Date(l.created_at).toLocaleDateString()}
                   </td>
                   <td className="p-4 text-right">
@@ -165,7 +169,7 @@ function AdminLeadsPage() {
                         e.stopPropagation();
                         setSelectedLead(l);
                       }}
-                      className="rounded bg-zinc-800 px-3 py-1 text-xs text-zinc-300 hover:bg-zinc-700"
+                      className="rounded bg-surface-raised px-3 py-1 text-xs text-muted-foreground hover:bg-surface-raised"
                     >
                       View Details
                     </button>
@@ -180,69 +184,69 @@ function AdminLeadsPage() {
       {/* Lead Detail Modal */}
       {selectedLead ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-xl rounded-xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-100 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
+          <div className="w-full max-w-xl rounded-xl border border-border bg-background p-6 text-foreground shadow-2xl">
+            <div className="flex items-center justify-between border-b border-border pb-4">
               <div>
-                <h2 className="text-lg font-bold text-white">{selectedLead.name}</h2>
-                <p className="text-xs text-zinc-400 font-mono">{selectedLead.email}</p>
+                <h2 className="text-lg font-bold text-foreground">{selectedLead.name}</h2>
+                <p className="text-xs text-muted-foreground font-mono">{selectedLead.email}</p>
               </div>
               <button
                 onClick={() => setSelectedLead(null)}
-                className="text-zinc-400 hover:text-white"
+                className="text-muted-foreground hover:text-foreground"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             <div className="mt-6 space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-4 rounded-lg bg-zinc-900/60 p-4">
+              <div className="grid grid-cols-2 gap-4 rounded-lg bg-surface/60 p-4">
                 <div>
-                  <span className="font-mono text-zinc-500 uppercase">Project Type</span>
-                  <p className="font-semibold text-white mt-1">{selectedLead.project_type}</p>
+                  <span className="font-mono text-muted-foreground uppercase">Project Type</span>
+                  <p className="font-semibold text-foreground mt-1">{selectedLead.project_type}</p>
                 </div>
                 <div>
-                  <span className="font-mono text-zinc-500 uppercase">Budget</span>
-                  <p className="font-semibold text-emerald-400 mt-1">
+                  <span className="font-mono text-muted-foreground uppercase">Budget</span>
+                  <p className="font-semibold text-primary mt-1">
                     {selectedLead.budget || "Unspecified"}
                   </p>
                 </div>
                 <div>
-                  <span className="font-mono text-zinc-500 uppercase">CTA Source</span>
-                  <p className="font-mono text-emerald-400 mt-1">{selectedLead.source_cta}</p>
+                  <span className="font-mono text-muted-foreground uppercase">CTA Source</span>
+                  <p className="font-mono text-primary mt-1">{selectedLead.source_cta}</p>
                 </div>
                 <div>
-                  <span className="font-mono text-zinc-500 uppercase">Submitted</span>
-                  <p className="font-mono text-zinc-300 mt-1">
+                  <span className="font-mono text-muted-foreground uppercase">Submitted</span>
+                  <p className="font-mono text-muted-foreground mt-1">
                     {new Date(selectedLead.created_at).toLocaleString()}
                   </p>
                 </div>
               </div>
 
               <div>
-                <span className="font-mono text-zinc-500 uppercase">Project Details / Message</span>
-                <div className="mt-2 rounded-lg border border-zinc-800 bg-zinc-900 p-4 text-zinc-200 whitespace-pre-wrap leading-relaxed">
+                <span className="font-mono text-muted-foreground uppercase">Project Details / Message</span>
+                <div className="mt-2 rounded-lg border border-border bg-surface p-4 text-foreground whitespace-pre-wrap leading-relaxed">
                   {selectedLead.details}
                 </div>
               </div>
 
-              <div className="flex gap-3 pt-4 border-t border-zinc-800">
+              <div className="flex gap-3 pt-4 border-t border-border">
                 <a
                   href={`mailto:${selectedLead.email}?subject=RE: Project Inquiry — ${selectedLead.project_type}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded bg-zinc-800 py-2 font-semibold text-white hover:bg-zinc-700"
+                  className="flex flex-1 items-center justify-center gap-2 rounded bg-surface-raised py-2 font-semibold text-foreground hover:bg-surface-raised"
                 >
-                  <Mail className="h-4 w-4 text-emerald-400" />
+                  <Mail className="h-4 w-4 text-primary" />
                   Email Lead
                 </a>
                 <a
                   href={whatsappUrl(
-                    "923091925177",
-                    `Hi ${selectedLead.name}, following up on your ${selectedLead.project_type} inquiry with Malik Jahanzaib.`,
+                    siteConfig.whatsapp || "",
+                    `Hi ${selectedLead.name}, following up on your ${selectedLead.project_type} inquiry with IMAM ESTUDIO.`,
                   )}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded bg-emerald-500 py-2 font-semibold text-zinc-950 hover:bg-emerald-400"
+                  className="flex flex-1 items-center justify-center gap-2 rounded bg-primary py-2 font-semibold text-zinc-950 hover:bg-primary"
                 >
                   <MessageSquare className="h-4 w-4" />
                   WhatsApp Direct

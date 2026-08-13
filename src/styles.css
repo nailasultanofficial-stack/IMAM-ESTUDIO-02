@@ -7,7 +7,7 @@
 @custom-variant alt (&:is(.alt *));
 
 /*
- * MALIK JAHANZAIB OS design system.
+ * IMAM ESTUDIO OS design system.
  * Sophisticated editorial minimalism. All colour values are oklch semantic tokens.
  * Never hardcode colour utilities in components — use the tokens below.
  */
@@ -201,6 +201,7 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -211,6 +212,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     line-height: 1.7;
+    overflow-x: hidden;
     /* Add smooth transition for theme switching */
     transition: background-color 0.5s var(--ease-apple), color 0.5s var(--ease-apple);
   }
