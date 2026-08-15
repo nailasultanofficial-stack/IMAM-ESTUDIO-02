@@ -107,7 +107,7 @@ function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="group flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-zinc-950 transition-all hover:bg-primary disabled:opacity-50"
+            className="group flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-zinc-950 transition-colors hover:bg-primary disabled:opacity-50"
           >
             {loading ? "Authenticating..." : "Sign in to Control Plane"}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -76,7 +76,7 @@ export function ProcessSection({ section }: ProcessSectionProps) {
             const IconComponent = phase.icon || Code2;
             return (
               <Reveal key={phase.step || index} delay={0.1 * index}>
-                <div className="h-full rounded-xl border border-border bg-surface/60 p-6 transition-all duration-200 hover:border-border-strong hover:bg-surface">
+                <div className="h-full rounded-xl border border-border bg-surface/60 p-6 transition-colors duration-200 hover:border-border-strong hover:bg-surface">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold text-primary">
                       PHASE {phase.step}

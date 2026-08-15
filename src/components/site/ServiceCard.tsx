@@ -18,7 +18,7 @@ import { FiverrCTA } from "@/components/ui/fiverr-cta";
  */
 export function ServiceCard({ service, index }: { service: Service; index?: number }) {
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-surface/30 transition-all duration-200 hover:border-primary/30 hover:bg-surface/70 hover:shadow-md hover:shadow-primary/5">
+    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-surface/30 transition-[color,transform,opacity,shadow] duration-200 hover:border-primary/30 hover:bg-surface/70 hover:shadow-md hover:shadow-primary/5">
       <Link
         to="/services/$slug"
         params={{ slug: service.slug }}
@@ -51,7 +51,7 @@ export function ServiceCard({ service, index }: { service: Service; index?: numb
           </div>
 
           {/* Title */}
-          <h3 className="font-sans text-sm font-semibold leading-snug tracking-tight text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+          <h3 className="font-sans text-sm font-semibold leading-snug tracking-tight text-foreground group-hover:text-primary transition-[color,transform,opacity,shadow] duration-200 line-clamp-2">
             {service.title}
           </h3>
 
@@ -62,7 +62,7 @@ export function ServiceCard({ service, index }: { service: Service; index?: numb
 
           {/* CTAs */}
           <div className="mt-5 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-1 font-mono text-[11px] font-semibold text-primary group-hover:text-foreground transition-colors duration-200">
+            <div className="flex items-center gap-1 font-mono text-[11px] font-semibold text-primary group-hover:text-foreground transition-[color,transform,opacity,shadow] duration-200">
               <span>Explore</span>
               <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
             </div>

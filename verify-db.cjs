@@ -23,7 +23,7 @@ async function verify() {
   console.log("Settings found:", settings);
   
   const phoneOk = settings.value.whatsapp === '+923091925177';
-  const emailOk = settings.value.email === 'malikshahzaib1809@gmail.com';
+  const emailOk = settings.value.email === 'hello@imam-estudio.com';
   
   if (phoneOk && emailOk) {
     console.log("✅ Phone and email matched perfectly.");

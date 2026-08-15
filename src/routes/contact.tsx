@@ -144,7 +144,7 @@ function ContactPage() {
               <dt className="eyebrow">Instant Messenger</dt>
               <dd className="mt-1">
                 <a
-                  href={whatsappUrl(siteConfig.whatsapp || "", "Hi Malik — I'd like to discuss a project with you.")}
+                  href={whatsappUrl(siteConfig.whatsapp || "", "Hi IMAM ESTUDIO — I'd like to discuss a project with you.")}
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm font-medium text-emerald-400 underline-offset-4 hover:underline"
@@ -168,7 +168,7 @@ function ContactPage() {
               <button
                 type="button"
                 onClick={() => mutation.reset()}
-                className="inline-flex h-11 items-center rounded-full border border-border-strong px-6 text-sm text-foreground transition-colors hover:bg-surface"
+                className="inline-flex h-11 items-center rounded-full border border-border-strong px-6 text-sm text-foreground transition-[color,transform,opacity,shadow] hover:bg-surface"
               >
                 Send another message
               </button>

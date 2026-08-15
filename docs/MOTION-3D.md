@@ -1,8 +1,8 @@
-# 3D & Motion System Architecture — MALIK JAHANZAIB OS
+# 3D & Motion System Architecture — IMAM ESTUDIO OS
 
 ## Overview
 
-MALIK JAHANZAIB OS employs a high-performance, GPU-conscious 3D and motion storytelling system built with Three.js, React Three Fiber (`@react-three/fiber`), Drei (`@react-three/drei`), Framer Motion, and Lenis smooth momentum scroll.
+IMAM ESTUDIO OS employs a high-performance, GPU-conscious 3D and motion storytelling system built with Three.js, React Three Fiber (`@react-three/fiber`), Drei (`@react-three/drei`), Framer Motion, and Lenis smooth momentum scroll.
 
 ## Core Architectural Principles
 

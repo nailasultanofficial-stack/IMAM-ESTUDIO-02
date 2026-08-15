@@ -99,7 +99,7 @@ function FeaturedWork({ section, projects }: { section: PageSection; projects: P
           />
           <Link
             to="/work"
-            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
+            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-[color,transform,opacity,shadow] hover:text-foreground"
           >
             View full archive →
           </Link>
@@ -133,12 +133,12 @@ function CapabilitiesSection({ section, services }: { section: PageSection; serv
           />
           <Link
             to="/services"
-            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
+            className="group inline-flex shrink-0 items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-[color,transform,opacity,shadow] hover:text-foreground"
           >
             Explore all capabilities →
           </Link>
         </div>
-        <div className="mt-8 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-fr">
           {shown.map((service, i) => (
             <ServiceCard key={service.id} service={service} index={i} />
           ))}
@@ -220,7 +220,7 @@ function FinalCta({ section, siteConfig }: { section: PageSection; siteConfig?: 
         <Reveal delay={0.3}>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:items-center">
             <Link to="/contact" search={{ source: "final_cta" }}>
-              <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
+              <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-[color,transform,opacity,shadow] hover:opacity-95 active:scale-[0.97]">
                 {str(c, "primary_cta_label", "Start a project")}
               </MagneticButton>
             </Link>
@@ -230,7 +230,7 @@ function FinalCta({ section, siteConfig }: { section: PageSection; siteConfig?: 
                 target="_blank"
                 rel="noreferrer"
               >
-                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
+                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-[color,transform,opacity,shadow] hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
                   <MessageCircle className="mr-2 h-4 w-4 text-emerald-400" />
                   {str(c, "secondary_cta_label", "Message on WhatsApp")}
                 </MagneticButton>

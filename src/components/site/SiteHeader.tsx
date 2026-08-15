@@ -51,7 +51,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-250",
+        "fixed inset-x-0 top-0 z-50 transition-[color,transform,opacity,shadow] duration-250",
         scrolled
           ? "border-b border-border bg-background/88 backdrop-blur-xl"
           : "border-b border-transparent",
@@ -63,7 +63,7 @@ export function SiteHeader() {
           <span className="font-display text-lg font-bold tracking-tight text-foreground md:text-xl uppercase">
             {siteConfig.name?.split(' ')[0] || "IMAM"}
           </span>
-          <span className="eyebrow text-primary transition-colors group-hover:text-foreground uppercase">
+          <span className="eyebrow text-primary transition-[color,transform,opacity,shadow] group-hover:text-foreground uppercase">
             {siteConfig.name?.split(' ').slice(1).join(' ') || "ESTUDIO"}
           </span>
         </Link>
@@ -78,7 +78,7 @@ export function SiteHeader() {
                 to={link.to}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative text-sm transition-colors hover:text-foreground",
+                  "relative text-sm transition-[color,transform,opacity,shadow] hover:text-foreground",
                   isActive ? "text-foreground font-medium" : "text-muted-foreground",
                 )}
               >
@@ -133,7 +133,7 @@ export function SiteHeader() {
                   to={link.to}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "flex min-h-[48px] items-center border-b border-border/60 text-base transition-colors",
+                    "flex min-h-[48px] items-center border-b border-border/60 text-base transition-[color,transform,opacity,shadow]",
                     isActive ? "text-foreground font-medium" : "text-muted-foreground",
                   )}
                 >

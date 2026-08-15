@@ -26,7 +26,7 @@ export function ThemeSwitcher() {
       <button
         onClick={() => setTheme("light")}
         className={cn(
-          "flex h-7 w-7 items-center justify-center rounded-full transition-all active:scale-[0.97]",
+          "flex h-7 w-7 items-center justify-center rounded-full transition-[color,transform,opacity,shadow] active:scale-[0.97]",
           theme === "light"
             ? "bg-foreground text-background shadow-sm"
             : "text-muted-foreground hover:bg-surface-raised hover:text-foreground"
@@ -39,7 +39,7 @@ export function ThemeSwitcher() {
       <button
         onClick={() => setTheme("dark")}
         className={cn(
-          "flex h-7 w-7 items-center justify-center rounded-full transition-all active:scale-[0.97]",
+          "flex h-7 w-7 items-center justify-center rounded-full transition-[color,transform,opacity,shadow] active:scale-[0.97]",
           theme === "dark"
             ? "bg-foreground text-background shadow-sm"
             : "text-muted-foreground hover:bg-surface-raised hover:text-foreground"
@@ -52,7 +52,7 @@ export function ThemeSwitcher() {
       <button
         onClick={() => setTheme("alt")}
         className={cn(
-          "flex h-7 w-7 items-center justify-center rounded-full transition-all active:scale-[0.97]",
+          "flex h-7 w-7 items-center justify-center rounded-full transition-[color,transform,opacity,shadow] active:scale-[0.97]",
           theme === "alt"
             ? "bg-foreground text-background shadow-sm"
             : "text-muted-foreground hover:bg-surface-raised hover:text-foreground"

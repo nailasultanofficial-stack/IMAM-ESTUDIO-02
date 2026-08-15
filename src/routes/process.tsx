@@ -139,7 +139,7 @@ function ProcessPage() {
           <Link
             to="/contact"
             search={{ source: "process_cta" }}
-            className="mt-9 inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95"
+            className="mt-9 inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:opacity-95"
           >
             Start Discovery & Architecture
           </Link>

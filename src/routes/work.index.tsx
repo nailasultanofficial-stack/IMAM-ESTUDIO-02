@@ -69,7 +69,7 @@ function WorkPage() {
             aria-selected={filter === category}
             onClick={() => setFilter(category)}
             className={cn(
-              "rounded-full border px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] transition-all duration-300",
+              "rounded-full border px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] transition-colors duration-300",
               filter === category
                 ? "border-primary bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20"
                 : "border-border/80 bg-surface/60 text-muted-foreground hover:border-border-strong hover:text-foreground",

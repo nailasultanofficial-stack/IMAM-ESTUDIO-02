@@ -304,7 +304,7 @@ VALUES
   ('/services', 'Engineering Capabilities — IMAM ESTUDIO', 'Custom Shopify Liquid, Next.js SaaS development, n8n AI workflow automations, and UI/UX architecture.', ARRAY['Shopify Services', 'n8n Automations', 'Next.js Development', 'Framer Sites'], false),
   ('/about', 'About IMAM ESTUDIO', 'Senior Full-Stack Engineer & UI/UX Architect helping brands replace slow template websites with high performance platforms.', ARRAY['IMAM ESTUDIO', 'Senior Engineer', 'UI UX Architect'], false),
   ('/process', 'Engineering Process — IMAM ESTUDIO', '4-phase engineering methodology for building high-integrity software and conversion platforms.', ARRAY['Methodology', 'Engineering Process'], false),
-  ('/contact', 'Contact & Inquiries — IMAM ESTUDIO', 'Start a project directly with Senior Full-Stack Engineer IMAM ESTUDIO.', ARRAY['Contact Malik', 'Hire Shopify Developer', 'Hire Next.js Developer'], false)
+  ('/contact', 'Contact & Inquiries — IMAM ESTUDIO', 'Start a project directly with Senior Full-Stack Engineer IMAM ESTUDIO.', ARRAY['Contact IMAM ESTUDIO', 'Hire Shopify Developer', 'Hire Next.js Developer'], false)
 ON CONFLICT (route) DO UPDATE SET
   title = EXCLUDED.title,
   description = EXCLUDED.description,

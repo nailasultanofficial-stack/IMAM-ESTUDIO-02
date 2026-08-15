@@ -15,9 +15,9 @@ export function HeroSection({ section }: HeroSectionProps) {
 
   const content = (section.content || {}) as Record<string, any>;
   const desktopImage =
-    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
+    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/imam_estudio_hero_desktop.png";
   const mobileImage =
-    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/MALIK%20janzaib%20hero%20desktop.png";
+    "https://zcihimfisgzpeeyhdnfq.supabase.co/storage/v1/object/public/assets/imam_estudio_hero_desktop.png";
   const eyebrow = content["eyebrow"] || "IMAM ESTUDIO";
   const primaryCtaLabel = content["primary_cta_label"] || "Start an engagement";
   const primaryCtaUrl = content["primary_cta_url"] || "/contact?source=hero_primary";
@@ -26,20 +26,84 @@ export function HeroSection({ section }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-[95svh] w-full overflow-hidden bg-background">
-      {/* Hero Background Visual — Official Artwork First (Zero floating 3D objects/particles) */}
-      <motion.div style={{ y: imageY, opacity }} className="absolute inset-0 z-0">
-        <picture>
-          <source media="(max-width: 767px)" srcSet={mobileImage} />
-          <img
-            src={desktopImage}
-            alt="IMAM ESTUDIO — Senior Full-Stack Engineer & UI/UX Architect"
-            fetchPriority="high"
-            decoding="async"
-            className="h-full w-full object-cover object-center md:object-[70%_center] opacity-85 md:opacity-90"
-          />
-        </picture>
-        {/* Minimal localized readability gradient behind text only */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent md:w-3/5" />
+      {/* Abstract Architecture Visualization */}
+      <motion.div style={{ y: imageY, opacity }} className="absolute inset-0 z-0 overflow-hidden">
+        {/* Subtle technical grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_60%_at_70%_50%,#000_10%,transparent_100%)] opacity-30" />
+
+        {/* Architecture Nodes Desktop */}
+        <div className="absolute top-1/2 left-[60%] hidden -translate-y-1/2 md:block">
+          <div className="relative h-[400px] w-[500px]">
+            {/* Frontend Layer */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute top-[10%] left-[10%] flex h-24 w-48 flex-col justify-center rounded-xl border border-border bg-surface/50 p-4 shadow-xl backdrop-blur-md"
+            >
+              <div className="eyebrow text-primary">Interface</div>
+              <div className="mt-1 h-1.5 w-1/2 rounded-full bg-border" />
+              <div className="mt-1.5 h-1.5 w-3/4 rounded-full bg-border/50" />
+            </motion.div>
+
+            {/* API / Middleware Layer */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute top-[40%] left-[40%] flex h-24 w-48 flex-col justify-center rounded-xl border border-border bg-surface/50 p-4 shadow-xl backdrop-blur-md"
+            >
+               <div className="eyebrow text-emerald-500">Logic & Agents</div>
+               <div className="mt-1 flex gap-2">
+                 <div className="h-6 w-6 rounded-md border border-border bg-background" />
+                 <div className="h-6 w-6 rounded-md border border-border bg-background" />
+                 <div className="h-6 w-6 rounded-md border border-border bg-background" />
+               </div>
+            </motion.div>
+
+            {/* Database Layer */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="absolute top-[70%] left-[20%] flex h-24 w-48 flex-col justify-center rounded-xl border border-border bg-surface/50 p-4 shadow-xl backdrop-blur-md"
+            >
+               <div className="eyebrow text-primary">Data Integrity</div>
+               <div className="mt-2 space-y-1">
+                 <div className="h-1.5 w-full rounded-full bg-border" />
+                 <div className="h-1.5 w-full rounded-full bg-border" />
+                 <div className="h-1.5 w-[80%] rounded-full bg-border" />
+               </div>
+            </motion.div>
+
+            {/* Connecting SVG Lines */}
+            <svg className="absolute inset-0 h-full w-full pointer-events-none" style={{ zIndex: -1 }}>
+               <motion.path
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.3 }}
+                 transition={{ duration: 1.5, delay: 0.8 }}
+                 d="M 150 110 C 200 110, 200 180, 230 180"
+                 fill="none"
+                 stroke="var(--color-primary)"
+                 strokeWidth="2"
+                 strokeDasharray="4 4"
+               />
+               <motion.path
+                 initial={{ pathLength: 0, opacity: 0 }}
+                 animate={{ pathLength: 1, opacity: 0.3 }}
+                 transition={{ duration: 1.5, delay: 1.0 }}
+                 d="M 230 220 C 200 220, 180 270, 160 300"
+                 fill="none"
+                 stroke="var(--color-emerald-500)"
+                 strokeWidth="2"
+                 strokeDasharray="4 4"
+               />
+            </svg>
+          </div>
+        </div>
+
+        {/* Gradients for readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent md:w-3/5" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
       </motion.div>
 
@@ -76,12 +140,12 @@ export function HeroSection({ section }: HeroSectionProps) {
           <Reveal delay={0.5}>
             <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
               <Link to={primaryCtaUrl.split('?')[0] as any} search={primaryCtaUrl.includes('?') ? (Object.fromEntries(new URLSearchParams(primaryCtaUrl.split('?')[1])) as any) : undefined}>
-                <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:opacity-95 active:scale-[0.97]">
+                <MagneticButton className="h-12 rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-[color,transform,opacity,shadow] hover:opacity-95 active:scale-[0.97]">
                   {primaryCtaLabel}
                 </MagneticButton>
               </Link>
               <Link to={secondaryCtaUrl as any}>
-                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
+                <MagneticButton className="h-12 rounded-full border border-border-strong bg-surface/50 px-8 text-sm font-medium text-foreground backdrop-blur-md transition-[color,transform,opacity,shadow] hover:bg-surface hover:border-foreground/40 active:scale-[0.97]">
                   {secondaryCtaLabel}
                 </MagneticButton>
               </Link>
