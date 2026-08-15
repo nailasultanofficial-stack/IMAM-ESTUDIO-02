@@ -1,8 +1,8 @@
-# MALIK JAHANZAIB OS — Database Architecture & Security
+# IMAM ESTUDIO OS — Database Architecture & Security
 
 ## Database Engine
 
-MALIK JAHANZAIB OS uses Supabase PostgreSQL (`zcihimfisgzpeeyhdnfq`) as its authoritative datastore.
+IMAM ESTUDIO OS uses Supabase PostgreSQL (`zcihimfisgzpeeyhdnfq`) as its authoritative datastore.
 
 ## Core Schema Tables
 

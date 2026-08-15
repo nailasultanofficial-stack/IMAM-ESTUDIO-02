@@ -28,7 +28,7 @@ INSERT INTO public.global_settings (key, value) VALUES
   "role": "Senior Full-Stack Engineer & UI/UX Architect",
   "handle": "",
   "whatsapp": "923091925177",
-  "email": "malikshahzaib1809@gmail.com",
+  "email": "hello@imam-estudio.com",
   "rating": "5.0",
   "fiverrReviews": 1,
   "location": "Pakistan",

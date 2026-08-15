@@ -261,7 +261,7 @@ export function TiltCard({
         rotateX,
         transformStyle: "preserve-3d",
       }}
-      className={`relative transition-all duration-200 ${className}`}
+      className={`relative transition-colors duration-200 ${className}`}
     >
       {children}
     </motion.div>

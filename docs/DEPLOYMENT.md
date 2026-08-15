@@ -1,10 +1,10 @@
-# MALIK JAHANZAIB OS — Production Deployment Guide
+# IMAM ESTUDIO OS — Production Deployment Guide
 
 ## Infrastructure Details
 
 - **Vercel Project**: `imam-estudio-02` (Project ID: `prj_oUgZ4BJ5IiBtGWenKkApZrltYgfv`)
 - **Vercel Live URL**: `https://imam-estudio-02.vercel.app`
-- **GitHub Repository**: `nailasultanofficial-stack/IMAM-ESTUDIO-02` (`main` branch)
+- **GitHub Repository**: `imam-estudio-stack/IMAM-ESTUDIO-02` (`main` branch)
 - **Supabase PostgreSQL**: `zcihimfisgzpeeyhdnfq` (`https://zcihimfisgzpeeyhdnfq.supabase.co`)
 
 ## Deployment Pipeline

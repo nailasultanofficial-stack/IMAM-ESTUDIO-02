@@ -32,7 +32,7 @@ export function ProjectCard({
       className="group block h-full"
       aria-label={`View case study: ${project.title}`}
     >
-      <article className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-surface/60 transition-all duration-250 hover:border-border-strong hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5">
+      <article className="flex h-full flex-col overflow-hidden rounded-xl border border-border/70 bg-surface/60 transition-[color,transform,opacity,shadow] duration-250 hover:border-border-strong hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5">
         {/* Image */}
         <div
           className="relative w-full overflow-hidden bg-background/60 border-b border-border/40"
@@ -72,13 +72,13 @@ export function ProjectCard({
             <span className="font-mono text-[10px] text-muted-foreground/70 leading-snug">
               {project.role || "Full-Stack Engineering"}
             </span>
-            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/60 transition-all duration-200 group-hover:border-primary/50 group-hover:bg-primary group-hover:text-primary-foreground">
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/60 transition-[color,transform,opacity,shadow] duration-200 group-hover:border-primary/50 group-hover:bg-primary group-hover:text-primary-foreground">
               <ArrowUpRight className="h-3 w-3" />
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="mt-2.5 font-display text-base font-semibold leading-snug tracking-tight text-foreground group-hover:text-primary transition-colors duration-200 md:text-lg line-clamp-2">
+          <h3 className="mt-2.5 font-display text-base font-semibold leading-snug tracking-tight text-foreground group-hover:text-primary transition-[color,transform,opacity,shadow] duration-200 md:text-lg line-clamp-2">
             {project.title}
           </h3>
 

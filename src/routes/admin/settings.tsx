@@ -180,7 +180,7 @@ function AdminSettingsPage() {
                 value={siteConfig["fiverr_url"] || ""}
                 onChange={(e) => setSiteConfig({ ...siteConfig, fiverr_url: e.target.value })}
                 className="mt-1 w-full rounded border border-border bg-background p-2 text-sm text-foreground font-mono"
-                placeholder="https://www.fiverr.com/jahanzeb1809"
+                placeholder="https://www.fiverr.com/imam-estudio"
               />
             </div>
           </div>
@@ -189,7 +189,7 @@ function AdminSettingsPage() {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50 transition-all"
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50 transition-colors"
             >
               <Save className="h-4 w-4" />
               {saving ? "Saving..." : "Save Settings"}

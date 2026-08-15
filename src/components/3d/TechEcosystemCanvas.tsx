@@ -141,7 +141,7 @@ function NodeObject({
       </mesh>
       <Html distanceFactor={8} position={[0, -0.65, 0]} center pointerEvents="none">
         <div
-          className={`rounded-md border px-2.5 py-1 text-center font-mono text-[10px] uppercase tracking-wider transition-all duration-300 backdrop-blur-md whitespace-nowrap ${
+          className={`rounded-md border px-2.5 py-1 text-center font-mono text-[10px] uppercase tracking-wider transition-colors duration-300 backdrop-blur-md whitespace-nowrap ${
             isSelected
               ? "border-primary bg-primary/25 text-foreground shadow-lg shadow-primary/20 scale-110"
               : hovered
@@ -233,7 +233,7 @@ export function TechEcosystemCanvas() {
                 <button
                   key={node.id}
                   onClick={() => setSelectedNode(node)}
-                  className={`flex flex-col items-start rounded-lg border p-3 text-left transition-all ${
+                  className={`flex flex-col items-start rounded-lg border p-3 text-left transition-colors ${
                     selectedNode.id === node.id
                       ? "border-primary bg-primary/10 text-foreground"
                       : "border-border bg-surface/40 text-muted-foreground hover:border-foreground/30"

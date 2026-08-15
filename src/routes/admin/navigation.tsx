@@ -149,7 +149,7 @@ function AdminNavigationPage() {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50 transition-all"
+              className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-xs font-semibold text-zinc-950 hover:bg-primary disabled:opacity-50 transition-colors"
             >
               <Save className="h-4 w-4" />
               {saving ? "Saving..." : "Save Navigation"}

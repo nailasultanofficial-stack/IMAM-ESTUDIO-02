@@ -17,7 +17,7 @@ async function run() {
   let config = data.value;
   config.handle = "";
   config.whatsapp = "+923091925177";
-  config.email = "malikshahzaib1809@gmail.com";
+  config.email = "hello@imam-estudio.com";
   
   console.log("Updating site_config...");
   const { error: updateError } = await supabase.from('global_settings').update({ value: config }).eq('key', 'site_config');

@@ -164,7 +164,7 @@ function AdminThemeEditorPage() {
             {sections.map((section, idx) => (
               <div
                 key={section.id}
-                className={`flex items-center justify-between rounded-xl border p-4 transition-all ${
+                className={`flex items-center justify-between rounded-xl border p-4 transition-colors ${
                   section.is_visible
                     ? "border-border bg-surface/60"
                     : "border-border/40 bg-background opacity-60"

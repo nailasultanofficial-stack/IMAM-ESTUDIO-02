@@ -18,7 +18,7 @@ export function FiverrCTA({ className, variant = "subtle" }: FiverrCTAProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-300",
+        "inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors duration-300",
         variant === "subtle"
           ? "bg-[#1dbf73]/10 text-[#1dbf73] hover:bg-[#1dbf73]/20 hover:shadow-sm"
           : "bg-[#1dbf73] text-white hover:bg-[#19a463] hover:shadow-md",

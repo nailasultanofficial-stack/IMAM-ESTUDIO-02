@@ -1,8 +1,8 @@
-# MALIK JAHANZAIB OS — System Architecture
+# IMAM ESTUDIO OS — System Architecture
 
 ## Overview
 
-MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition platform built with strict technical discipline, high performance, and server-enforced security boundaries.
+IMAM ESTUDIO OS is a personal engineering portfolio and client acquisition platform built with strict technical discipline, high performance, and server-enforced security boundaries.
 
 ## Architecture Layers
 
@@ -29,7 +29,7 @@ MALIK JAHANZAIB OS is a personal engineering portfolio and client acquisition pl
 - **Smooth Easing**: Lenis momentum scroll integration with cubic-bezier easing.
 - **Attribution Pipeline**: Form submissions persist to `leads` with source CTA metadata.
 
-### Admin Control Plane (MALIK JAHANZAIB OS)
+### Admin Control Plane (IMAM ESTUDIO OS)
 
 - Protected behind Supabase Auth and RLS security policies.
 - Theme editor with JSON schema validation for live homepage section reordering.
